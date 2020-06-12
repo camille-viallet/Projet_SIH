@@ -24,8 +24,8 @@ class Test {
 
         System.out.println("\n********\n");
 
-        Date d1 = new Date(1, 11, 2005);
-        Date d2 = new Date(5, 1, 2006);
+        Date d1 = new Date(1, 11, 2005, 13, 56);
+        Date d2 = new Date(5, 1, 2006, 9, 32);
         System.out.println("> nombre de fiches entre " + d1 + " et " + d2 + " : " + dm.nombreFichesIntervalle(d1, d2));
 
         System.out.println("\n********\n");
