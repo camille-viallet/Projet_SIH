@@ -1,5 +1,8 @@
 package princetonPlainsboro;
 
+import java.text.DateFormat;
+import java.util.Locale;
+
 public class Date implements Comparable {
 
     private int jour;
@@ -17,7 +20,12 @@ public class Date implements Comparable {
     }
 
     public String toString() {
-        return jour + "/" + mois + "/" + annee + "  " + heure + " h " + minute + " min";
+        if (verifierDate() == true ) {
+            return jour + "/" + mois + "/" + annee + "  " + heure + " h " + minute + " min";
+        }
+        else {
+            return "La date rentrée n'est pas valide. Veuillez réessayer." ;
+        }
     }
 
     public boolean equals(Object o) {
@@ -27,6 +35,20 @@ public class Date implements Comparable {
         } else {
             return false;
         }
+    }
+
+    public boolean verifierDate() {
+        boolean estValide = true;
+        if (jour >= 1 && jour <= 31
+                && mois >= 1 && mois <= 12
+                && annee >= 1900 && annee <= 2020
+                && heure >= 0 && heure <= 23
+                && minute >= 0 && minute <= 59) {
+            estValide = true;
+        } else {
+            estValide = false;
+        }
+        return estValide;
     }
 
     // precondition : 'o' est une instance de 'Date' :

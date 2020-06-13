@@ -6,7 +6,7 @@ import java.util.List;
 public class Medecin extends Personnel {
 
     private Specialite specialite;
-    private List <Acte> listActes;
+    private List <Acte> listActes; 
 
     public Medecin(String prenom, String nom, String username, String mdp, MetierCHU metier, String telephone, Specialite specialite) {
         super(prenom, nom, username, mdp, metier, telephone);
