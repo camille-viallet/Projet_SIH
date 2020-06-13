@@ -43,9 +43,10 @@ class FicheDeSoins {
 
     public String toString() {
         String chaine = "Fiche de soins du " + date.toString() + "\n";
+
         chaine = chaine + "- medecin : " + medecin.toString() + "\n";
-        chaine = chaine + "- patient : " + patient.toString() + "\n";
-        System.out.println("- actes medicaux :");
+        chaine = chaine + "- date : " + date.toString() + "\n";
+        chaine = chaine + "- actes medicaux :\n";
         for (int i = 0; i < actes.size(); i++) {
             Acte a = actes.get(i);
             chaine = chaine + "    > " + a.toString() + "\n";
