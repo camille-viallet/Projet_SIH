@@ -64,7 +64,7 @@ public class LectureXML {
                         break;
                     case XMLStreamConstants.END_ELEMENT:
                         if (parser.getLocalName().equals("acte")) {
-                            //actes.add(new Acte(codeCourant, coefCourant));
+                            actes.add(new Acte(codeCourant, coefCourant,"medecine",new Medecin("Deblouze", "Agathe", "ORL", "06 00 00 00 00", "mdp") , new Date(10,01,2000,00,00), Type.DIAG, "RAS" ));
                         }                        
                         if (parser.getLocalName().equals("code")) {
                             codeCourant = getCode(donneesCourantes);
@@ -95,13 +95,13 @@ public class LectureXML {
                             dossierCourant.ajouterFiche(f);
                         }
                         if (parser.getLocalName().equals("medecin")) {
-                            medecinCourant = new Medecin(nomCourant, prenomCourant, specialiteCourante);
+                            medecinCourant = new Medecin(nomCourant, prenomCourant, specialiteCourante, "06 00 00 00 00", "mdp");
                         }
                         if (parser.getLocalName().equals("nom")) {
                             nomCourant = donneesCourantes;
                         }
                         if (parser.getLocalName().equals("patient")) {
-                            patientCourant = new Patient(nomCourant, prenomCourant);
+                            patientCourant = new Patient(nomCourant, prenomCourant, "adresse 21862 VILLE", new Date(10,01,2000,00,00), "02520020022", 52, 1.86);
                         }
                         if (parser.getLocalName().equals("prenom")) {
                             prenomCourant = donneesCourantes;
