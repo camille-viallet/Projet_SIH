@@ -7,10 +7,10 @@ class Acte {
     private String nomActe;
     private String nomMed;
     private Date date;
-    private Enum type;
+    private Type type;
     private String comm;
 
-    public Acte(Code code, int coef, String nomActe, Medecin med, Date date, Enum type, String comm) {
+    public Acte(Code code, int coef, String nomActe, Medecin med, Date date, Type type, String comm) {
         this.code = code;
         this.coef = coef;
         this.nomActe = nomActe;
@@ -102,14 +102,14 @@ class Acte {
     /**
      * @return the type
      */
-    public Enum getType() {
+    public Type getType() {
         return type;
     }
 
     /**
      * @param type the type to set
      */
-    public void setType(Enum type) {
+    public void setType(Type type) {
         this.type = type;
     }
 

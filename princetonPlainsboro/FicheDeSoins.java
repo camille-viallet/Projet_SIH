@@ -32,7 +32,7 @@ class FicheDeSoins {
         actes.add(acte);
     }
 
-    public void ajouterActe(Code code, int coefficient, String nomActe, Medecin med, Date date, Enum type, String comm) {
+    public void ajouterActe(Code code, int coefficient, String nomActe, Medecin med, Date date, Type type, String comm) {
         Acte acte = new Acte(code, coefficient, nomActe, med, date, type, comm);
         actes.add(acte);
     }
