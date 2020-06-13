@@ -15,25 +15,29 @@ public class SecretaireMed extends Personnel {
         super(prenom, nom, username, mdp, metier, telephone);
 
     }
-    
-        // getters pour les Sécretaires Médicales
-    
-      public String getPrenom() {
-        return super.getPrenom() ;
+
+    // getters pour les Sécretaires Médicales
+    public String getPrenom() {
+        return super.getPrenom();
     }
-      public String getNom() {
-          return super.getNom() ; 
-      }
-      public String getUsername() {
-          return super.getUsername() ;
-      }
-      public String getMdp() {
-          return super.getMdp() ;
-      }
-      public MetierCHU getMetierCHU(){
-         return MetierCHU.SECRETAIRE_MEDICALE ;
-     }
-      public String getTelephone() {
-          return super.getTelephone() ; 
-      }
+
+    public String getNom() {
+        return super.getNom();
+    }
+
+    public String getUsername() {
+        return super.getUsername();
+    }
+
+    public String getMdp() {
+        return super.getMdp();
+    }
+
+    public MetierCHU getMetierCHU() {
+        return MetierCHU.SECRETAIRE_MEDICALE;
+    }
+
+    public String getTelephone() {
+        return super.getTelephone();
+    }
 }
