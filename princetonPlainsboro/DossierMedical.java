@@ -18,7 +18,7 @@ public class DossierMedical {
     public String getFichesPatient(Patient p) {
         String chaine = "";
         for (int i = 0; i < fiches.size(); i++) {
-            if (fiches.get(i).getPatient().toString().equals(p.toString())) {
+            if (fiches.get(i).getPatient().equals(p)) {
                 FicheDeSoins f = fiches.get(i);
                 chaine = fiches.get(i).toString()+"\n";
                chaine = chaine + "--------------------------------------\n";
