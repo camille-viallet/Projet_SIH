@@ -21,7 +21,7 @@ public class DossierMedical {
             if (fiches.get(i).getPatient().equals(p)) {
                 FicheDeSoins f = fiches.get(i);
                 chaine = fiches.get(i).toString()+"\n";
-               chaine = chaine + "--------------------------------------\n";
+               chaine = chaine + "- - - - - - - - - - - - - - - - - - - - - - - - - - - - \n";
             }
         }
         return chaine;
