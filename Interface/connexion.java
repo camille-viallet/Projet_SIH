@@ -8,6 +8,7 @@ package Interface;
 import princetonPlainsboro.DossierMedical;
 import princetonPlainsboro.LectureXML;
 import princetonPlainsboro.Medecin;
+import princetonPlainsboro.Personnel;
 
 /**
  *
@@ -130,18 +131,23 @@ public class connexion extends javax.swing.JFrame {
     private void jButtonValiderConnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValiderConnexionActionPerformed
         String utilisateur = this.jTextFieldUtilisateur.getText();
         String motDePasse = new String(this.jPassword.getPassword());
-        
+
         int i = 0;
-        System.out.println(dm.getListeMedecins().size());
+
         Medecin m;
-        while (!utilisateur.equals(dm.getListeMedecins().get(i).getNom()) && (i < dm.getListeMedecins().size()-1)) {
+        while (!utilisateur.equals(dm.getListeMedecins().get(i).getUsername()) && (i < dm.getListeMedecins().size() - 1)) {
             i++;
         }
-        if (i < dm.getListeMedecins().size()-1) {
+        if (i < dm.getListeMedecins().size() - 1) {
             m = dm.getListeMedecins().get(i);
-            new InterfaceMedicale(m).setVisible(true);
-            this.dispose();
-        }else{
+            if (motDePasse.equals(m.getMdp())) {
+                new InterfaceMedicale(m).setVisible(true);
+                this.dispose();
+            } else {
+                this.jLabelErreur.setVisible(true);
+                this.jLabelErreur.setText("Mot de passe incorrect");
+            }
+        } else {
             this.jLabelErreur.setVisible(true);
             this.jLabelErreur.setText("Utilisateur inconnu");
         }
