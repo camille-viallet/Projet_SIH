@@ -1,73 +1,73 @@
 package princetonPlainsboro;
 
-public class Medecin {
-    private String nom;
-    private String prenom;
-    private String specialite;
-    private String telephone;
-    private String mdp;
-    
-    public Medecin(String nom, String prenom, String specialite, String telephone, String mdp) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.specialite = specialite;
-        this.telephone = telephone;
-        this.mdp = mdp;
-        }
-    
-    public String getSpecialite() { return specialite; }
-    public String getTelephone(){return telephone;}
-    public String getMdp(){return mdp;}
-    
+import java.util.ArrayList;
+import java.util.List;
+
+public class Medecin extends Personnel {
+
+    private Specialite specialite;
+    private List <Acte> listActes;
+
+    public Medecin(String prenom, String nom, String username, String mdp, MetierCHU metier, String telephone, Specialite specialite) {
+        super(prenom, nom, username, mdp, metier, telephone);
+        this.specialite = specialite ;
+        listActes = new ArrayList <Acte>() ; 
+    }
+
     public String toString() {
-        return "Dr " + getPrenom() + " " + getNom() + ", " + getSpecialite() + "Téléphone : "+ getTelephone();
-        }
-    
+        return "Docteur " + super.getPrenom() + " " + super.getNom() + ", en " + getSpecialite() + "\n Numéro de téléphone : " + getTelephone();
+    }
+
     public boolean equals(Object o) {
         if (o instanceof Medecin) {
-            Medecin p = (Medecin)o;
+            Medecin p = (Medecin) o;
             return getNom().equals(p.getNom()) && getPrenom().equals(p.getPrenom());
-            }
-        else
+        } else {
             return false;
-        }    
-
-    /**
-     * @return the nom
-     */
-    public String getNom() {
-        return nom;
+        }
     }
-
-    /**
-     * @param nom the nom to set
-     */
-    public void setNom(String nom) {
-        this.nom = nom;
+    
+    // Pour additioner un acte à une liste d'actes créée par un médecin.
+    public void ajouterUnActe(Acte acte){
+        listActes.add(acte);
     }
-
-    /**
-     * @return the prenom
-     */
+    
+    // Pour supprimer un acte à une liste d'actes créée par un médecin.
+    public void supprimerUnActe(Acte acte){
+        listActes.remove(acte);
+    }
+    
+    // Taille de la liste d'actes d'un médecin.
+    public void tailleListActes (Acte acte) {
+        System.out.println("Il y a " + listActes.size() + "actes.");
+    }
+    
+    // getters pour les Médecins
     public String getPrenom() {
-        return prenom;
+        return super.getPrenom();
     }
 
-    /**
-     * @param prenom the prenom to set
-     */
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-    public void setSpecialite (String specialite){
-        this.specialite = specialite;
-    }
-    public void setTelephone (String telephone){
-        this.telephone = telephone;
-    }
-    public void setMdp (String mdp){
-        this.mdp = mdp;
-    }
+    public String getNom() {
+        return super.getNom();
     }
 
+    public String getUsername() {
+        return super.getUsername();
+    }
 
+    public String getMdp() {
+        return super.getMdp();
+    }
+
+    public MetierCHU getMetierCHU() {
+        return MetierCHU.MEDECIN ;
+    }
+
+    public String getTelephone() {
+        return super.getTelephone();
+    }
+     public Specialite getSpecialite() {
+        return specialite;
+    }
+     
+}
