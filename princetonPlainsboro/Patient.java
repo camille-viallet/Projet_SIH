@@ -13,6 +13,11 @@ public class Patient {
     public Patient(String nom, String prenom, String adresse, Date dateN, String secu, double poids, double taille) {
         this.nom = nom;
         this.prenom = prenom;
+        this.adresse = adresse;
+        this.dateN = dateN;
+        this.secu= secu;
+        this.poids = poids;
+        this.taille = taille;
     }
 
     public String toString() {
