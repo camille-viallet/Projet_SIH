@@ -17,7 +17,7 @@ class Date implements Comparable {
     }
 
     public String toString() {
-        return jour + "/" + mois + "/" + annee + "  " + heure + "h" + minute + " mins";
+        return jour + "/" + mois + "/" + annee + "  " + heure + " h " + minute + " min";
     }
 
     public boolean equals(Object o) {

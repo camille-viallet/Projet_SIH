@@ -5,6 +5,12 @@
  */
 package Interface;
 
+import javax.swing.JList;
+import princetonPlainsboro.DossierMedical;
+import princetonPlainsboro.LectureXML;
+import princetonPlainsboro.Medecin;
+import princetonPlainsboro.Patient;
+
 /**
  *
  * @author Camille
@@ -14,8 +20,18 @@ public class InterfaceMedicale extends javax.swing.JFrame {
     /**
      * Creates new form InterfaceMedicale
      */
-    public InterfaceMedicale() {
+    Medecin m;
+    DossierMedical dm;
+
+    public InterfaceMedicale(Medecin m) {
         initComponents();
+        this.m = m;
+        this.jLabelBonjour.setText("Bonjour Dr " + m.getNom().toUpperCase() + " " + m.getPrenom() + " - "+ m.getSpecialite());
+        LectureXML test = new LectureXML("dossiers.xml");
+        dm = test.getDossier();
+
+        this.jListPatients.setListData(dm.getListePatients(m));
+
     }
 
     /**
@@ -27,57 +43,111 @@ public class InterfaceMedicale extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabelImage = new javax.swing.JLabel();
+        jLabelBonjour = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListPatients = new javax.swing.JList();
+        jLabelMesPatients = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextAreaDossierMed = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Hôpital  Princeton Plainsboro");
+
+        jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interface/medecin.png"))); // NOI18N
+
+        jLabelBonjour.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabelBonjour.setText("Bonjour Docteur ");
+
+        jListPatients.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jListPatients.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListPatientsMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jListPatients);
+
+        jLabelMesPatients.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabelMesPatients.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelMesPatients.setText("Mes patients");
+
+        jTextAreaDossierMed.setColumns(20);
+        jTextAreaDossierMed.setRows(5);
+        jScrollPane2.setViewportView(jTextAreaDossierMed);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("Dossier Médical de ....");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabelImage)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelBonjour))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1)
+                            .addComponent(jLabelMesPatients, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                        .addGap(64, 64, 64)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))))
+                .addGap(0, 191, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabelBonjour))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabelImage)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelMesPatients)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfaceMedicale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfaceMedicale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfaceMedicale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InterfaceMedicale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void jListPatientsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListPatientsMouseClicked
+        JList theList = (JList) evt.getSource();
+        int index = theList.locationToIndex(evt.getPoint());
+        Object o = theList.getModel().getElementAt(index);
+        //System.out.println("Double-clicked on: " + o.toString());
+        Patient p = dm.getListePatients(m).get(index); 
+        this.jLabel1.setText("Dossier médical de " + p.toString());
+        this.jTextAreaDossierMed.setText(dm.getFichesPatient(p));
+    }//GEN-LAST:event_jListPatientsMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new InterfaceMedicale().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelBonjour;
+    private javax.swing.JLabel jLabelImage;
+    private javax.swing.JLabel jLabelMesPatients;
+    private javax.swing.JList jListPatients;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextAreaDossierMed;
     // End of variables declaration//GEN-END:variables
 }

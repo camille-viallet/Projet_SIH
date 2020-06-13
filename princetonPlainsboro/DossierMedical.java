@@ -15,6 +15,18 @@ public class DossierMedical {
         fiches.add(fiche);
     }
 
+    public String getFichesPatient(Patient p) {
+        String chaine = "";
+        for (int i = 0; i < fiches.size(); i++) {
+            if (fiches.get(i).getPatient().toString().equals(p.toString())) {
+                FicheDeSoins f = fiches.get(i);
+                chaine = fiches.get(i).toString()+"\n";
+               chaine = chaine + "--------------------------------------\n";
+            }
+        }
+        return chaine;
+    }
+
     public void afficher() {
         System.out.println("Dossier medical informatise :");
         System.out.println("-----------------------------");
@@ -76,7 +88,21 @@ public class DossierMedical {
         }
     }
 
-    public Vector<Medecin> obtientListeMedecins() {
+    public Vector<Patient> getListePatients(Medecin m) {
+        Vector<Patient> liste = new Vector<Patient>();
+        for (int i = 0; i < fiches.size(); i++) {
+            FicheDeSoins f = fiches.get(i);
+            if (m.equals(f.getMedecin())) {
+                Patient p = f.getPatient();
+                if (!liste.contains(p)) {
+                    liste.add(p);
+                }
+            }
+        }
+        return liste;
+    }
+
+    public Vector<Medecin> getListeMedecins() {
 
         Vector<Medecin> liste = new Vector<Medecin>();
         for (int i = 0; i < fiches.size(); i++) {
@@ -85,10 +111,9 @@ public class DossierMedical {
             Medecin m = f.getMedecin();
             if (!liste.contains(m)) {
                 liste.add(m);
-               
+
             }
-            
-                
+
         }
         return liste;
     }

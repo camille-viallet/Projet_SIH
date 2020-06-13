@@ -1,6 +1,6 @@
 package princetonPlainsboro;
 
-class Patient {
+public class Patient {
     private String nom;
     private String prenom;
     
@@ -10,7 +10,7 @@ class Patient {
         }
     
     public String toString() {
-        return prenom + " " + nom;
+        return prenom + " " + nom.toUpperCase();
         } 
     
     public boolean equals(Object o) {

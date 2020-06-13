@@ -38,14 +38,19 @@ class FicheDeSoins {
     }
 
     public void afficher() {
-        System.out.println("Fiche de soins du " + date.toString());
-        System.out.println("- medecin : " + medecin.toString());
-        System.out.println("- patient : " + patient.toString());
+        System.out.println(this);
+    }
+
+    public String toString() {
+        String chaine = "Fiche de soins du " + date.toString() + "\n";
+        chaine = chaine + "- medecin : " + medecin.toString() + "\n";
+        chaine = chaine + "- patient : " + patient.toString() + "\n";
         System.out.println("- actes medicaux :");
         for (int i = 0; i < actes.size(); i++) {
             Acte a = actes.get(i);
-            System.out.println("    > " + a.toString());
+            chaine = chaine + "    > " + a.toString() + "\n";
         }
+        return chaine;
     }
 
     public double coutTotal() {

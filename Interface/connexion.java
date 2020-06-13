@@ -42,7 +42,7 @@ public class connexion extends javax.swing.JFrame {
         jButtonValiderConnexion = new javax.swing.JButton();
         jLabelErreur = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Connexion");
 
         ImageLogoHopital.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interface/logo.jpg"))); // NOI18N
@@ -83,8 +83,8 @@ public class connexion extends javax.swing.JFrame {
                             .addComponent(jLabelMotPasse, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
                             .addComponent(jTextFieldUtilisateur)
                             .addComponent(jLabelUtilisateur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(123, 123, 123)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(121, 121, 121)
                                 .addComponent(jButtonValiderConnexion, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap(156, Short.MAX_VALUE))
@@ -117,9 +117,9 @@ public class connexion extends javax.swing.JFrame {
                 .addComponent(jPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelErreur)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jButtonValiderConnexion)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jLabelErreur.setVisible(false);
@@ -132,13 +132,15 @@ public class connexion extends javax.swing.JFrame {
         String motDePasse = new String(this.jPassword.getPassword());
         
         int i = 0;
-        System.out.println(dm.obtientListeMedecins().size());
+        System.out.println(dm.getListeMedecins().size());
         Medecin m;
-        while (!utilisateur.equals(dm.obtientListeMedecins().get(i).getNom()) && (i < dm.obtientListeMedecins().size()-1)) {
+        while (!utilisateur.equals(dm.getListeMedecins().get(i).getNom()) && (i < dm.getListeMedecins().size()-1)) {
             i++;
         }
-        if (i < dm.obtientListeMedecins().size()-1) {
-            m = dm.obtientListeMedecins().get(i);
+        if (i < dm.getListeMedecins().size()-1) {
+            m = dm.getListeMedecins().get(i);
+            new InterfaceMedicale(m).setVisible(true);
+            this.dispose();
         }else{
             this.jLabelErreur.setVisible(true);
             this.jLabelErreur.setText("Utilisateur inconnu");
