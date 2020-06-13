@@ -19,6 +19,7 @@ class Acte {
         this.type = type;
         this.comm = comm;
     }
+      
 
     public String toString() {
         return getCode().toString() + ", coefficient : " + getCoef() + ", \n nom de l'acte : " + getNomActe() + ", \n nom du médecin : " + getNomMed() + ", \n date : " + getDate() + ", \n type d'acte : " + getType().toString() + ", \n Observations : " + getComm();

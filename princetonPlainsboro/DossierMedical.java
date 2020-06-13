@@ -3,10 +3,9 @@ package princetonPlainsboro;
 import java.util.List;
 import java.util.Vector;
 
-class DossierMedical {
+public class DossierMedical {
 
     private List<FicheDeSoins> fiches;     // contient des objets de classe 'FicheDeSoins'
-
 
     public DossierMedical() {
         fiches = new Vector<FicheDeSoins>();  // liste vide
@@ -77,6 +76,23 @@ class DossierMedical {
         }
     }
 
+    public Vector<Medecin> obtientListeMedecins() {
+
+        Vector<Medecin> liste = new Vector<Medecin>();
+        for (int i = 0; i < fiches.size(); i++) {
+            FicheDeSoins f = fiches.get(i);
+
+            Medecin m = f.getMedecin();
+            if (!liste.contains(m)) {
+                liste.add(m);
+               
+            }
+            
+                
+        }
+        return liste;
+    }
+
     public int nombreFichesIntervalle(Date d1, Date d2) {
         int n = 0;
         for (int i = 0; i < fiches.size(); i++) {
@@ -134,4 +150,3 @@ class DossierMedical {
         }
     }
 }
-

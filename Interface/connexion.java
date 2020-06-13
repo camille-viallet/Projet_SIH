@@ -5,6 +5,10 @@
  */
 package Interface;
 
+import princetonPlainsboro.DossierMedical;
+import princetonPlainsboro.LectureXML;
+import princetonPlainsboro.Medecin;
+
 /**
  *
  * @author Camille
@@ -14,6 +18,8 @@ public class connexion extends javax.swing.JFrame {
     /**
      * Creates new form connexion
      */
+    private static DossierMedical dm;
+
     public connexion() {
         initComponents();
     }
@@ -27,31 +33,40 @@ public class connexion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        ImageLogoHopital = new javax.swing.JLabel();
+        jLabelConnexion = new javax.swing.JLabel();
+        jLabelUtilisateur = new javax.swing.JLabel();
+        jTextFieldUtilisateur = new javax.swing.JTextField();
+        jLabelMotPasse = new javax.swing.JLabel();
+        jPassword = new javax.swing.JPasswordField();
+        jButtonValiderConnexion = new javax.swing.JButton();
+        jLabelErreur = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Connexion");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interface/logo.jpg"))); // NOI18N
+        ImageLogoHopital.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interface/logo.jpg"))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Verdana Pro Cond", 1, 24)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Connexion");
-        jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabelConnexion.setFont(new java.awt.Font("Verdana Pro Cond", 1, 24)); // NOI18N
+        jLabelConnexion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelConnexion.setText("Connexion");
+        jLabelConnexion.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Nom :");
+        jLabelUtilisateur.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelUtilisateur.setText("Utilisateur :");
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Mot de passe : ");
+        jLabelMotPasse.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelMotPasse.setText("Mot de passe : ");
 
-        jButton1.setText("Valider");
+        jButtonValiderConnexion.setText("Valider");
+        jButtonValiderConnexion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonValiderConnexionActionPerformed(evt);
+            }
+        });
+
+        jLabelErreur.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelErreur.setText("Erreur");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -59,42 +74,76 @@ public class connexion extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPasswordField1)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
-                    .addComponent(jTextField1)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addComponent(ImageLogoHopital)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jPassword)
+                            .addComponent(jLabelMotPasse, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                            .addComponent(jTextFieldUtilisateur)
+                            .addComponent(jLabelUtilisateur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(123, 123, 123)
+                                .addComponent(jButtonValiderConnexion, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap(156, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(jLabelConnexion, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(168, 168, 168)
+                .addComponent(jLabelErreur, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(jLabel3)))
-                .addGap(3, 3, 3)
-                .addComponent(jLabel2)
+                        .addComponent(ImageLogoHopital)
+                        .addGap(3, 3, 3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabelConnexion)
+                        .addGap(53, 53, 53)))
+                .addComponent(jLabelUtilisateur)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldUtilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addComponent(jLabelMotPasse)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(22, 22, 22))
+                .addComponent(jPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabelErreur)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonValiderConnexion)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
+
+        jLabelErreur.setVisible(false);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonValiderConnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValiderConnexionActionPerformed
+        String utilisateur = this.jTextFieldUtilisateur.getText();
+        String motDePasse = new String(this.jPassword.getPassword());
+        
+        int i = 0;
+        System.out.println(dm.obtientListeMedecins().size());
+        Medecin m;
+        while (!utilisateur.equals(dm.obtientListeMedecins().get(i).getNom()) && (i < dm.obtientListeMedecins().size()-1)) {
+            i++;
+        }
+        if (i < dm.obtientListeMedecins().size()-1) {
+            m = dm.obtientListeMedecins().get(i);
+        }else{
+            this.jLabelErreur.setVisible(true);
+            this.jLabelErreur.setText("Utilisateur inconnu");
+        }
+    }//GEN-LAST:event_jButtonValiderConnexionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,22 +171,25 @@ public class connexion extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(connexion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        LectureXML test = new LectureXML("dossiers.xml");
+        dm = test.getDossier();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new connexion().setVisible(true);
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel ImageLogoHopital;
+    private javax.swing.JButton jButtonValiderConnexion;
+    private javax.swing.JLabel jLabelConnexion;
+    private javax.swing.JLabel jLabelErreur;
+    private javax.swing.JLabel jLabelMotPasse;
+    private javax.swing.JLabel jLabelUtilisateur;
+    private javax.swing.JPasswordField jPassword;
+    private javax.swing.JTextField jTextFieldUtilisateur;
     // End of variables declaration//GEN-END:variables
 }
