@@ -140,7 +140,6 @@ public class connexion extends javax.swing.JFrame {
         Personnel personnel;
 
         while (!utilisateur.equals(persHopital.getListePersonnel().get(i).getUsername()) && (i < persHopital.getListePersonnel().size() - 1)) {
-            System.out.println(persHopital.getListePersonnel().get(i).getMetier()+" : "+persHopital.getListePersonnel().get(i).getUsername()+" - "+persHopital.getListePersonnel().get(i).getMdp());
             i++;
         }
         if (i < persHopital.getListePersonnel().size() - 1) {
