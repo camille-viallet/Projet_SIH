@@ -8,8 +8,8 @@ public class Medecin extends Personnel {
     private Specialite specialite;
 //    private List <Acte> listActes; 
 
-    public Medecin(String prenom, String nom, String username, String mdp, MetierCHU metier, String telephone, Specialite specialite) {
-        super(prenom, nom, username, mdp, metier, telephone);
+    public Medecin(String prenom, String nom, String username, String mdp,  String telephone, Specialite specialite) {
+        super(prenom, nom, username, mdp, MetierCHU.MEDECIN, telephone);
         this.specialite = specialite ;
 //        listActes = new ArrayList <Acte>() ; 
     }
