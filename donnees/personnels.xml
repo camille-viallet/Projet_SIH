@@ -12,7 +12,7 @@ and open the template in the editor.
         <prenom>Gegory</prenom>
         <specialite>CARDIOLOGIE</specialite>
         <telephone>0619283746</telephone>
-        <rpps>123456789011 </rpps>
+        <rpps>123456789012</rpps>
         <mdp>banane01</mdp>
     </medecin>
     <medecin>
@@ -20,7 +20,7 @@ and open the template in the editor.
         <prenom>Lysa</prenom>
         <specialite>RADIOLOGIE</specialite>
         <telephone>0619284567</telephone>
-        <rpps>123456789012</rpps>
+        <rpps>123456789016</rpps>
         <mdp>poire27</mdp>      
     </medecin>
     <medecin>
@@ -60,14 +60,14 @@ and open the template in the editor.
         <matricule>123456</matricule>
         <mdp>kiwi345</mdp>
     </secretaireMed>
-    <secrataireAdm>
+    <secretaireAdm>
         <nom>VOLAKIS</nom>
         <prenom>Ambert</prenom>
         <telephone>0789563412</telephone>
         <matricule>758493</matricule>
         <mdp>pasteque231</mdp>
-    </secrataireAdm>
-        <secretaireAdm>
+    </secretaireAdm>
+    <secretaireAdm>
         <nom>ADAMS</nom>
         <prenom>Jessica</prenom>
         <telephone>0635678943</telephone>

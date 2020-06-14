@@ -12,11 +12,11 @@
     <patient>
         <nom>Track</nom>
         <prenom>Pat</prenom>
-        <adresse>2 rue du chemin</adresse>
-        <dateN>1976-09-14</dateN>
+        <adresse>2 rue du chemin 59 000 LILLE </adresse>
+        <date>1976-09-14</date>
         <secu>3 176092601634</secu>
         <poids>83.6</poids>
-        <taille>182</taille>
+        <taille>1.82</taille>
     </patient>
     <acte>
         <code>CS</code>
@@ -43,11 +43,11 @@
     <patient>
         <nom>Bole</nom>
         <prenom>Pat</prenom>
-        <adresse>2 rue du chemin</adresse>
-        <dateN>1976-09-14</dateN>
+        <adresse>2 rue du chemin 73 000 CHAMBERY</adresse>
+        <date>1976-09-14</date>
         <secu>3 176092601634</secu>
         <poids>83.6</poids>
-        <taille>182</taille>
+        <taille>1.82</taille>
     </patient>
     <acte>
         <code>CSC</code>
@@ -70,11 +70,11 @@
     <patient>
         <nom>Bole</nom>
         <prenom>Maggy</prenom>
-        <adresse>24 route des mimosas</adresse>
-        <dateN>1989-01-27</dateN>
+        <adresse>24 route des mimosas 74 000 ANNECY</adresse>
+        <date>1989-01-27</date>
         <secu>3 289013476690</secu>
         <poids>54</poids>
-        <taille>162</taille>
+        <taille>1.62</taille>
     </patient>
     <acte>
         <code>CSC</code>
@@ -93,11 +93,11 @@
     <patient>
         <nom>Bole</nom>
         <prenom>Maggy</prenom>
-        <adresse>24 route des mimosas</adresse>
-        <dateN>1989-01-27</dateN>
+        <adresse>24 route des mimosas 74 000 ANNECY</adresse>
+        <date>1989-01-27</date>
         <secu>3 289013476690</secu>
         <poids>54</poids>
-        <taille>162</taille>
+        <taille>1.62</taille>
     </patient>
     <acte>
         <code>KE</code>
@@ -116,11 +116,11 @@
     <patient>
         <nom>Epi</nom>
         <prenom>Fanie</prenom>
-        <adresse>35 avenue de la fontaine</adresse>
-        <dateN>1998-01-31</dateN>
+        <adresse>35 avenue de la fontaine 33 000 BORDEAUX</adresse>
+        <date>1998-01-31</date>
         <secu>3 298013290770</secu>
         <poids>60</poids>
-        <taille>174</taille>
+        <taille>1.74</taille>
     </patient>
     <acte>
         <code>CS</code>
@@ -144,10 +144,10 @@
         <nom>Henfayitte</nom>
         <prenom>Melusine</prenom>
         <adresse>25 chemin du moulin</adresse>
-        <dateN>1970-05-31</dateN>
+        <date>1970-05-31</date>
         <secu>3 270053856620</secu>
         <poids>62</poids>
-        <taille>160</taille>
+        <taille>1.60</taille>
     </patient>
     <acte>
         <code>CS</code>

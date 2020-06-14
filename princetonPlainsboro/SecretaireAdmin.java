@@ -11,8 +11,8 @@ package princetonPlainsboro;
  */
 public class SecretaireAdmin extends Personnel {
 
-    public SecretaireAdmin(String prenom, String nom, String username, String mdp, MetierCHU metier, String telephone) {
-        super(prenom, nom, username, mdp, metier, telephone);
+    public SecretaireAdmin(String prenom, String nom, String username, String mdp,  String telephone) {
+        super(prenom, nom, username, mdp, MetierCHU.SECRETAIRE_ADMINISTRATIVE, telephone);
 
     }
     

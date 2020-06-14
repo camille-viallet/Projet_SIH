@@ -7,8 +7,11 @@ package Interface;
 
 import princetonPlainsboro.DossierMedical;
 import princetonPlainsboro.LectureXML;
+import princetonPlainsboro.LectureXMLPersonnel;
 import princetonPlainsboro.Medecin;
+import princetonPlainsboro.MetierCHU;
 import princetonPlainsboro.Personnel;
+import princetonPlainsboro.PersonnelHopital;
 
 /**
  *
@@ -19,7 +22,7 @@ public class connexion extends javax.swing.JFrame {
     /**
      * Creates new form connexion
      */
-    private static DossierMedical dm;
+    private static PersonnelHopital persHopital;
 
     public connexion() {
         initComponents();
@@ -134,34 +137,36 @@ public class connexion extends javax.swing.JFrame {
 
         int i = 0;
 
-        Medecin m;
-        
-        while (!utilisateur.equals(dm.getListeMedecins().get(i).getUsername()) && (i < dm.getListeMedecins().size() - 1)) {
-           System.out.println(dm.getListeMedecins().get(i).getUsername());
+        Personnel personnel;
+
+        while (!utilisateur.equals(persHopital.getListePersonnel().get(i).getUsername()) && (i < persHopital.getListePersonnel().size() - 1)) {
+            System.out.println(persHopital.getListePersonnel().get(i).getMetier()+" : "+persHopital.getListePersonnel().get(i).getUsername()+" - "+persHopital.getListePersonnel().get(i).getMdp());
             i++;
         }
-        if (i < dm.getListeMedecins().size() - 1) {
-            m = dm.getListeMedecins().get(i);
-           
-            new InterfaceMedicale(m).setVisible(true);
-            this.dispose();
-            /*if (motDePasse.equals(m.getMdp())) {
-             new InterfaceMedicale(m).setVisible(true);
-             this.dispose();
-             } else {
-             this.jLabelErreur.setVisible(true);
-             this.jLabelErreur.setText("Mot de passe incorrect");
-             }
-             } else {
-             this.jLabelErreur.setVisible(true);
-             this.jLabelErreur.setText("Utilisateur inconnu");
-             }*/
+        if (i < persHopital.getListePersonnel().size() - 1) {
+            personnel = persHopital.getListePersonnel().get(i);
+
+            if (motDePasse.equals(personnel.getMdp())) {
+                if (personnel.getMetier() == MetierCHU.MEDECIN || personnel.getMetier() == MetierCHU.SECRETAIRE_MEDICALE) {
+                    new InterfaceMedicale(personnel).setVisible(true);
+                    this.dispose();
+                } else if (personnel.getMetier() == MetierCHU.SECRETAIRE_ADMINISTRATIVE) {
+                    new InterfaceSecretaireAdmin(personnel).setVisible(true);
+                    this.dispose();
+                }
+            } else {
+                this.jLabelErreur.setVisible(true);
+                this.jLabelErreur.setText("Mot de passe incorrect");
+            }
+        } else {
+            this.jLabelErreur.setVisible(true);
+            this.jLabelErreur.setText("Utilisateur inconnu");
         }
     }//GEN-LAST:event_jButtonValiderConnexionActionPerformed
 
     /**
-         * @param args the command line arguments
-         */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -173,20 +178,25 @@ public class connexion extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(connexion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(connexion.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(connexion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(connexion.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(connexion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(connexion.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(connexion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(connexion.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        LectureXML test = new LectureXML("dossiers.xml");
-        dm = test.getDossier();
+        LectureXMLPersonnel personnel = new LectureXMLPersonnel("personnels.xml");
+        persHopital = personnel.getPersonnel();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
