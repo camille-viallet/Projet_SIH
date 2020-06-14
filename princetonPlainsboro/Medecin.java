@@ -6,12 +6,12 @@ import java.util.List;
 public class Medecin extends Personnel {
 
     private Specialite specialite;
-    private List <Acte> listActes; 
+//    private List <Acte> listActes; 
 
     public Medecin(String prenom, String nom, String username, String mdp, MetierCHU metier, String telephone, Specialite specialite) {
         super(prenom, nom, username, mdp, metier, telephone);
         this.specialite = specialite ;
-        listActes = new ArrayList <Acte>() ; 
+//        listActes = new ArrayList <Acte>() ; 
     }
 
     public String toString() {
@@ -27,20 +27,20 @@ public class Medecin extends Personnel {
         }
     }
     
-    // Pour additioner un acte à une liste d'actes créée par un médecin.
-    public void ajouterUnActe(Acte acte){
-        listActes.add(acte);
-    }
-    
-    // Pour supprimer un acte à une liste d'actes créée par un médecin.
-    public void supprimerUnActe(Acte acte){
-        listActes.remove(acte);
-    }
-    
-    // Taille de la liste d'actes d'un médecin.
-    public void tailleListActes (Acte acte) {
-        System.out.println("Il y a " + listActes.size() + "actes.");
-    }
+//    // Pour additioner un acte à une liste d'actes créée par un médecin.
+//    public void ajouterUnActe(Acte acte){
+//        listActes.add(acte);
+//    }
+//    
+//    // Pour supprimer un acte à une liste d'actes créée par un médecin.
+//    public void supprimerUnActe(Acte acte){
+//        listActes.remove(acte);
+//    }
+//    
+//    // Taille de la liste d'actes d'un médecin.
+//    public void tailleListActes (Acte acte) {
+//        System.out.println("Il y a " + listActes.size() + "actes.");
+//    }
     
     // getters pour les Médecins
     public String getPrenom() {
