@@ -10,7 +10,7 @@ and open the template in the editor.
     <medecin>
         <nom>HOUSE</nom>
         <prenom>Gegory</prenom>
-        <specialite>Neurochirurgien</specialite>
+        <specialite>CARDIOLOGIE</specialite>
         <telephone>0619283746</telephone>
         <rpps>123456789011 </rpps>
         <mdp>dS38*</mdp>
@@ -18,7 +18,7 @@ and open the template in the editor.
     <medecin>
         <nom>CUDDY</nom>
         <prenom>Lysa</prenom>
-        <specialite>Dentiste</specialite>
+        <specialite>GERONTOLOGIE</specialite>
         <telephone>0619284567</telephone>
         <rpps>123456789012</rpps>
         <mdp>jN06!</mdp>      
@@ -26,7 +26,7 @@ and open the template in the editor.
     <medecin>
         <nom>TUCKNER</nom>
         <prenom>Lawrence</prenom>
-        <specialite>Medecin Généraliste</specialite>
+        <specialite>GYNECOLOGIE</specialite>
         <telephone>0621638164</telephone>
         <rpps>123456789013</rpps>
         <mdp>tA26*</mdp>      
@@ -34,7 +34,7 @@ and open the template in the editor.
     <medecin>
         <nom>CHASE</nom>
         <prenom>Robert</prenom>
-        <specialite>Medecin Généraliste</specialite>
+        <specialite>PEDIATRIE</specialite>
         <telephone>0621638164</telephone>
         <rpps>123456789014</rpps>
         <mdp>cO63*</mdp>      
