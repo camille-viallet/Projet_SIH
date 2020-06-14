@@ -42,15 +42,22 @@ class Test {
         System.out.println(d7);
                 
         System.out.println("\n********\n");
+        
+        Patient p1 = new Patient("Caroline","Lopez","2 rue du maréchal ",d1 ,"297096748282126",75.2, 1.56);
+        Patient p2 = new Patient("Samantha","Chouchou","5 avenue de lyon",d1,"124741470404499",25.2,366);
 
-        System.out.println();
-        System.out.println("Dossier trie selon les dates :");
-        dm.trierDates();
-
-        System.out.println("\n********\n");
-
-        System.out.println();
-        System.out.println("Dossier trie selon les couts :");
-        dm.trier(new ComparaisonFichesCouts());
+        System.out.println(p1);
+        System.out.println(p2);
+        p2.infosPatient();
+        p1.infosPatient();
+//        System.out.println();
+//        System.out.println("Dossier trie selon les dates :");
+//        dm.trierDates();
+//
+//        System.out.println("\n********\n");
+//
+//        System.out.println();
+//        System.out.println("Dossier trie selon les couts :");
+//        dm.trier(new ComparaisonFichesCouts());
     }
 }
