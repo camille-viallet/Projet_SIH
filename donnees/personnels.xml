@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<personnels>
+    <medecin>
+        <nom>HOUSE</nom>
+        <prenom>Gregory</prenom>
+        <specialite>CARDIOLOGIE</specialite>
+        <telephone>0619283746</telephone>
+        <rpps>123456789012</rpps>
+        <mdp>banane01</mdp>
+    </medecin>
+    <medecin>
+        <nom>CUDDY</nom>
+        <prenom>Lysa</prenom>
+        <specialite>RADIOLOGIE</specialite>
+        <telephone>0619284567</telephone>
+        <rpps>123456789016</rpps>
+        <mdp>poire27</mdp>      
+    </medecin>
+    <medecin>
+        <nom>TUCKNER</nom>
+        <prenom>Lawrence</prenom>
+        <specialite>GYNECOLOGIE</specialite>
+        <telephone>0621638164</telephone>
+        <rpps>123456789013</rpps>
+        <mdp>groseilles23</mdp>      
+    </medecin>
+    <medecin>
+        <nom>CHASE</nom>
+        <prenom>Robert</prenom>
+        <specialite>PEDIATRIE</specialite>
+        <telephone>0621638164</telephone>
+        <rpps>123456789014</rpps>
+        <mdp>framboise06</mdp>      
+    </medecin>
+    <secretaireMed>
+        <nom>HADLEY</nom>
+        <prenom>Remy</prenom>
+        <telephone>0678974635</telephone>
+        <matricule>134679</matricule>
+        <mdp>abricot44</mdp>
+    </secretaireMed>
+    <secretaireMed>
+        <nom>CAMERON</nom>
+        <prenom>Allison</prenom>
+        <telephone>0678483726</telephone>
+        <matricule>246801</matricule>
+        <mdp>avocat96</mdp>
+    </secretaireMed>
+    <secretaireMed>
+        <nom>WILLSON</nom>
+        <prenom>James</prenom>
+        <telephone>0678974335</telephone>
+        <matricule>123456</matricule>
+        <mdp>kiwi345</mdp>
+    </secretaireMed>
+    <secretaireAdm>
+        <nom>VOLAKIS</nom>
+        <prenom>Ambert</prenom>
+        <telephone>0789563412</telephone>
+        <matricule>758493</matricule>
+        <mdp>pasteque231</mdp>
+    </secretaireAdm>
+    <secretaireAdm>
+        <nom>ADAMS</nom>
+        <prenom>Jessica</prenom>
+        <telephone>0635678943</telephone>
+        <matricule>567483</matricule>
+        <mdp>melon11</mdp>
+    </secretaireAdm>
+</personnels>
