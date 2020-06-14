@@ -20,11 +20,17 @@ public class Date implements Comparable {
     }
 
     public String toString() {
-        if (verifierDate() == true ) {
+        if (verifierDate() == true) {
             return jour + "/" + mois + "/" + annee + "  " + heure + " h " + minute + " min";
+        } else {
+            return "La date rentrée n'est pas valide. Veuillez réessayer.";
         }
-        else {
-            return "La date rentrée n'est pas valide. Veuillez réessayer." ;
+    }
+    public String toStringDate() {
+        if (verifierDate() == true) {
+            return jour + "/" + mois + "/" + annee;
+        } else {
+            return "La date rentrée n'est pas valide. Veuillez réessayer.";
         }
     }
 

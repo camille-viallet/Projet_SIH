@@ -135,27 +135,33 @@ public class connexion extends javax.swing.JFrame {
         int i = 0;
 
         Medecin m;
+        
         while (!utilisateur.equals(dm.getListeMedecins().get(i).getUsername()) && (i < dm.getListeMedecins().size() - 1)) {
+           System.out.println(dm.getListeMedecins().get(i).getUsername());
             i++;
         }
         if (i < dm.getListeMedecins().size() - 1) {
             m = dm.getListeMedecins().get(i);
-            if (motDePasse.equals(m.getMdp())) {
-                new InterfaceMedicale(m).setVisible(true);
-                this.dispose();
-            } else {
-                this.jLabelErreur.setVisible(true);
-                this.jLabelErreur.setText("Mot de passe incorrect");
-            }
-        } else {
-            this.jLabelErreur.setVisible(true);
-            this.jLabelErreur.setText("Utilisateur inconnu");
+           
+            new InterfaceMedicale(m).setVisible(true);
+            this.dispose();
+            /*if (motDePasse.equals(m.getMdp())) {
+             new InterfaceMedicale(m).setVisible(true);
+             this.dispose();
+             } else {
+             this.jLabelErreur.setVisible(true);
+             this.jLabelErreur.setText("Mot de passe incorrect");
+             }
+             } else {
+             this.jLabelErreur.setVisible(true);
+             this.jLabelErreur.setText("Utilisateur inconnu");
+             }*/
         }
     }//GEN-LAST:event_jButtonValiderConnexionActionPerformed
 
     /**
-     * @param args the command line arguments
-     */
+         * @param args the command line arguments
+         */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
