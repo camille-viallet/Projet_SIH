@@ -10,7 +10,7 @@ package princetonPlainsboro;
  * @author dasilvae
  */
 
-enum Type {
+public enum Type {
     // valeurs de l'�num :
     DIAG("Diagnostique"),
     THERA("Thérapeutique");
