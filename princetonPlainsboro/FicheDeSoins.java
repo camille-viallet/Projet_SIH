@@ -2,7 +2,7 @@ package princetonPlainsboro;
 
 import java.util.Vector;
 
-class FicheDeSoins {
+public class FicheDeSoins {
 
     private Patient patient;
     private Medecin medecin;
