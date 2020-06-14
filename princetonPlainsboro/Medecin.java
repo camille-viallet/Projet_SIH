@@ -15,7 +15,7 @@ public class Medecin extends Personnel {
     }
 
     public String toString() {
-        return "Docteur " + super.getPrenom() + " " + super.getNom() + ", en " + getSpecialite() + "\n Numéro de téléphone : " + getTelephone();
+        return "Docteur " + super.getPrenom() + " " + super.getNom() + " - " + getSpecialite() + "\nNuméro de téléphone : " + getTelephone();
     }
 
     public boolean equals(Object o) {
