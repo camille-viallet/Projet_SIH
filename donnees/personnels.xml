@@ -8,68 +8,68 @@ and open the template in the editor.
 
 <personnels>
     <medecin>
-        <nom>SHEPHERD</nom>
-        <prenom>Dereck</prenom>
+        <nom>HOUSE</nom>
+        <prenom>Gegory</prenom>
         <specialite>Neurochirurgien</specialite>
         <telephone>0619283746</telephone>
         <rpps>123456789011 </rpps>
         <mdp>dS38*</mdp>
     </medecin>
     <medecin>
-        <nom>NEYMAR</nom>
-        <prenom>Jean</prenom>
+        <nom>CUDDY</nom>
+        <prenom>Lysa</prenom>
         <specialite>Dentiste</specialite>
         <telephone>0619284567</telephone>
         <rpps>123456789012</rpps>
         <mdp>jN06!</mdp>      
     </medecin>
     <medecin>
-        <nom>ATTE</nom>
-        <prenom>Tom</prenom>
+        <nom>TUCKNER</nom>
+        <prenom>Lawrence</prenom>
         <specialite>Medecin Généraliste</specialite>
         <telephone>0621638164</telephone>
         <rpps>123456789013</rpps>
         <mdp>tA26*</mdp>      
     </medecin>
     <medecin>
-        <nom>ONETTE</nom>
-        <prenom>Camille</prenom>
+        <nom>CHASE</nom>
+        <prenom>Robert</prenom>
         <specialite>Medecin Généraliste</specialite>
         <telephone>0621638164</telephone>
         <rpps>123456789014</rpps>
         <mdp>cO63*</mdp>      
     </medecin>
     <secretaireMed>
-        <nom>PROVIST</nom>
-        <prenom>Alain</prenom>
+        <nom>HADLEY</nom>
+        <prenom>Remy</prenom>
         <telephone>0678974635</telephone>
         <matricule>134679</matricule>
         <mdp>aP21!</mdp>
     </secretaireMed>
     <secretaireMed>
-        <nom>JAVEL</nom>
-        <prenom>Aude</prenom>
+        <nom>CAMERON</nom>
+        <prenom>Allison</prenom>
         <telephone>0678483726</telephone>
         <matricule>246801</matricule>
         <mdp>aJ78!</mdp>
     </secretaireMed>
     <secretaireMed>
-        <nom>VOYANCE</nom>
-        <prenom>Claire</prenom>
+        <nom>WILLSON</nom>
+        <prenom>James</prenom>
         <telephone>0678974335</telephone>
         <matricule>123456</matricule>
         <mdp>cV45*</mdp>
     </secretaireMed>
     <secrataireAdm>
-        <nom>HOUTAN</nom>
-        <prenom>Laurent</prenom>
+        <nom>VOLAKIS</nom>
+        <prenom>Ambert</prenom>
         <telephone>0789563412</telephone>
         <matricule>758493</matricule>
         <mdp>lH34*</mdp>
     </secrataireAdm>
         <secretaireAdm>
-        <nom>FER</nom>
-        <prenom>Lucie</prenom>
+        <nom>ADAMS</nom>
+        <prenom>Jessica</prenom>
         <telephone>0635678943</telephone>
         <matricule>567483</matricule>
         <mdp>lF74!</mdp>
