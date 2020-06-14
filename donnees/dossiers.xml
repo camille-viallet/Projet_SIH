@@ -4,13 +4,19 @@
   <ficheDeSoins>
     <date>2006-01-06</date>
     <medecin>
-        <nom>Bono</nom>
-        <prenom>Jean</prenom>
-        <specialite>ORL</specialite>
+        <nom>HOUSE</nom>
+        <prenom>Gregory</prenom>
+        <specialite>CARDIOLOGIE</specialite>
+        <telephone>0619283746</telephone>
     </medecin>
     <patient>
         <nom>Track</nom>
         <prenom>Pat</prenom>
+        <adresse>2 rue du chemin</adresse>
+        <dateN>1976-09-14</dateN>
+        <secu>3 176092601634</secu>
+        <poids>83.6</poids>
+        <taille>182</taille>
     </patient>
     <acte>
         <code>CS</code>
@@ -29,13 +35,19 @@
   <ficheDeSoins>
     <date>2005-10-23</date>
     <medecin>
-        <nom>Deblouze</nom>
-        <prenom>Agathe</prenom>
-        <specialite>Cardiologue</specialite>
+        <nom>CUDDY</nom>
+        <prenom>Lysa</prenom>
+        <specialite>CARDIOLOGIE</specialite>
+        <telephone>0619284567</telephone>
     </medecin>
     <patient>
         <nom>Bole</nom>
         <prenom>Pat</prenom>
+        <adresse>2 rue du chemin</adresse>
+        <dateN>1976-09-14</dateN>
+        <secu>3 176092601634</secu>
+        <poids>83.6</poids>
+        <taille>182</taille>
     </patient>
     <acte>
         <code>CSC</code>
@@ -48,15 +60,21 @@
   </ficheDeSoins>
 
   <ficheDeSoins>
-    <date>2006-01-03</date>
+    <date>2018-01-03</date>
     <medecin>
-        <nom>Deblouze</nom>
-        <prenom>Agathe</prenom>
-        <specialite>Cardiologue</specialite>
+        <nom>CUDDY</nom>
+        <prenom>Lysa</prenom>
+        <specialite>RADIOLOGIE</specialite>
+        <telephone>0619284567</telephone>
     </medecin>
     <patient>
         <nom>Bole</nom>
         <prenom>Maggy</prenom>
+        <adresse>24 route des mimosas</adresse>
+        <dateN>1989-01-27</dateN>
+        <secu>3 289013476690</secu>
+        <poids>54</poids>
+        <taille>162</taille>
     </patient>
     <acte>
         <code>CSC</code>
@@ -65,15 +83,21 @@
   </ficheDeSoins>
   
   <ficheDeSoins>
-    <date>2005-11-13</date>
+    <date>2019-11-13</date>
     <medecin>
-        <nom>Heget</nom>
-        <prenom>Yves</prenom>
-        <specialite>Gynecologie</specialite>
+        <nom>TUCKNER</nom>
+        <prenom>Lawrence</prenom>
+        <specialite>GYNECOLOGIE</specialite>
+        <telephone>0621638164</telephone>
     </medecin>
     <patient>
         <nom>Bole</nom>
         <prenom>Maggy</prenom>
+        <adresse>24 route des mimosas</adresse>
+        <dateN>1989-01-27</dateN>
+        <secu>3 289013476690</secu>
+        <poids>54</poids>
+        <taille>162</taille>
     </patient>
     <acte>
         <code>KE</code>
@@ -82,15 +106,21 @@
   </ficheDeSoins>
 
   <ficheDeSoins>
-    <date>2005-08-31</date>
+    <date>2008-03-31</date>
     <medecin>
-        <nom>Covert</nom>
-        <prenom>Harry</prenom>
-        <specialite>ORL</specialite>
+        <nom>CHASE</nom>
+        <prenom>Robert</prenom>
+        <specialite>PEDIATRIE</specialite>
+        <telephone>0621638164</telephone>
     </medecin>
     <patient>
         <nom>Epi</nom>
         <prenom>Fanie</prenom>
+        <adresse>35 avenue de la fontaine</adresse>
+        <dateN>1998-01-31</dateN>
+        <secu>3 298013290770</secu>
+        <poids>60</poids>
+        <taille>174</taille>
     </patient>
     <acte>
         <code>CS</code>
@@ -105,13 +135,19 @@
   <ficheDeSoins>
     <date>2005-08-31</date>
     <medecin>
-        <nom>Foupasune</nom>
-        <prenom>Jean</prenom>
-        <specialite>ORL</specialite>
+        <nom>TUCKNER</nom>
+        <prenom>Lawrence</prenom>
+        <specialite>GYNECOLOGIE</specialite>
+        <telephone>0621638164</telephone>  
     </medecin>
     <patient>
         <nom>Henfayitte</nom>
         <prenom>Melusine</prenom>
+        <adresse>25 chemin du moulin</adresse>
+        <dateN>1970-05-31</dateN>
+        <secu>3 270053856620</secu>
+        <poids>62</poids>
+        <taille>160</taille>
     </patient>
     <acte>
         <code>CS</code>
