@@ -13,15 +13,15 @@ and open the template in the editor.
         <specialite>CARDIOLOGIE</specialite>
         <telephone>0619283746</telephone>
         <rpps>123456789011 </rpps>
-        <mdp>dS38*</mdp>
+        <mdp>banane01</mdp>
     </medecin>
     <medecin>
         <nom>CUDDY</nom>
         <prenom>Lysa</prenom>
-        <specialite>GERONTOLOGIE</specialite>
+        <specialite>RADIOLOGIE</specialite>
         <telephone>0619284567</telephone>
         <rpps>123456789012</rpps>
-        <mdp>jN06!</mdp>      
+        <mdp>poire27</mdp>      
     </medecin>
     <medecin>
         <nom>TUCKNER</nom>
@@ -29,7 +29,7 @@ and open the template in the editor.
         <specialite>GYNECOLOGIE</specialite>
         <telephone>0621638164</telephone>
         <rpps>123456789013</rpps>
-        <mdp>tA26*</mdp>      
+        <mdp>groseilles23</mdp>      
     </medecin>
     <medecin>
         <nom>CHASE</nom>
@@ -37,41 +37,41 @@ and open the template in the editor.
         <specialite>PEDIATRIE</specialite>
         <telephone>0621638164</telephone>
         <rpps>123456789014</rpps>
-        <mdp>cO63*</mdp>      
+        <mdp>framboise06</mdp>      
     </medecin>
     <secretaireMed>
         <nom>HADLEY</nom>
         <prenom>Remy</prenom>
         <telephone>0678974635</telephone>
         <matricule>134679</matricule>
-        <mdp>aP21!</mdp>
+        <mdp>abricot44</mdp>
     </secretaireMed>
     <secretaireMed>
         <nom>CAMERON</nom>
         <prenom>Allison</prenom>
         <telephone>0678483726</telephone>
         <matricule>246801</matricule>
-        <mdp>aJ78!</mdp>
+        <mdp>avocat96</mdp>
     </secretaireMed>
     <secretaireMed>
         <nom>WILLSON</nom>
         <prenom>James</prenom>
         <telephone>0678974335</telephone>
         <matricule>123456</matricule>
-        <mdp>cV45*</mdp>
+        <mdp>kiwi345</mdp>
     </secretaireMed>
     <secrataireAdm>
         <nom>VOLAKIS</nom>
         <prenom>Ambert</prenom>
         <telephone>0789563412</telephone>
         <matricule>758493</matricule>
-        <mdp>lH34*</mdp>
+        <mdp>pasteque231</mdp>
     </secrataireAdm>
         <secretaireAdm>
         <nom>ADAMS</nom>
         <prenom>Jessica</prenom>
         <telephone>0635678943</telephone>
         <matricule>567483</matricule>
-        <mdp>lF74!</mdp>
+        <mdp>melon11</mdp>
     </secretaireAdm>
 </personnels>
