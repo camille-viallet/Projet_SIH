@@ -13,18 +13,40 @@ public class DossierMedical {
 
     public void ajouterFiche(FicheDeSoins fiche) {
         fiches.add(fiche);
+
     }
 
+    /**
+     * Renvoie un string des fiches de soins d'un patient
+     *
+     * @param p patient
+     * @return chaine de caractére
+     */
     public String getFichesPatient(Patient p) {
         String chaine = "";
         for (int i = 0; i < fiches.size(); i++) {
             if (fiches.get(i).getPatient().equals(p)) {
-                FicheDeSoins f = fiches.get(i);
-                chaine = fiches.get(i).toString()+"\n";
-               chaine = chaine + "- - - - - - - - - - - - - - - - - - - - - - - - - - - - \n";
+                chaine = chaine + fiches.get(i).toString() + "\n";
+                chaine = chaine + "- - - - - - - - - - - - - - - - - - - - - - - - - - - - \n";
             }
         }
         return chaine;
+    }
+
+    /**
+     * Renvoie la liste des fiches de soins d'un patient
+     *
+     * @param p patient
+     * @return
+     */
+    public Vector<FicheDeSoins> getFichesDeSoinsPatient(Patient p) {
+        Vector<FicheDeSoins> liste = new Vector<FicheDeSoins>();
+        for (int i = 0; i < fiches.size(); i++) {
+            if (fiches.get(i).getPatient().equals(p)) {
+                liste.add(fiches.get(i));
+            }
+        }
+        return liste;
     }
 
     public void afficher() {
@@ -102,6 +124,18 @@ public class DossierMedical {
         return liste;
     }
 
+    public Vector<Patient> getListeTousPatients() {
+        Vector<Patient> liste = new Vector<Patient>();
+        for (int i = 0; i < fiches.size(); i++) {
+            FicheDeSoins f = fiches.get(i);
+            Patient p = f.getPatient();
+            if (!liste.contains(p)) {
+                liste.add(p);
+            }
+        }
+        return liste;
+    }
+
     public Vector<Medecin> getListeMedecins() {
 
         Vector<Medecin> liste = new Vector<Medecin>();
@@ -130,31 +164,36 @@ public class DossierMedical {
         return n;
     }
 
+    /**
+     * Trie les dates des fiches du plus récent au plus ancien
+     *
+     */
     public void trierDates() {
         Vector<FicheDeSoins> copieFiches = new Vector<FicheDeSoins>(fiches);
+        fiches.clear();
 
         while (!copieFiches.isEmpty()) {
-            // on cherche la fiche de soins de date minimale :
-            int imin = 0;
-            FicheDeSoins f1 = copieFiches.get(imin);
+            // on cherche la fiche de soins de date maximale :
+            int imax = 0;
+            FicheDeSoins f1 = copieFiches.get(imax);
             for (int i = 1; i < copieFiches.size(); i++) {
                 FicheDeSoins f2 = copieFiches.get(i);
-                if (f2.getDate().compareTo(f1.getDate()) < 0) {
-                    imin = i;
+                if (f2.getDate().compareTo(f1.getDate()) > 0) {
+                    imax = i;
                     f1 = f2;
                 }
             }
-            // on affiche la fiche de soins trouvee :
-            f1.afficher();
-            System.out.println("------------------------");
+
+            fiches.add(f1);
             //on la supprime de la liste :
-            copieFiches.remove(imin);
+            copieFiches.remove(imax);
         }
     }
 
     // tri generique :
     public void trier(ComparaisonFiches c) {
         Vector<FicheDeSoins> copieFiches = new Vector<FicheDeSoins>(fiches);
+        fiches.clear();
 
         while (!copieFiches.isEmpty()) {
             // on cherche la fiche de soins minimale :
@@ -167,9 +206,7 @@ public class DossierMedical {
                     f1 = f2;
                 }
             }
-            // on affiche la fiche de soins trouvee :
-            f1.afficher();
-            System.out.println("------------------------");
+            fiches.add(f1);
             //on la supprime de la liste :
             copieFiches.remove(imin);
         }
