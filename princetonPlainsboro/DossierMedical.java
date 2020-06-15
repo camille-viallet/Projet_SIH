@@ -189,7 +189,7 @@ public class DossierMedical {
             copieFiches.remove(imax);
         }
     }
-
+    
     // tri generique :
     public void trier(ComparaisonFiches c) {
         Vector<FicheDeSoins> copieFiches = new Vector<FicheDeSoins>(fiches);
