@@ -41,14 +41,24 @@ public class FicheDeSoins {
         System.out.println(this);
     }
 
-    public Vector<Acte> getActes(Medecin m) {
+    /*public Vector<Acte> getActes(Medecin m) {
+     Vector<Acte> liste = new Vector<Acte>();
+     for (int i = 0; i < this.actes.size(); i++) {
+     Acte a = actes.get(i);
+     if (m.equals(a.getMed())) {
+     if (!liste.contains(a)) {
+     liste.add(a);
+     }
+     }
+     }
+     return liste;
+     }*/
+    public Vector<Acte> getActes() {
         Vector<Acte> liste = new Vector<Acte>();
         for (int i = 0; i < this.actes.size(); i++) {
             Acte a = actes.get(i);
-            if (m.equals(a.getMed())) {
-                if (!liste.contains(a)) {
-                    liste.add(a);
-                }
+            if (!liste.contains(a)) {
+                liste.add(a);
             }
         }
         return liste;

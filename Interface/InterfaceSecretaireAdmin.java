@@ -16,9 +16,12 @@ import princetonPlainsboro.Code;
 import princetonPlainsboro.DossierMedical;
 import princetonPlainsboro.FicheDeSoins;
 import princetonPlainsboro.LectureXML;
+import princetonPlainsboro.LectureXMLPersonnel;
 import princetonPlainsboro.Medecin;
 import princetonPlainsboro.Patient;
 import princetonPlainsboro.Personnel;
+import princetonPlainsboro.PersonnelHopital;
+import princetonPlainsboro.Specialite;
 
 /**
  *
@@ -30,10 +33,13 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
      * Creates new form InterfaceSecretaireAdmin
      */
     DossierMedical dm;
+    PersonnelHopital persHopital;
 
     public InterfaceSecretaireAdmin(Personnel p) {
         LectureXML test = new LectureXML("dossiers.xml");
         dm = test.getDossier();
+        LectureXMLPersonnel personnel = new LectureXMLPersonnel("personnels.xml");
+        persHopital = personnel.getPersonnel();
         initComponents();
         this.jLabelBonjour.setText("Bonjour " + p.getNom().toUpperCase() + " " + p.getPrenom());
 
@@ -42,7 +48,6 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
             this.jComboBoxActe1.addItem(code);
         }
         initialiseCoutActe();
-        this.afficheMedecin();
 
     }
 
@@ -56,16 +61,9 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jLabelImage = new javax.swing.JLabel();
         jLabelBonjour = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTableMedecin = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jComboBoxActe1 = new javax.swing.JComboBox();
@@ -76,7 +74,15 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         jLabelCout3 = new javax.swing.JLabel();
         jButtonCalculerCout = new javax.swing.JButton();
         jLabelErreurActe = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
+        jRadioButtonMedecin = new javax.swing.JRadioButton();
+        jRadioButtonPatient = new javax.swing.JRadioButton();
+        jRadioButtonSpecialite = new javax.swing.JRadioButton();
+        jRadioButtonActe = new javax.swing.JRadioButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hopital princeton plainsboro - Administration");
@@ -86,91 +92,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         jLabelBonjour.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabelBonjour.setText("Bonjour ");
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-        jTableMedecin.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Medecin", "Prix", "Title 3", "Title 4", "Title 5", "Title 6"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTableMedecin.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTableMedecin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableMedecinMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jTableMedecin);
-
-        jScrollPane1.setViewportView(jScrollPane2);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("Coût par medecin", jPanel3);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane3.setViewportView(jTable1);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("Coût par patient", jPanel4);
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Calculer un acte"));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Acte :");
@@ -194,18 +116,18 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
             .addGroup(jPanelResultatCoutLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelResultatCoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelCoutGras, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
-                    .addComponent(jLabelCout3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabelCoutGras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelCout3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelResultatCoutLayout.setVerticalGroup(
             jPanelResultatCoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelResultatCoutLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelCoutGras)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelCout3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(5, 5, 5))
         );
 
         jButtonCalculerCout.setText("Calculer");
@@ -224,27 +146,28 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBoxActe1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextFieldCoef1)
-                .addGap(10, 10, 10))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(558, 558, 558)
-                        .addComponent(jButtonCalculerCout))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBoxActe1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldCoef1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabelErreurActe, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanelResultatCout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelErreurActe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanelResultatCout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonCalculerCout)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -256,29 +179,119 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                     .addComponent(jComboBoxActe1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(jTextFieldCoef1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addGap(23, 23, 23)
                 .addComponent(jButtonCalculerCout)
-                .addGap(17, 17, 17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelErreurActe)
-                .addGap(16, 16, 16)
-                .addComponent(jPanelResultatCout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelResultatCout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Coût d'un acte", jPanel2);
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "", "", "", "", "", ""
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTable);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Visualisation des coûts :"));
+
+        buttonGroup2.add(jRadioButtonMedecin);
+        jRadioButtonMedecin.setText("Medecin");
+        jRadioButtonMedecin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMedecinActionPerformed(evt);
+            }
+        });
+
+        buttonGroup2.add(jRadioButtonPatient);
+        jRadioButtonPatient.setText("Patient");
+        jRadioButtonPatient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonPatientActionPerformed(evt);
+            }
+        });
+
+        buttonGroup2.add(jRadioButtonSpecialite);
+        jRadioButtonSpecialite.setText("Spécialié");
+        jRadioButtonSpecialite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonSpecialiteActionPerformed(evt);
+            }
+        });
+
+        buttonGroup2.add(jRadioButtonActe);
+        jRadioButtonActe.setText("Acte");
+        jRadioButtonActe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonActeActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jLabel2.setText("Cliquez dans le tableau pour plus d'informations");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 639, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jRadioButtonMedecin)
+                .addGap(26, 26, 26)
+                .addComponent(jRadioButtonPatient)
+                .addGap(46, 46, 46)
+                .addComponent(jRadioButtonSpecialite)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jRadioButtonActe)
+                .addGap(38, 38, 38))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButtonMedecin)
+                    .addComponent(jRadioButtonPatient)
+                    .addComponent(jRadioButtonSpecialite)
+                    .addComponent(jRadioButtonActe))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jTabbedPane1.addTab("Coût d'une spécialité", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -287,25 +300,37 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelImage)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelBonjour)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelBonjour))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel1))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabelImage)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelImage)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabelBonjour)))
+                .addGap(26, 26, 26)
+                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jLabelBonjour)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -334,56 +359,202 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonCalculerCoutActionPerformed
 
-    private void jTableMedecinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMedecinMouseClicked
-        //afficheMedecin();
-
+    private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
         JTable source = (JTable) evt.getSource();
 
         int row = source.rowAtPoint(evt.getPoint());
         int column = source.columnAtPoint(evt.getPoint());
 
-        DefaultTableModel model = (DefaultTableModel) this.jTableMedecin.getModel();
-        int i2 = 0;
-        Medecin m = dm.getListeMedecins().get(0);
-        System.out.println(model.getValueAt(row, column));
-        while (i2 < dm.getListeMedecins().size() && !model.getValueAt(row, column).equals(dm.getListeMedecins().get(i2).toString())) {
-            i2++;
-            m = dm.getListeMedecins().get(i2);
+        DefaultTableModel model = (DefaultTableModel) this.jTable.getModel();
 
-        }
+        if (this.jRadioButtonMedecin.isSelected()) {
+            int i2 = 0;
+            Medecin m = this.persHopital.getListeMedecins().get(0);
+            System.out.println(model.getValueAt(row, column));
+            //Trouve le medecin sur lequel on a cliqué
+            while (i2 < this.persHopital.getListeMedecins().size() && !model.getValueAt(row, column).equals(this.persHopital.getListeMedecins().get(i2).toString())) {
+                i2++;
+                m = this.persHopital.getListeMedecins().get(i2);
 
-        System.out.println(m);
-        int nbrLignes = model.getRowCount();
-        model.setColumnIdentifiers(new Object[]{"Medecin", "Code", "Date", "Prix"});
-
-        System.out.println(row);
-        if (model.getValueAt(row + 1, column).equals("") && row < nbrLignes - 2) {
-            while (model.getValueAt(row + 1, column).equals("") && row < model.getRowCount() - 2) {
-                model.removeRow(row + 1);
             }
-        } else {
-            int i = 0;
-            for (Patient p : dm.getListeTousPatients()) {
-                for (FicheDeSoins fiche : dm.getFichesDeSoinsPatient(p)) {
-                    for (Acte a : fiche.getActes(m)) {
-                        DecimalFormat df = new DecimalFormat("####.##");
-                        model.addRow(new Object[]{"", a.getCode() + "" + a.getCoef(), a.getDate().toStringDate(), df.format(a.getCode().calculerCout(a.getCoef())) + " €"});
-                        i++;
+
+            System.out.println(m);
+            int nbrLignes = model.getRowCount();
+            model.setColumnIdentifiers(new Object[]{"Medecin", "", "Date", "Prix"});
+
+            System.out.println(row);
+            if (model.getValueAt(row + 1, column).equals("") && row < nbrLignes - 2) {
+                while (model.getValueAt(row + 1, column).equals("") && row < model.getRowCount() - 2) {
+                    model.removeRow(row + 1);
+                }
+            } else {
+                int i = 0;
+                for (Patient p : dm.getListeTousPatients()) {
+                    for (FicheDeSoins fiche : dm.getFichesDeSoinsPatient(p)) {
+                        //for (Acte a : fiche.getActes(m)) {
+                        if (fiche.getMedecin().equals(m)) {
+                            DecimalFormat df = new DecimalFormat("####.##");
+                            model.addRow(new Object[]{"", "Fiche de soins du :", fiche.getDate().toStringDate(), df.format(fiche.coutTotal()) + " €"});
+                            i++;
+                        }
+                        //}
                     }
                 }
-            }
-            model.addRow(new Object[]{"", "", "", ""});
-            model.moveRow(nbrLignes, nbrLignes + i, row + 1);
+                model.addRow(new Object[]{"", "", "", ""});
+                model.moveRow(nbrLignes, nbrLignes + i, row + 1);
 
+            }
+        } else if (this.jRadioButtonPatient.isSelected()) {
+            int i2 = 0;
+            Patient p = this.dm.getListeTousPatients().get(0);
+            System.out.println(model.getValueAt(row, column));
+            while (i2 < this.dm.getListeTousPatients().size() && !model.getValueAt(row, column).equals(this.dm.getListeTousPatients().get(i2).toString())) {
+                i2++;
+                p = this.dm.getListeTousPatients().get(i2);
+
+            }
+            int nbrLignes = model.getRowCount();
+            model.setColumnIdentifiers(new Object[]{"Patient", "", "Date", "Prix"});
+
+            System.out.println(row);
+            if (model.getValueAt(row + 1, column).equals("") && row < nbrLignes - 2) {
+                while (model.getValueAt(row + 1, column).equals("") && row < model.getRowCount() - 2) {
+                    model.removeRow(row + 1);
+                }
+            } else {
+                int i = 0;
+
+                for (FicheDeSoins fiche : dm.getFichesDeSoinsPatient(p)) {
+
+                    DecimalFormat df = new DecimalFormat("####.##");
+                    model.addRow(new Object[]{"", "Fiche de soins du :", fiche.getDate().toStringDate(), df.format(fiche.coutTotal()) + " €"});
+                    i++;
+
+                }
+                model.addRow(new Object[]{"", "", "", ""});
+                model.moveRow(nbrLignes, nbrLignes + i, row + 1);
+            }
+        } else if (this.jRadioButtonSpecialite.isSelected()) {
+            int i2 = 0;
+            Specialite s = Specialite.valueOf(model.getValueAt(row, column).toString());
+            int nbrLignes = model.getRowCount();
+            model.setColumnIdentifiers(new Object[]{"Spécialité", "", "Date", "Prix"});
+
+            System.out.println(row);
+            if (model.getValueAt(row + 1, column).equals("") && row < nbrLignes - 2) {
+                while (model.getValueAt(row + 1, column).equals("") && row < model.getRowCount() - 2) {
+                    model.removeRow(row + 1);
+                }
+            } else {
+                int i = 0;
+
+                for (Patient p : dm.getListeTousPatients()) {
+                    for (FicheDeSoins fiche : dm.getFichesDeSoinsPatient(p)) {
+                        //System.out.println(fiche.getMedecin().getSpecialite());
+                        //System.out.println(s);
+                        if (fiche.getMedecin().getSpecialite().compareTo(s) == 0) {
+                            DecimalFormat df = new DecimalFormat("####.##");
+                            model.addRow(new Object[]{"", "Fiche de soins du :", fiche.getDate().toStringDate(), df.format(fiche.coutTotal()) + " €"});
+                            i++;
+                        }
+
+                    }
+                }
+                model.addRow(new Object[]{"", "", "", ""});
+                model.moveRow(nbrLignes, nbrLignes + i, row + 1);
+            }
+
+        } else if (this.jRadioButtonActe.isSelected()) {
+            int i2 = 0;
+            Code c = Code.valueOf(model.getValueAt(row, column).toString());
+            
+            int nbrLignes = model.getRowCount();
+            model.setColumnIdentifiers(new Object[]{"Code","Acte", "Date","Cout unitaire","Coefficient ","Prix"});
+
+            System.out.println(row);
+            if (model.getValueAt(row + 1, column).equals("") && row < nbrLignes - 2) {
+                while (model.getValueAt(row + 1, column).equals("") && row < model.getRowCount() - 2) {
+                    model.removeRow(row + 1);
+                }
+            } else {
+                int i = 0;
+
+                for (Patient p : dm.getListeTousPatients()) {
+                    for (FicheDeSoins fiche : dm.getFichesDeSoinsPatient(p)) {
+                        for (Acte a : fiche.getActes()) {
+                            //for (Acte a : fiche.getActes(m)) {
+                            if (a.getCode().compareTo(c)== 0) {
+                                DecimalFormat df = new DecimalFormat("####.##");
+                                model.addRow(new Object[]{"", a.getCode().toStringSansUnitaire(a.getCoef()) , a.getDate().toStringDate(),a.getCode().getCoutUnitaire(),a.getCoef(), df.format(a.cout()) + " €"});
+                                i++;
+                            }
+                            //}
+                        }
+                    }
+                }
+                model.addRow(new Object[]{"", "","", "", ""});
+                model.moveRow(nbrLignes, nbrLignes + i, row + 1);
+            }
         }
 
-    }//GEN-LAST:event_jTableMedecinMouseClicked
+    }//GEN-LAST:event_jTableMouseClicked
+
+    private void jRadioButtonMedecinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMedecinActionPerformed
+        DefaultTableModel model = (DefaultTableModel) this.jTable.getModel();
+        model.setRowCount(0);
+        model.setColumnCount(4);
+        model.setColumnIdentifiers(new Object[]{"Medecin", "", "", "Prix"});
+        for (Medecin medecin : this.persHopital.getListeMedecins()) {
+            DecimalFormat df = new DecimalFormat("####.##");
+            model.addRow(new Object[]{medecin.toString(), "", "", df.format(dm.coutMedecin(medecin)) + " €"});
+        }
+        model.addRow(new Object[]{"", "", "", ""});
+    }//GEN-LAST:event_jRadioButtonMedecinActionPerformed
+
+    private void jRadioButtonPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPatientActionPerformed
+        DefaultTableModel model = (DefaultTableModel) this.jTable.getModel();
+        model.setRowCount(0);
+        model.setColumnCount(4);
+        model.setColumnIdentifiers(new Object[]{"Patient", "", "", "Prix"});
+        for (Patient patient : dm.getListeTousPatients()) {
+            DecimalFormat df = new DecimalFormat("####.##");
+            model.addRow(new Object[]{patient.toString(), "", "", df.format(dm.coutPatient(patient)) + " €"});
+        }
+        model.addRow(new Object[]{"", "", "", ""});
+    }//GEN-LAST:event_jRadioButtonPatientActionPerformed
+
+    private void jRadioButtonSpecialiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonSpecialiteActionPerformed
+        DefaultTableModel model = (DefaultTableModel) this.jTable.getModel();
+        model.setRowCount(0);
+        model.setColumnCount(4);
+        model.setColumnIdentifiers(new Object[]{"Spécialité", "", "", "Prix"});
+        for (Specialite specialite : Specialite.values()) {
+            DecimalFormat df = new DecimalFormat("####.##");
+            model.addRow(new Object[]{specialite.toString(), "", "", df.format(dm.coutSpecialite(specialite.toString())) + " €"});
+        }
+        model.addRow(new Object[]{"", "", "", ""});
+    }//GEN-LAST:event_jRadioButtonSpecialiteActionPerformed
+
+    private void jRadioButtonActeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonActeActionPerformed
+        DefaultTableModel model = (DefaultTableModel) this.jTable.getModel();
+        model.setRowCount(0);
+        model.setColumnCount(6);
+        model.setColumnIdentifiers(new Object[]{"Code", "","", "Cout unitaire","Coefficient ","Prix"});
+        for (Code code : Code.values()) {
+            DecimalFormat df = new DecimalFormat("####.##");
+            model.addRow(new Object[]{code.toString(), "", "","","", df.format(dm.coutActe(code)) + " €"});
+        }
+        model.addRow(new Object[]{"", "", "","", ""});
+    }//GEN-LAST:event_jRadioButtonActeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButtonCalculerCout;
     private javax.swing.JComboBox jComboBoxActe1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelBonjour;
@@ -393,15 +564,13 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelImage;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanelResultatCout;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton jRadioButtonActe;
+    private javax.swing.JRadioButton jRadioButtonMedecin;
+    private javax.swing.JRadioButton jRadioButtonPatient;
+    private javax.swing.JRadioButton jRadioButtonSpecialite;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTableMedecin;
+    private javax.swing.JTable jTable;
     private javax.swing.JTextField jTextFieldCoef1;
     // End of variables declaration//GEN-END:variables
 
@@ -410,18 +579,6 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         this.jTextFieldCoef1.setText("");
         this.jPanelResultatCout.setVisible(false);
         this.jLabelErreurActe.setVisible(false);
-    }
-
-    private void afficheMedecin() {
-
-        DefaultTableModel model = (DefaultTableModel) this.jTableMedecin.getModel();
-        model.setRowCount(0);
-        model.setColumnCount(4);
-        for (Medecin medecin : dm.getListeMedecins()) {
-            DecimalFormat df = new DecimalFormat("####.##");
-            model.addRow(new Object[]{medecin.toString(), "", "", df.format(dm.coutMedecin(medecin)) + " €"});
-        }
-        model.addRow(new Object[]{"", "", "", ""});
     }
 
 }

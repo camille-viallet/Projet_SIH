@@ -82,11 +82,26 @@ public class DossierMedical {
         return cout;
     }
 
+    public double coutActe(Code c) {
+        double cout = 0;
+        for (int i = 0; i < fiches.size(); i++) {
+            FicheDeSoins f = fiches.get(i);
+            for (Acte a : fiches.get(i).getActes()) {
+                if (c.equals(a.getCode())) {
+                    cout += a.getCode().calculerCout(a.getCoef());
+                }
+            }
+        }
+        return cout;
+
+    }
+
     public double coutSpecialite(String specialite) {
         double cout = 0;
         for (int i = 0; i < fiches.size(); i++) {
             FicheDeSoins f = fiches.get(i);
-            if (specialite.equals(f.getMedecin().getSpecialite())) {
+            if (specialite.equals(f.getMedecin().getSpecialite().toString())) {
+
                 cout += f.coutTotal();
             }
         }
@@ -123,8 +138,6 @@ public class DossierMedical {
         }
         return liste;
     }
-    
-    
 
     public Vector<Patient> getListeTousPatients() {
         Vector<Patient> liste = new Vector<Patient>();
@@ -189,7 +202,7 @@ public class DossierMedical {
             fiches.add(f1);
             //on la supprime de la liste :
             copieFiches.remove(imax);
-            
+
         }
     }
 

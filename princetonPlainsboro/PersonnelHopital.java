@@ -43,7 +43,20 @@ public class PersonnelHopital {
             System.out.println("--------------------------------------");
         }
     }
+
     public List<Personnel> getListePersonnel() {
         return Collections.unmodifiableList(listePersonnel);
+    }
+
+    public ArrayList<Medecin> getListeMedecins() {
+        ArrayList<Medecin> liste = new ArrayList<>();
+        for (Personnel personnel : listePersonnel) {
+            if (personnel.getMetier() == MetierCHU.MEDECIN) {
+                if (!liste.contains((Medecin) personnel)) {
+                    liste.add((Medecin) personnel);
+                }
+            }
+        }
+        return liste;
     }
 }
