@@ -12,32 +12,12 @@ package princetonPlainsboro;
 public class SecretaireMed extends Personnel {
 
     public SecretaireMed(String prenom, String nom, String username, String mdp, String telephone) {
-        super(prenom, nom, username, mdp, MetierCHU.SECRETAIRE_MEDICALE, telephone);
+        super(prenom, nom, username, mdp, telephone);
 
     }
 
-    // getters pour les Sécretaires Médicales
-    public String getPrenom() {
-        return super.getPrenom();
-    }
-
-    public String getNom() {
-        return super.getNom();
-    }
-
-    public String getUsername() {
-        return super.getUsername();
-    }
-
-    public String getMdp() {
-        return super.getMdp();
-    }
-
-    public MetierCHU getMetierCHU() {
-        return MetierCHU.SECRETAIRE_MEDICALE;
-    }
-
-    public String getTelephone() {
-        return super.getTelephone();
+    @Override
+    public MetierCHU getMetier() {
+        return  MetierCHU.SECRETAIRE_MEDICALE;
     }
 }

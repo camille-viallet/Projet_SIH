@@ -9,28 +9,26 @@ package princetonPlainsboro;
  *
  * @author dasilvae
  */
-public class Personnel {
+public abstract class Personnel {
     
     private String prenom ;
     private String nom ;
     private String username ;
     private String mdp;
-    private MetierCHU metier;
     private String telephone ;
 
 
     
-    public Personnel(String prenom, String nom, String username, String mdp, MetierCHU metier, String telephone){
+    public Personnel(String prenom, String nom, String username, String mdp, String telephone){
         this.prenom = prenom ;
         this.nom = nom ;
         this.username = username ;
         this.mdp = mdp ;
-        this.metier = metier ; 
         this.telephone = telephone ; 
       }
 
     public String toString() {
-        return "NOM : " + this.prenom + this.nom.toUpperCase() + " \n METIER : " + this.metier + " \n NUMERO DE TELEPHONE : " + this.telephone ;
+        return "NOM : " + this.prenom + this.nom.toUpperCase() + " \n METIER : " + this.getMetier() + " \n NUMERO DE TELEPHONE : " + this.telephone ;
     }
  
     // getter et setter pour le prénom du personnel
@@ -66,12 +64,8 @@ public class Personnel {
     }
 
     // getter et setter pour le métierr
-    public MetierCHU getMetier() {
-        return metier;
-    }
-    public void setMetier(MetierCHU metier) {
-        this.metier = metier;
-    }
+    public abstract MetierCHU getMetier();
+    
 
     // getter et setter pour le numéro de téléphone du personnel
     public String getTelephone() {

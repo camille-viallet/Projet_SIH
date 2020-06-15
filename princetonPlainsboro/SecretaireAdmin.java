@@ -12,28 +12,12 @@ package princetonPlainsboro;
 public class SecretaireAdmin extends Personnel {
 
     public SecretaireAdmin(String prenom, String nom, String username, String mdp,  String telephone) {
-        super(prenom, nom, username, mdp, MetierCHU.SECRETAIRE_ADMINISTRATIVE, telephone);
+        super(prenom, nom, username, mdp, telephone);
 
     }
     
-    // getters pour les Sécretaires Administratives 
-    
-      public String getPrenom() {
-        return super.getPrenom() ;
+    @Override
+    public MetierCHU getMetier() {
+        return MetierCHU.SECRETAIRE_ADMINISTRATIVE;
     }
-      public String getNom() {
-          return super.getNom() ; 
-      }
-      public String getUsername() {
-          return super.getUsername() ;
-      }
-      public String getMdp() {
-          return super.getMdp() ;
-      }
-      public MetierCHU getMetierCHU(){
-         return MetierCHU.SECRETAIRE_ADMINISTRATIVE ;
-     }
-       public String getTelephone() {
-          return super.getTelephone() ; 
-      }
 }
