@@ -23,7 +23,7 @@ public class Acte {
       
     @Override
     public String toString() {
-        return getCode().toString() + getCoef() + ", "
+        return getCode().toString(getCoef()) + ", "
                 + "\n         nom de l'acte : " + getNomActe() + 
                 ", \n         nom du médecin : " + med.getNom()+" "+med.getPrenom()+" - "+med.getSpecialite()+
                 ", \n         date : " + getDate() + 

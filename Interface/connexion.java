@@ -57,8 +57,13 @@ public class connexion extends javax.swing.JFrame {
         jLabelUtilisateur.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelUtilisateur.setText("Utilisateur :");
 
+        jTextFieldUtilisateur.setText("758493");
+
         jLabelMotPasse.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelMotPasse.setText("Mot de passe : ");
+
+        jPassword.setText("pasteque231");
+        jPassword.setToolTipText("");
 
         jButtonValiderConnexion.setText("Valider");
         jButtonValiderConnexion.addActionListener(new java.awt.event.ActionListener() {

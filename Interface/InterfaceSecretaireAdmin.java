@@ -5,6 +5,19 @@
  */
 package Interface;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.text.DecimalFormat;
+import java.util.Vector;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import princetonPlainsboro.Acte;
+import princetonPlainsboro.Code;
+import princetonPlainsboro.DossierMedical;
+import princetonPlainsboro.FicheDeSoins;
+import princetonPlainsboro.LectureXML;
+import princetonPlainsboro.Medecin;
+import princetonPlainsboro.Patient;
 import princetonPlainsboro.Personnel;
 
 /**
@@ -16,8 +29,21 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
     /**
      * Creates new form InterfaceSecretaireAdmin
      */
+    DossierMedical dm;
+
     public InterfaceSecretaireAdmin(Personnel p) {
+        LectureXML test = new LectureXML("dossiers.xml");
+        dm = test.getDossier();
         initComponents();
+        this.jLabelBonjour.setText("Bonjour " + p.getNom().toUpperCase() + " " + p.getPrenom());
+
+        // DANS CALCULER ACTE
+        for (Code code : Code.values()) {
+            this.jComboBoxActe1.addItem(code);
+        }
+        initialiseCoutActe();
+        this.afficheMedecin();
+
     }
 
     /**
@@ -29,8 +55,28 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabelImage = new javax.swing.JLabel();
         jLabelBonjour = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableMedecin = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jComboBoxActe1 = new javax.swing.JComboBox();
+        jLabel5 = new javax.swing.JLabel();
+        jTextFieldCoef1 = new javax.swing.JTextField();
+        jPanelResultatCout = new javax.swing.JPanel();
+        jLabelCoutGras = new javax.swing.JLabel();
+        jLabelCout3 = new javax.swing.JLabel();
+        jButtonCalculerCout = new javax.swing.JButton();
+        jLabelErreurActe = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hopital princeton plainsboro - Administration");
@@ -40,35 +86,342 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         jLabelBonjour.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabelBonjour.setText("Bonjour ");
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        jTableMedecin.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Medecin", "Prix", "Title 3", "Title 4", "Title 5", "Title 6"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableMedecin.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTableMedecin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableMedecinMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTableMedecin);
+
+        jScrollPane1.setViewportView(jScrollPane2);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Coût par medecin", jPanel3);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Coût par patient", jPanel4);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setText("Acte :");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setText("Coefficient : ");
+
+        jPanelResultatCout.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        jLabelCoutGras.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelCoutGras.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelCoutGras.setText("Coût :");
+
+        jLabelCout3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelCout3.setText("x");
+
+        javax.swing.GroupLayout jPanelResultatCoutLayout = new javax.swing.GroupLayout(jPanelResultatCout);
+        jPanelResultatCout.setLayout(jPanelResultatCoutLayout);
+        jPanelResultatCoutLayout.setHorizontalGroup(
+            jPanelResultatCoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelResultatCoutLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelResultatCoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelCoutGras, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
+                    .addComponent(jLabelCout3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanelResultatCoutLayout.setVerticalGroup(
+            jPanelResultatCoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelResultatCoutLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelCoutGras)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelCout3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jButtonCalculerCout.setText("Calculer");
+        jButtonCalculerCout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCalculerCoutActionPerformed(evt);
+            }
+        });
+
+        jLabelErreurActe.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelErreurActe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelErreurActe.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBoxActe1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextFieldCoef1)
+                .addGap(10, 10, 10))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(558, 558, 558)
+                        .addComponent(jButtonCalculerCout))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanelResultatCout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelErreurActe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jComboBoxActe1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextFieldCoef1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addComponent(jButtonCalculerCout)
+                .addGap(17, 17, 17)
+                .addComponent(jLabelErreurActe)
+                .addGap(16, 16, 16)
+                .addComponent(jPanelResultatCout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Coût d'un acte", jPanel2);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 639, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 279, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Coût d'une spécialité", jPanel1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelImage)
-                .addGap(18, 18, 18)
-                .addComponent(jLabelBonjour)
-                .addContainerGap(478, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabbedPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelImage)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelBonjour)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabelImage)
-                .addGap(0, 287, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jLabelBonjour)
+                .addGap(18, 18, 18)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(jLabelBonjour)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonCalculerCoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalculerCoutActionPerformed
+        boolean erreur = false;
+        try {
+            Integer.parseInt(this.jTextFieldCoef1.getText());
+        } catch (Exception e) {
+            erreur = true;
+        }
+        if (!this.jTextFieldCoef1.getText().isEmpty() && !erreur) {
+            Code codeSelectionne = Code.valueOf(this.jComboBoxActe1.getSelectedItem().toString());
+            int coeff = Integer.parseInt(this.jTextFieldCoef1.getText());
+            double cout = codeSelectionne.calculerCout(coeff);
+            this.jLabelCoutGras.setText("Coût de " + codeSelectionne.toString(coeff));
+            this.jLabelCout3.setText(cout + " €");
+            this.jPanelResultatCout.setVisible(true);
+
+        } else {
+            this.jLabelErreurActe.setBackground(Color.red);
+            this.jLabelErreurActe.setText("Erreur : Coefficient incorrect");
+            this.jLabelErreurActe.setVisible(true);
+
+        }
+    }//GEN-LAST:event_jButtonCalculerCoutActionPerformed
+
+    private void jTableMedecinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMedecinMouseClicked
+        //afficheMedecin();
+
+        JTable source = (JTable) evt.getSource();
+
+        int row = source.rowAtPoint(evt.getPoint());
+        int column = source.columnAtPoint(evt.getPoint());
+
+        DefaultTableModel model = (DefaultTableModel) this.jTableMedecin.getModel();
+        int i2 = 0;
+        Medecin m = dm.getListeMedecins().get(0);
+        System.out.println(model.getValueAt(row, column));
+        while (i2 < dm.getListeMedecins().size() && !model.getValueAt(row, column).equals(dm.getListeMedecins().get(i2).toString())) {
+            i2++;
+            m = dm.getListeMedecins().get(i2);
+
+        }
+
+        System.out.println(m);
+        int nbrLignes = model.getRowCount();
+        model.setColumnIdentifiers(new Object[]{"Medecin", "Code", "Date", "Prix"});
+
+        System.out.println(row);
+        if (model.getValueAt(row + 1, column).equals("") && row < nbrLignes - 2) {
+            while (model.getValueAt(row + 1, column).equals("") && row < model.getRowCount() - 2) {
+                model.removeRow(row + 1);
+            }
+        } else {
+            int i = 0;
+            for (Patient p : dm.getListeTousPatients()) {
+                for (FicheDeSoins fiche : dm.getFichesDeSoinsPatient(p)) {
+                    for (Acte a : fiche.getActes(m)) {
+                        DecimalFormat df = new DecimalFormat("####.##");
+                        model.addRow(new Object[]{"", a.getCode() + "" + a.getCoef(), a.getDate().toStringDate(), df.format(a.getCode().calculerCout(a.getCoef())) + " €"});
+                        i++;
+                    }
+                }
+            }
+            model.addRow(new Object[]{"", "", "", ""});
+            model.moveRow(nbrLignes, nbrLignes + i, row + 1);
+
+        }
+
+    }//GEN-LAST:event_jTableMedecinMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButtonCalculerCout;
+    private javax.swing.JComboBox jComboBoxActe1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelBonjour;
+    private javax.swing.JLabel jLabelCout3;
+    private javax.swing.JLabel jLabelCoutGras;
+    private javax.swing.JLabel jLabelErreurActe;
     private javax.swing.JLabel jLabelImage;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanelResultatCout;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableMedecin;
+    private javax.swing.JTextField jTextFieldCoef1;
     // End of variables declaration//GEN-END:variables
+
+    private void initialiseCoutActe() {
+        this.jLabelCout3.setText("");
+        this.jTextFieldCoef1.setText("");
+        this.jPanelResultatCout.setVisible(false);
+        this.jLabelErreurActe.setVisible(false);
+    }
+
+    private void afficheMedecin() {
+
+        DefaultTableModel model = (DefaultTableModel) this.jTableMedecin.getModel();
+        model.setRowCount(0);
+        model.setColumnCount(4);
+        for (Medecin medecin : dm.getListeMedecins()) {
+            DecimalFormat df = new DecimalFormat("####.##");
+            model.addRow(new Object[]{medecin.toString(), "", "", df.format(dm.coutMedecin(medecin)) + " €"});
+        }
+        model.addRow(new Object[]{"", "", "", ""});
+    }
+
 }

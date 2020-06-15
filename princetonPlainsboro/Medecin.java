@@ -15,7 +15,10 @@ public class Medecin extends Personnel {
     }
 
     public String toString() {
-        return "Docteur " + super.getPrenom() + " " + super.getNom() + " - " + getSpecialite() + "\nNuméro de téléphone : " + getTelephone();
+        return "Docteur " + super.getNom().toUpperCase() + " " + super.getPrenom() + " - " + getSpecialite() ;
+    }
+     public String toStringAvecTelephone() {
+        return "Docteur " + super.getPrenom() + " " + super.getNom() + " - " + getSpecialite() + "\n  Numéro de téléphone : " + getTelephone();
     }
 
     public boolean equals(Object o) {
