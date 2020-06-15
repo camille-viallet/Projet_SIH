@@ -9,8 +9,8 @@ public enum Code {
 
     // valeurs de l'�num :
 
-    CS("consultation au cabinet", 23.0),
-    CSC("consultation cardiologie", 45.73),
+    CS("consultation au cabinet par le médecin spécialiste qualifié en médecine générale", 23.0),
+    CSC("consultation cardiologie", 47.73),
     FP("forfait pediatrique", 5.0),
     KC("actes de chirurgie et de specialite", 2.09),
     KE("actes d'echographie doppler", 1.89),

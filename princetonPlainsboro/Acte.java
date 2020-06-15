@@ -5,7 +5,7 @@ public class Acte {
     private Code code;
     private int coef;
     private String nomActe;
-    private String nomMed;
+    private Medecin med;
     private Date date;
     private Type type;
     private String comm;
@@ -14,17 +14,18 @@ public class Acte {
         this.code = code;
         this.coef = coef;
         this.nomActe = nomActe;
-        this.nomMed = med.getNom();
+        this.med = med;
         this.date = date;
         this.type = type;
         this.comm = comm;
     }
    
       
+    @Override
     public String toString() {
-        return getCode().toString() + ", coefficient : " + getCoef() + ", "
+        return getCode().toString() + getCoef() + ", "
                 + "\n         nom de l'acte : " + getNomActe() + 
-                ", \n         nom du médecin : " + getNomMed() + 
+                ", \n         nom du médecin : " + med.getNom()+" "+med.getPrenom()+" - "+med.getSpecialite()+
                 ", \n         date : " + getDate() + 
                 ", \n         type d'acte : " + getType().toString() + 
                 ", \n         Observations : " + getComm();
@@ -79,15 +80,15 @@ public class Acte {
     /**
      * @return the nomMed
      */
-    public String getNomMed() {
-        return nomMed;
+    public Medecin getMed() {
+        return med;
     }
 
     /**
      * @param nomMed the nomMed to set
      */
-    public void setNomMed(String nomMed) {
-        this.nomMed = nomMed;
+    public void setNomMed(Medecin Med) {
+        this.med = Med;
     }
 
     /**

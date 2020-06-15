@@ -5,10 +5,8 @@
  */
 package Interface;
 
-import princetonPlainsboro.DossierMedical;
-import princetonPlainsboro.LectureXML;
+
 import princetonPlainsboro.LectureXMLPersonnel;
-import princetonPlainsboro.Medecin;
 import princetonPlainsboro.MetierCHU;
 import princetonPlainsboro.Personnel;
 import princetonPlainsboro.PersonnelHopital;
