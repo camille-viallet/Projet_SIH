@@ -10,18 +10,29 @@ public class Patient {
     private double poids;
     private double taille;
 
-    public Patient(String nom, String prenom, String adresse, Date dateN, String secu, double poids, double taille) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.adresse = adresse;
-        this.dateN = dateN;
-        this.secu= secu;
-        this.poids = poids;
-        this.taille = taille;
+    public Patient(String prenom, String nom, String adresse, Date dateN, String secu, double poids, double taille) {
+        this.prenom = prenom ;
+        this.nom = nom ;
+        this.adresse = adresse ;
+        this.dateN = dateN ;
+        this.secu = secu ;
+        this.poids = poids ;
+        this.taille = taille ;
     }
 
     public String toString() {
         return prenom + " " + nom.toUpperCase();
+    }
+
+    // Afficher toutes les informations du patient 
+    public void infosPatient() {
+        String infos = "Informations sur " + this.prenom + " " + this.nom + ", né(e) le " + this.dateN.toString() + ", demeurant à " + this.adresse + "\n Son poids actuel est : " + this.getPoids() + "kg \n Sa taille est de : " + this.getTaille() + "m" + "\n Numéro de sécurité sociale : ";
+        if (this.verifierSecu() == true) {
+            infos += secu;
+        } else {
+            infos += " numéro renseigné invalide !";
+        }
+        System.out.println(infos);
     }
 
     public boolean equals(Object o) {
@@ -32,7 +43,73 @@ public class Patient {
             return false;
         }
     }
-    
+
+    // Vérifier que le numéro de sécurité sociale est correct
+    public boolean verifierSecu() {
+        boolean valide = true;
+        int i = 0;
+        long cle = 97 - ((Long.parseLong(secu.substring(0, 13)) % 97));
+        while (valide == true && i <= 12) {
+
+            if (secu.length() != 15) {
+                valide = false;
+
+            } else {
+                if (Integer.parseInt(secu.substring(0, 1)) == 1 || Integer.parseInt(secu.substring(0, 1)) == 2) {
+                    i++;
+                } else {
+                    valide = false;
+                }
+                if (Integer.parseInt(secu.substring(1, 3)) >= 0 && Integer.parseInt(secu.substring(1, 3)) < 100) {
+                    i++;
+                    i++;
+                } else {
+                    valide = false;
+                }
+                if (Integer.parseInt(secu.substring(3, 5)) > 0 && Integer.parseInt(secu.substring(3, 5)) < 13) {
+                    i++;
+                    i++;
+                } else {
+                    valide = false;
+
+                }
+                if (Integer.parseInt(secu.substring(5, 7)) > 0 && Integer.parseInt(secu.substring(5, 7)) < 99) {
+                    i++;
+                    i++;
+                } else {
+                    valide = false;
+                }
+
+                if (Integer.parseInt(secu.substring(7, 10)) > 0 && Integer.parseInt(secu.substring(7, 10)) < 1000) {
+                    i++;
+                    i++;
+                    i++;
+
+                } else {
+                    valide = false;
+
+                }
+                if (Integer.parseInt(secu.substring(10, 13)) > 0 && Integer.parseInt(secu.substring(10, 13)) < 1000) {
+                    i++;
+                    i++;
+                    i++;
+
+                } else {
+                    valide = false;
+
+                }
+                if (Integer.parseInt(secu.substring(13, 15)) == cle) {
+                    i++;
+
+                } else {
+                    valide = false;
+                }
+            }
+            
+        }
+        return valide;
+    }
+
     public String getNom() {
         return nom;
     }
