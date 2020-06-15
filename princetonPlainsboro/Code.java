@@ -11,8 +11,13 @@ import java.text.DecimalFormat;
 public enum Code {
 
     // valeurs de l'�num :
-
-    CS("consultation au cabinet par le médecin généraliste", 23.0),
+    C("consultation generale au cabinet", 23.0),
+    CS("consultation au cabinet par le médecin spécialiste qualifié en médecine générale", 23.0),
+    TCG("consultation à distance", 25.0),
+    COE("consultation du pediatre ou du medecin gén pour les examens obligatoires dans les 8 jours qui suivent la naissance, au cours du 9eme ou du 10eme mois, et au cours du 24eme ou du 25eme mois", 46.0),
+    CCP("la premiere consultation de contraception et de prevention des maladies sexuellement transmissibles pour les jeunes filles de 15 a 18 ans", 46.0),
+    CNPSY("consultation pour les psychiatres, neuropsychiatres, neurologues", 39.0),
+    CDE("consultation de depistage du melanome realisee au cabinet par le medecin specialiste en dermatologie", 46.0),
     CSC("consultation cardiologie", 47.73),
     FP("forfait pediatrique", 5.0),
     KC("actes de chirurgie et de specialite", 2.09),

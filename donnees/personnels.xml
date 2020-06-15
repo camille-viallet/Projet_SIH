@@ -28,6 +28,14 @@
         <mdp>groseilles23</mdp>      
     </medecin>
     <medecin>
+        <nom>VERT</nom>
+        <prenom>Haricot</prenom>
+        <specialite>ORTHODONTIE</specialite>
+        <telephone>0625789536</telephone>
+        <rpps>123456789015</rpps>
+        <mdp>yummy38</mdp>      
+    </medecin>
+    <medecin>
         <nom>CHASE</nom>
         <prenom>Robert</prenom>
         <specialite>PEDIATRIE</specialite>
