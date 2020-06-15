@@ -123,6 +123,8 @@ public class DossierMedical {
         }
         return liste;
     }
+    
+    
 
     public Vector<Patient> getListeTousPatients() {
         Vector<Patient> liste = new Vector<Patient>();
@@ -187,6 +189,7 @@ public class DossierMedical {
             fiches.add(f1);
             //on la supprime de la liste :
             copieFiches.remove(imax);
+            
         }
     }
 

@@ -52,7 +52,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
             this.jComboBoxMedecin.setEnabled(false);
         } else {
             for (int i = 0; i < dm.getListeMedecins().size(); i++) {
-                this.jComboBoxMedecin.addItem(dm.getListeMedecins().get(i).getNom() +" "+ dm.getListeMedecins().get(i).getPrenom()+" - "+dm.getListeMedecins().get(i).getSpecialite() );
+                this.jComboBoxMedecin.addItem(dm.getListeMedecins().get(i).getNom() + " " + dm.getListeMedecins().get(i).getPrenom() + " - " + dm.getListeMedecins().get(i).getSpecialite());
                 this.jComboBoxMedecin.setEnabled(true);
                 this.jRadioButtonMespatients.setVisible(false);
                 this.jRadioButtonAllPatients.setSelected(true);
@@ -824,7 +824,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButtonMespatientsActionPerformed
 
     private void jButtonValiderActeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValiderActeActionPerformed
-        Medecin medecinChoisi;
+       
         int annee = 2020;
         int coef = 1;
         boolean erreur = false;
@@ -840,7 +840,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
         if (!this.jListPatients.isSelectionEmpty() && !erreur && !this.jTextFieldNomActe.getText().isEmpty()) {
 
             erreur = false;
-            String medecinSelected = this.jComboBoxMedecin.getSelectedItem().toString();
+           
 
             // Récupére la date
             Date date = new Date(Integer.parseInt(this.jComboBoxjourAM.getSelectedItem().toString()),
@@ -850,52 +850,44 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                     Integer.parseInt(this.jComboBoxMinAM.getSelectedItem().toString()));
 
             //Cherche le medecin correspondant à la sélection
-            int i = 0;
-            String medecin = dm.getListeMedecins().get(i).getNom() + " " + dm.getListeMedecins().get(i).getPrenom() + " - " + dm.getListeMedecins().get(i).getSpecialite().toString();
-            while (!medecinSelected.equals(medecin) && (i < dm.getListeMedecins().size() - 1)) {
-                i++;
-                medecin = dm.getListeMedecins().get(i).getNom() + " " + dm.getListeMedecins().get(i).getPrenom() + " - " + dm.getListeMedecins().get(i).getSpecialite().toString();
+            int index = this.jComboBoxMedecin.getSelectedIndex();
+            Medecin medecinChoisi = dm.getListeMedecins().get(index);
+
+            
+
+            String code = this.jComboBoxCode.getSelectedItem().toString().substring(0, this.jComboBoxCode.getSelectedItem().toString().lastIndexOf(" -"));
+
+            //Récupére le type
+            princetonPlainsboro.Type type;
+            if (this.jComboBoxType.getSelectedItem() == "Diagnostique") {
+                type = princetonPlainsboro.Type.DIAG;
+            } else {
+                type = princetonPlainsboro.Type.THERA;
             }
+            //Récupére le commentaire
+            String commentaire = "RAS";
+            if (!this.jTextAreaCommentaireAM.getText().isEmpty()) {
+                commentaire = this.jTextAreaCommentaireAM.getText();
+            }
+            Acte acte = new Acte(Code.valueOf(code), coef, this.jTextFieldNomActe.getText(), medecinChoisi, date, type, commentaire);
 
-            if (i < dm.getListeMedecins().size() - 1) {
-
-                medecinChoisi = dm.getListeMedecins().get(i);
-
-                String code = this.jComboBoxCode.getSelectedItem().toString().substring(0, this.jComboBoxCode.getSelectedItem().toString().lastIndexOf(" -"));
-
-                //Récupére le type
-                princetonPlainsboro.Type type;
-                if (this.jComboBoxType.getSelectedItem() == "Diagnostique") {
-                    type = princetonPlainsboro.Type.DIAG;
-                } else {
-                    type = princetonPlainsboro.Type.THERA;
-                }
-                //Récupére le commentaire
-                String commentaire = "RAS";
-                if (!this.jTextAreaCommentaireAM.getText().isEmpty()) {
-                    commentaire = this.jTextAreaCommentaireAM.getText();
-                }
-                Acte acte = new Acte(Code.valueOf(code), coef, this.jTextFieldNomActe.getText(), medecinChoisi, date, type, commentaire);
-
-                //Ajoute l'acte à la derniére fiche ou en créer ue nouvelle
+            //Ajoute l'acte à la derniére fiche ou en créer ue nouvelle
+            dm.trierDates();
+            if (this.jCheckBoxNouvelleFiche.isSelected()) {
+                FicheDeSoins fiche = new FicheDeSoins(patient, medecinChoisi, date);
+                fiche.ajouterActe(acte);
+                dm.ajouterFiche(fiche);
                 dm.trierDates();
-                if (this.jCheckBoxNouvelleFiche.isSelected()) {
-                    FicheDeSoins fiche = new FicheDeSoins(patient, medecinChoisi, date);
-                    fiche.ajouterActe(acte);
-                    dm.ajouterFiche(fiche);
-                    dm.trierDates();
-                } else {
-                    dm.getFichesDeSoinsPatient(patient).get(0).ajouterActe(acte);
-                }
-
-                //Indique que la création est effectuée
-                this.jLabelErreurAM.setText("Créé avec succés");
-                this.jLabelErreurAM.setForeground(Color.GREEN);
-                this.jLabelErreurAM.setVisible(true);
-                réinitialiseChampActe();
-                this.jTabbedPane1.setSelectedIndex(0);
-
+            } else {
+                dm.getFichesDeSoinsPatient(patient).get(0).ajouterActe(acte);
             }
+
+            //Indique que la création est effectuée
+            this.jLabelErreurAM.setText("Créé avec succés");
+            this.jLabelErreurAM.setForeground(Color.GREEN);
+            this.jLabelErreurAM.setVisible(true);
+            réinitialiseChampActe();
+            this.jTabbedPane1.setSelectedIndex(0);
 
         } else {
             //Indique une erreur
