@@ -25,6 +25,24 @@ public class PersonnelHopital {
         listePersonnel.add(p);
     }
 
+    public void removePersonnel(Personnel p) {
+        listePersonnel.remove(p);
+    }
+
+    public void sizePersonnel(Personnel p) {
+        System.out.println("Il y a " + listePersonnel.size() + "personnes travaillant au CHU de Princeton Plainsboro.");
+    }
+
+    // à tester pour voir si ça marche
+    public void afficherPersonnel() {
+        System.out.println("List du personnel du CHU de Princeton Plainsboro :");
+        for (int i = 0; i < listePersonnel.size(); i++) {
+            Personnel p = listePersonnel.get(i);
+            p.toString();
+            // pour separer chaque personne :
+            System.out.println("--------------------------------------");
+        }
+    }
     public List<Personnel> getListePersonnel() {
         return Collections.unmodifiableList(listePersonnel);
     }
