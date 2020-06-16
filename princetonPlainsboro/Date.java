@@ -25,11 +25,9 @@ public class Date implements Comparable {
         }
     }
    
-    public String toStringDate(int age) {
-        age = 0 ;
+    public String toStringDate() {
         if (verifierDate()) {
-            age = 2020-annee ;
-            return jour + "/" + mois + "/" + annee + " - (" + age + " ans)" ;
+            return jour + "/" + mois + "/" + annee ;
         } else {
             return "La date rentrée n'est pas valide. Veuillez réessayer.";
         }
@@ -37,13 +35,13 @@ public class Date implements Comparable {
 
     public void verifBissextile() {
         if (annee  % 4 == 0 && annee % 100 != 0) {
-            System.out.println(annee + "est une année bissextile.");
+            System.out.println(annee + " est une année bissextile.");
         }
         else if ( annee %  400 == 0) {
-            System.out.println(annee + "est une année bissextile.");
+            System.out.println(annee + " est une année bissextile.");
         }
         else {
-            System.out.println(annee + "n est pas une année bissextile.");
+            System.out.println(annee + " n est pas une année bissextile.");
         }
     }
     
