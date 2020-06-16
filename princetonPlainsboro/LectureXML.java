@@ -160,6 +160,24 @@ public class LectureXML {
         if (code.equals("CS")) {
             return Code.CS;
         }
+        if (code.equals("C")) {
+            return Code.C;
+        }
+        if (code.equals("TCG")) {
+            return Code.TCG;
+        }
+        if (code.equals("COE")) {
+            return Code.COE;
+        }
+        if (code.equals("CCP")) {
+            return Code.CCP;
+        }
+        if (code.equals("CNPSY")) {
+            return Code.CNPSY;
+        }
+        if (code.equals("CDE")) {
+            return Code.CDE;
+        }
         if (code.equals("CSC")) {
             return Code.CSC;
         }

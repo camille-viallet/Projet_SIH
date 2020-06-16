@@ -26,7 +26,7 @@ public class Patient {
 
     // Afficher toutes les informations du patient 
     public void infosPatient() {
-        String infos = "Informations sur " + this.prenom + " " + this.nom + ", né(e) le " + this.dateN.toString() + ", demeurant à " + this.adresse + "\n Son poids actuel est : " + this.getPoids() + "kg \n Sa taille est de : " + this.getTaille() + "m" + "\n Numéro de sécurité sociale : ";
+        String infos = "Informations sur " + this.prenom + " " + this.nom.toUpperCase() + ", né(e) le " + this.dateN.toString() + ", demeurant à " + this.adresse + "\n Son poids actuel est : " + this.getPoids() + "kg \n Sa taille est de : " + this.getTaille() + "m" + "\n Numéro de sécurité sociale : ";
         if (this.verifierSecu() == true) {
             infos += secu;
         } else {
@@ -143,7 +143,11 @@ public class Patient {
     }
 
     public String getSecu() {
-        return secu;
+        if (this.verifierSecu() == true) {
+             return secu;
+        } else {
+            return " numéro renseigné invalide !";
+        }
     }
 
     public void setSecu(String secu) {

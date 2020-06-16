@@ -50,7 +50,7 @@ public class DossierMedical {
     }
 
     public void afficher() {
-        System.out.println("Dossier medical informatise :");
+        System.out.println("Dossier medical informatisé :");
         System.out.println("-----------------------------");
         for (int i = 0; i < fiches.size(); i++) {
             FicheDeSoins f = fiches.get(i);
@@ -179,6 +179,27 @@ public class DossierMedical {
         return n;
     }
 
+// ma méthode ratée pour trier les fiches entre deux dates :(
+//    public void fichesTriees2Dates(Date d1, Date d2) {
+//        Vector<FicheDeSoins> fichesSoinTriees2Dates = new Vector<FicheDeSoins>(fiches);
+//        fiches.clear();
+//        while (!fichesSoinTriees2Dates.isEmpty()) {
+//            int min = 0;
+//            FicheDeSoins f1 = fichesSoinTriees2Dates.get(min);
+//            for (int i = 0; i < fichesSoinTriees2Dates.size(); i++) {
+//                FicheDeSoins copie = fichesSoinTriees2Dates.get(i);
+//                Date d = copie.getDate();
+//                if (d.compareTo(d1) >= 0 && d.compareTo(d2) <= 0) {
+//                    min = i;
+//                    f1 = copie;
+//                    //System.out.println(fichesSoinTriees2Dates);
+//                }
+//            }
+//            fiches.add(f1);
+//            fichesSoinTriees2Dates.remove(min);
+//        }
+//    }
+
     /**
      * Trie les dates des fiches du plus récent au plus ancien
      *
@@ -220,11 +241,13 @@ public class DossierMedical {
                 if (c.comparer(f2, f1) < 0) {
                     imin = i;
                     f1 = f2;
+                    //                    System.out.println(copieFiches);
                 }
             }
             fiches.add(f1);
             //on la supprime de la liste :
             copieFiches.remove(imin);
+            //       } System.out.println(copieFiches);
         }
     }
 }
