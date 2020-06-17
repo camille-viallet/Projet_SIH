@@ -112,6 +112,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldUtilisateur">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="123456789012"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelMotPasse">
       <Properties>
@@ -121,6 +125,7 @@
     </Component>
     <Component class="javax.swing.JPasswordField" name="jPassword">
       <Properties>
+        <Property name="text" type="java.lang.String" value="banane01"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>

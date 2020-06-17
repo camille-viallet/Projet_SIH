@@ -26,6 +26,13 @@ public class Date implements Comparable {
             return "La date rentrée n'est pas valide. Veuillez réessayer.";
         }
     }
+
+    public String toStringXML() {
+
+        return annee + "-" + mois + "-" + jour;
+
+    }
+
     public String toStringDate() {
         if (verifierDate() == true) {
             return jour + "/" + mois + "/" + annee;

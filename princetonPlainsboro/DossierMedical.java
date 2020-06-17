@@ -15,7 +15,14 @@ public class DossierMedical {
         fiches.add(fiche);
 
     }
-
+    public int dernierNumeroFiche(){
+        return this.fiches.size();
+    }
+    
+    public List<FicheDeSoins> getFicheDeSoins(){
+        List<FicheDeSoins> liste =  this.fiches;
+        return liste;
+    }
     /**
      * Renvoie un string des fiches de soins d'un patient
      *
@@ -179,56 +186,58 @@ public class DossierMedical {
         return n;
     }
 
-// ma méthode ratée pour trier les fiches entre deux dates :(
-//    public void fichesTriees2Dates(Date d1, Date d2) {
-//        Vector<FicheDeSoins> fichesSoinTriees2Dates = new Vector<FicheDeSoins>(fiches);
-//        fiches.clear();
-//        while (!fichesSoinTriees2Dates.isEmpty()) {
-//            int min = 0;
-//            FicheDeSoins f1 = fichesSoinTriees2Dates.get(min);
-//            for (int i = 0; i < fichesSoinTriees2Dates.size(); i++) {
-//                FicheDeSoins copie = fichesSoinTriees2Dates.get(i);
-//                Date d = copie.getDate();
-//                if (d.compareTo(d1) >= 0 && d.compareTo(d2) <= 0) {
-//                    min = i;
-//                    f1 = copie;
-//                    //System.out.println(fichesSoinTriees2Dates);
-//                }
-//            }
-//            fiches.add(f1);
-//            fichesSoinTriees2Dates.remove(min);
-//        }
-//    }
+
+    public Vector<FicheDeSoins> fichesTriees2Dates(Date d1, Date d2) {
+        Vector<FicheDeSoins> fiche =  new Vector<FicheDeSoins>();
+        Vector<FicheDeSoins> fichesSoinTriees2Dates = new Vector<FicheDeSoins>(fiches);
+        fiches.clear();
+        while (!fichesSoinTriees2Dates.isEmpty()) {
+            int min = 0;
+            FicheDeSoins f1 = fichesSoinTriees2Dates.get(min);
+            for (int i = 0; i < fichesSoinTriees2Dates.size(); i++) {
+                FicheDeSoins copie = fichesSoinTriees2Dates.get(i);
+                Date d = copie.getDate();
+                if (d.compareTo(d1) >= 0 && d.compareTo(d2) <= 0) {
+                    min = i;
+                    f1 = copie;
+                    //System.out.println(fichesSoinTriees2Dates);
+                }
+            }
+            fiche.add(f1);
+            fichesSoinTriees2Dates.remove(min);
+        }
+        return fiche;
+    }
 
     /**
      * Trie les dates des fiches du plus récent au plus ancien
      *
      */
-    public void trierDates() {
-        Vector<FicheDeSoins> copieFiches = new Vector<FicheDeSoins>(fiches);
-        fiches.clear();
-
-        while (!copieFiches.isEmpty()) {
-            // on cherche la fiche de soins de date maximale :
-            int imax = 0;
-            FicheDeSoins f1 = copieFiches.get(imax);
-            for (int i = 1; i < copieFiches.size(); i++) {
-                FicheDeSoins f2 = copieFiches.get(i);
-                if (f2.getDate().compareTo(f1.getDate()) > 0) {
-                    imax = i;
-                    f1 = f2;
-                }
-            }
-
-            fiches.add(f1);
-            //on la supprime de la liste :
-            copieFiches.remove(imax);
-
-        }
-    }
+//    public void trierDates() {
+//        Vector<FicheDeSoins> copieFiches = new Vector<FicheDeSoins>(fiches);
+//        fiches.clear();
+//
+//        while (!copieFiches.isEmpty()) {
+//            // on cherche la fiche de soins de date maximale :
+//            int imax = 0;
+//            FicheDeSoins f1 = copieFiches.get(imax);
+//            for (int i = 1; i < copieFiches.size(); i++) {
+//                FicheDeSoins f2 = copieFiches.get(i);
+//                if (f2.getDate().compareTo(f1.getDate()) > 0) {
+//                    imax = i;
+//                    f1 = f2;
+//                }
+//            }
+//
+//            fiches.add(f1);
+//            //on la supprime de la liste :
+//            copieFiches.remove(imax);
+//
+//        }
+   /* }*/
 
     // tri generique :
-    public void trier(ComparaisonFiches c) {
+    public void trierDecroissant(ComparaisonFiches c) {
         Vector<FicheDeSoins> copieFiches = new Vector<FicheDeSoins>(fiches);
         fiches.clear();
 
@@ -238,7 +247,7 @@ public class DossierMedical {
             FicheDeSoins f1 = copieFiches.get(imin);
             for (int i = 1; i < copieFiches.size(); i++) {
                 FicheDeSoins f2 = copieFiches.get(i);
-                if (c.comparer(f2, f1) < 0) {
+                if (c.comparer(f2, f1) > 0) {
                     imin = i;
                     f1 = f2;
                     //                    System.out.println(copieFiches);

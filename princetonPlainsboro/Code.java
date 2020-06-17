@@ -44,6 +44,9 @@ public enum Code {
     public String toString(int coefficient) {
         return super.toString() + "" + coefficient + " : " + libelle + " ( Coût unitaire : " + cout + " € )";
     }
+    public String getLibelle(){
+        return libelle;
+    }
 
     public String toStringSansUnitaire(int coefficient) {
         return super.toString() + "" + coefficient + " : " + libelle;

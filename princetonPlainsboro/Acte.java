@@ -132,4 +132,8 @@ public class Acte {
     public void setComm(String comm) {
         this.comm = comm;
     }
+    
+    public String getCoefString(){
+        return this.getCoef()+"";
+    }
 }

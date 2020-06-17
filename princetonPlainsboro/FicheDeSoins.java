@@ -8,12 +8,14 @@ public class FicheDeSoins {
     private Medecin medecin;
     private Date date;
     private Vector<Acte> actes;       // contient des objets de classe 'Acte'
+    int numero;
 
-    public FicheDeSoins(Patient patient, Medecin medecin, Date date) {
+    public FicheDeSoins(Patient patient, Medecin medecin, Date date, int numero) {
         this.patient = patient;
         this.medecin = medecin;
         this.date = date;
         actes = new Vector<Acte>();   // liste vide
+        this.numero = numero;
     }
 
     public Patient getPatient() {
@@ -40,6 +42,12 @@ public class FicheDeSoins {
     public void afficher() {
         System.out.println(this);
     }
+    public int getNumero(){
+        return this.numero;
+    }
+    public String getNumeroString(){
+        return this.numero+"";
+    }
 
     /*public Vector<Acte> getActes(Medecin m) {
      Vector<Acte> liste = new Vector<Acte>();
@@ -65,10 +73,9 @@ public class FicheDeSoins {
     }
 
     public String toString() {
-        String chaine = "Fiche de soins du " + date.toString() + "\n";
+        String chaine = "Fiche de soins n° "+numero+" du " + date.toString() + "\n";
 
         chaine = chaine + "- medecin : " + medecin.toString() + "\n";
-        chaine = chaine + "- date : " + date.toString() + "\n";
         chaine = chaine + "- actes medicaux :\n";
         for (int i = 0; i < actes.size(); i++) {
             Acte a = actes.get(i);

@@ -1,20 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<dossiers>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><dossiers>
 
     <ficheDeSoins>
         <date>2006-01-06</date>
+		<numero>1</numero>
         <medecin>
             <nom>HOUSE</nom>
             <prenom>Gregory</prenom>
             <specialite>CARDIOLOGIE</specialite>
             <telephone>0619283746</telephone>
+			<rpps>123456789012</rpps>
         </medecin>
         <patient>
             <nom>Track</nom>
             <prenom>Pat</prenom>
             <adresse>2 rue du chemin 59 000 LILLE </adresse>
             <dateN>1976-09-14</dateN>
-            <secu>176099881452156</secu>
+            <secu>192011300135260</secu>
             <poids>83.6</poids>
             <taille>1.82</taille>
         </patient>
@@ -22,60 +23,65 @@
             <code>CS</code>
             <coef>1</coef>
             <nomActe>1 - Première consultation </nomActe>
-            <medecin>
+            <medecinActe>
                 <nom>HOUSE</nom>
                 <prenom>Gregory</prenom>
                 <specialite>CARDIOLOGIE</specialite>
                 <telephone>0619283746</telephone>
-            </medecin>
-            <type>DIANGNOSTIQUE</type>
-            <date>2006-01-06</date>
+				<rpps>123456789012</rpps>
+            </medecinActe>
+            <type>DIAG</type>
+            <dateActe>2006-01-06</dateActe>
             <comm>RAS</comm>
         </acte>
         <acte>
             <code>ORT</code>
             <coef>50</coef>
             <nomActe>2 - Suivi d'opération</nomActe>
-            <medecin>
+            <medecinActe>
                 <nom>VERT</nom>
                 <prenom>Haricot</prenom>
                 <specialite>ORTHODONTIE</specialite>
                 <telephone>0625789536</telephone>
-            </medecin>
-            <type>THERAPEUTIQUE</type>
-            <date>2006-01-07</date>
-            <comm>Beosin d'une intervention urgente !</comm>
+				<rpps>123456789015</rpps>
+            </medecinActe>
+            <type>THERA</type>
+            <dateActe>2006-01-07</dateActe>
+            <comm>Besoin d'une intervention urgente !</comm>
         </acte>
         <acte>
             <code>PRO</code>
             <coef>150</coef>
             <nomActe>3 - Pose prothèse</nomActe>
-            <medecin>
+            <medecinActe>
                 <nom>VERT</nom>
                 <prenom>Haricot</prenom>
                 <specialite>ORTHODONTIE</specialite>
                 <telephone>0625789536</telephone>
-            </medecin>
-            <type>THERAPEUTIQUE</type>
-            <date>2006-01-08</date>
+				<rpps>123456789015</rpps>
+            </medecinActe>
+            <type>THERA</type>
+            <dateActe>2006-01-08</dateActe>
             <comm>RAS</comm>
         </acte>
-    </ficheDeSoins>
+    <acte><code>CSC</code><coef>5</coef><type>DIAG</type><dateActe>2020-6-17</dateActe><acte>RAS</acte><medecinActe><nom>HOUSE</nom><prenom>Gregory</prenom><specialite>CARDIOLOGIE</specialite><telephone>0619283746</telephone><rpps>123456789012</rpps></medecinActe></acte></ficheDeSoins>
   
     <ficheDeSoins>
         <date>2005-10-23</date>
+		<numero>2</numero>
         <medecin>
             <nom>CUDDY</nom>
             <prenom>Lysa</prenom>
             <specialite>CARDIOLOGIE</specialite>
             <telephone>0619284567</telephone>
+			<rpps>123456789016</rpps>
         </medecin>
         <patient>
             <nom>Bole</nom>
             <prenom>Pat</prenom>
             <adresse>2 rue du chemin 73 000 CHAMBERY</adresse>
-            <date>1976-09-14</date>
-            <secu>123659881452586</secu>
+            <dateN>1976-09-14</dateN>
+            <secu>278092075114867</secu>
             <poids>83.6</poids>
             <taille>1.82</taille>
         </patient>
@@ -83,46 +89,50 @@
             <code>CS</code>
             <coef>1</coef>
             <nomActe>1 - Première consultation</nomActe>
-            <medecin>
+            <medecinActe>
                 <nom>CUDDY</nom>
                 <prenom>Lysa</prenom>
                 <specialite>RADIOLOGIE</specialite>
                 <telephone>0619284567</telephone>
-            </medecin>
-            <type>DIANGNOSTIQUE</type>
-            <date>2005-10-23</date>
+				<rpps>123456789016</rpps>
+            </medecinActe>
+            <type>DIAG</type>
+            <dateActe>2005-10-23</dateActe>
             <comm>RAS</comm>
         </acte>
         <acte>
             <code>KC</code>
             <coef>120</coef>
             <nomActe>2 - Chirurgie cardiologie</nomActe>
-            <medecin>
+            <medecinActe>
                 <nom>HOUSE</nom>
                 <prenom>Gregory</prenom>
                 <specialite>CARDIOLOGIE</specialite>
                 <telephone>0619283746</telephone>
-            </medecin>
-            <type>THERAPEUTIQUE</type>
-            <date>2005-10-25</date>
+				<rpps>123456789012</rpps>
+            </medecinActe>
+            <type>THERA</type>
+            <dateActe>2005-10-25</dateActe>
             <comm>OK</comm>
         </acte>
-    </ficheDeSoins>
+		</ficheDeSoins>
 
     <ficheDeSoins>
         <date>2018-01-03</date>
+		<numero>3</numero>
         <medecin>
             <nom>CUDDY</nom>
             <prenom>Lysa</prenom>
             <specialite>RADIOLOGIE</specialite>
             <telephone>0619284567</telephone>
+			<rpps>123456789016</rpps>
         </medecin>
         <patient>
             <nom>Bole</nom>
             <prenom>Maggy</prenom>
             <adresse>24 route des mimosas 74 000 ANNECY</adresse>
-            <date>1989-01-27</date>
-            <secu>289019881458886</secu>
+            <dateN>1989-01-27</dateN>
+            <secu>276089241824696</secu>
             <poids>54</poids>
             <taille>1.62</taille>
         </patient>
@@ -130,32 +140,35 @@
             <code>CS</code>
             <coef>2</coef>
             <nomActe>1 - Suivi chirurgie</nomActe>
-            <medecin>
+            <medecinActe>
                 <nom>CUDDY</nom>
                 <prenom>Lysa</prenom>
                 <specialite>RADIOLOGIE</specialite>
                 <telephone>0619284567</telephone>
-            </medecin>
-            <type>THERAPEUTIQUE</type>
-            <date>2018-01-03</date>
+				<rpps>123456789016</rpps>
+            </medecinActe>
+            <type>THERA</type>
+            <dateActe>2018-01-03</dateActe>
             <comm>RAS</comm>
         </acte>
     </ficheDeSoins>
   
     <ficheDeSoins>
         <date>2019-11-13</date>
-        <medecin>
+		<numero>4</numero>
+        <medecinActe>
             <nom>TUCKNER</nom>
             <prenom>Lawrence</prenom>
             <specialite>GYNECOLOGIE</specialite>
             <telephone>0621638164</telephone>
-        </medecin>
+			<rpps>123456789013</rpps>
+        </medecinActe>
         <patient>
             <nom>Bole</nom>
             <prenom>Maggy</prenom>
             <adresse>24 route des mimosas 74 000 ANNECY</adresse>
-            <date>1989-01-27</date>
-            <secu>289019881458886</secu>
+            <dateN>1989-01-27</dateN>
+            <secu>276089241824696</secu>
             <poids>54</poids>
             <taille>1.62</taille>
         </patient>
@@ -163,31 +176,34 @@
             <code>KE</code>
             <coef>1</coef>
             <nomActe>1 - Suivi de grossesse</nomActe>
-            <medecin>
+            <medecinActe>
                 <nom>TUCKNER</nom>
                 <prenom>Lawrence</prenom>
                 <specialite>GYNECOLOGIE</specialite>
                 <telephone>0621638164</telephone>
-            </medecin>
-            <type>DIAGNOSTIQUE</type>
-            <date>2019-11-13</date>
+				<rpps>123456789013</rpps>
+            </medecinActe>
+            <type>DIAG</type>
+            <dateActe>2019-11-13</dateActe>
             <comm>HYPERTENSION</comm>
         </acte>
     </ficheDeSoins>
 
     <ficheDeSoins>
         <date>2008-03-31</date>
+		<numero>6</numero>
         <medecin>
             <nom>CHASE</nom>
             <prenom>Robert</prenom>
             <specialite>PEDIATRIE</specialite>
             <telephone>0621638164</telephone>
+			<rpps>123456789014</rpps>
         </medecin>
         <patient>
             <nom>Epi</nom>
             <prenom>Fanie</prenom>
             <adresse>35 avenue de la fontaine 33 000 BORDEAUX</adresse>
-            <date>1998-01-31</date>
+            <dateN>1998-01-31</dateN>
             <secu>298012512598531</secu>
             <poids>60</poids>
             <taille>1.44</taille>
@@ -196,45 +212,49 @@
             <code>CS</code>
             <coef>1</coef>
             <nomActe>1- Consultation généraliste</nomActe>
-            <medecin>
+            <medecinActe>
                 <nom>CHASE</nom>
                 <prenom>Robert</prenom>
                 <specialite>PEDIATRIE</specialite>
                 <telephone>0621638164</telephone>
-            </medecin>
-            <type>DIAGNOSTIQUE</type>
-            <date>2008-03-31</date>
+				<rpps>123456789014</rpps>
+            </medecinActe>
+            <type>DIAG</type>
+            <dateActe>2008-03-31</dateActe>
             <comm>BONNE CROISSANCE</comm>
         </acte>
         <acte>
             <code>KFA</code>
             <coef>72</coef>
             <nomActe> Forfait A</nomActe>
-            <medecin>
+            <medecinActe>
                 <nom>CHASE</nom>
                 <prenom>Robert</prenom>
                 <specialite>PEDIATRIE</specialite>
                 <telephone>0621638164</telephone>
-            </medecin>
-            <type>DIAGNOSTIQUE</type>
-            <date>2008-03-31</date>
+				<rpps>123456789014</rpps>
+            </medecinActe>
+            <type>DIAG</type>
+            <dateActe>2008-03-31</dateActe>
             <comm>RAS</comm>
         </acte>
     </ficheDeSoins>
     
     <ficheDeSoins>
         <date>2005-08-31</date>
+		<numero>7</numero>
         <medecin>
             <nom>TUCKNER</nom>
             <prenom>Lawrence</prenom>
             <specialite>GYNECOLOGIE</specialite>
             <telephone>0621638164</telephone>  
+			<rpps>123456789013</rpps>
         </medecin>
         <patient>
             <nom>Henfayitte</nom>
             <prenom>Melusine</prenom>
             <adresse>25 chemin du moulin</adresse>
-            <date>1970-05-31</date>
+            <dateN>1970-05-31</dateN>
             <secu>270056912478536</secu>
             <poids>62</poids>
             <taille>1.60</taille>
@@ -243,86 +263,91 @@
             <code>CS</code>
             <coef>1</coef>
             <nomActe>1 - Consultation généraliste</nomActe>
-            <medecin>
+            <medecinActe>
                 <nom>TUCKNER</nom>
                 <prenom>Lawrence</prenom>
                 <specialite>GYNECOLOGIE</specialite>
                 <telephone>0621638164</telephone>
-            </medecin>
-            <type>DIAGNOSTIQUE</type>
-            <date>2005-08-31</date>
+				<rpps>123456789013</rpps>
+            </medecinActe>
+            <type>DIAG</type>
+            <dateActe>2005-08-31</dateActe>
             <comm>RAS</comm>
         </acte>
         <acte>
             <code>KFA</code>
             <coef>72</coef>
             <nomActe>2 - Consultation généraliste</nomActe>
-            <medecin>
+            <medecinActe>
                 <nom>TUCKNER</nom>
                 <prenom>Lawrence</prenom>
                 <specialite>GYNECOLOGIE</specialite>
                 <telephone>0621638164</telephone>
-            </medecin>
-            <type>DIAGNOSTIQUE</type>
-            <date>2005-08-31</date>
+				<rpps>123456789013</rpps>
+            </medecinActe>
+            <type>DIAG</type>
+            <dateActe>2005-08-31</dateActe>
             <comm>RAS</comm>
         </acte>
         <acte>
             <code>K</code>
             <coef>1000</coef>
             <nomActe>3 - Pose de moyen de contraception</nomActe>
-            <medecin>
+            <medecinActe>
                 <nom>TUCKNER</nom>
                 <prenom>Lawrence</prenom>
                 <specialite>GYNECOLOGIE</specialite>
                 <telephone>0621638164</telephone>
-            </medecin>
-            <type>DIAGNOSTIQUE</type>
-            <date>2005-08-31</date>
+				<rpps>123456789013</rpps>
+            </medecinActe>
+            <type>DIAG</type>
+            <dateActe>2005-08-31</dateActe>
             <comm>RAS</comm>
         </acte>
         <acte>
             <code>KE</code>
             <coef>60</coef>
             <nomActe>4 -  Suivi</nomActe>
-            <medecin>
+            <medecinActe>
                 <nom>TUCKNER</nom>
                 <prenom>Lawrence</prenom>
                 <specialite>GYNECOLOGIE</specialite>
                 <telephone>0621638164</telephone>
-            </medecin>
-            <type>DIAGNOSTIQUE</type>
-            <date>2005-08-31</date>
+				<rpps>123456789013</rpps>
+            </medecinActe>
+            <type>DIAG</type>
+            <dateActe>2005-08-31</dateActe>
             <comm>HYPOTENSION</comm>
         </acte>
         <acte>
             <code>ORT</code>
             <coef>85</coef>
             <nomActe>5 - Consultation généraliste</nomActe>
-            <medecin>
+            <medecinActe>
                 <nom>VERT</nom>
                 <prenom>Haricot</prenom>
                 <specialite>ORTHODONTIE</specialite>
                 <telephone>0625789536</telephone>
-            </medecin>
-            <type>DIAGNOSTIQUE</type>
-            <date>2005-08-31</date>
+				<rpps>123456789015</rpps>
+            </medecinActe>
+            <type>DIAG</type>
+            <dateActe>2005-08-31</dateActe>
             <comm>RAS</comm>
         </acte>
         <acte>
             <code>PRO</code>
             <coef>850</coef>
             <nomActe>6 - Pose de prothèse</nomActe>
-            <medecin>
+            <medecinActe>
                 <nom>VERT</nom>
                 <prenom>Haricot</prenom>
                 <specialite>ORTHODONTIE</specialite>
                 <telephone>0625789536</telephone>
-            </medecin>
-            <type>DIANGNOSTIQUE</type>
-            <date>2005-09-02</date>
+				<rpps>123456789015</rpps>
+            </medecinActe>
+            <type>DIAG</type>
+            <dateActe>2005-09-02</dateActe>
             <comm>RAS</comm>
         </acte>
     </ficheDeSoins>
-  
-</dossiers>
+  </dossiers>

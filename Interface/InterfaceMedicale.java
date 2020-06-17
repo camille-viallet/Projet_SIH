@@ -16,6 +16,8 @@ import princetonPlainsboro.Patient;
 import princetonPlainsboro.FicheDeSoins;
 import princetonPlainsboro.Acte;
 import princetonPlainsboro.Code;
+import princetonPlainsboro.ComparaisonFichesDates;
+import princetonPlainsboro.ModificationXMLDossiers;
 import princetonPlainsboro.MetierCHU;
 import princetonPlainsboro.Personnel;
 
@@ -30,11 +32,14 @@ public class InterfaceMedicale extends javax.swing.JFrame {
      */
     Personnel personnel;
     DossierMedical dm;
-    Medecin m;
     Patient patient;
+    Vector<Patient> listePatient ;
+    ModificationXMLDossiers modifXML;
+    LectureXML lectureXML;
 
     public InterfaceMedicale(Personnel personnel) {
         initComponents();
+        modifXML = new ModificationXMLDossiers();
         this.personnel = personnel;
         if (personnel.getMetier() == MetierCHU.MEDECIN) {
             Medecin medecin = (Medecin) personnel;
@@ -42,8 +47,9 @@ public class InterfaceMedicale extends javax.swing.JFrame {
         } else {
             this.jLabelBonjour.setText("Bonjour " + personnel.getNom().toUpperCase() + " " + personnel.getPrenom() + " - Secrétaire Médicale");
         }
-        LectureXML test = new LectureXML("dossiers.xml");
-        dm = test.getDossier();
+        lectureXML = new LectureXML("dossiers.xml");
+        dm = lectureXML.getDossier();
+        listePatient = dm.getListeTousPatients();
         if (personnel.getMetier() == MetierCHU.MEDECIN) {
             Medecin medecin = (Medecin) personnel;
             this.jListPatients.setListData(dm.getListePatients(medecin));
@@ -159,6 +165,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
         jLabelErreurCP = new javax.swing.JLabel();
         jRadioButtonAllPatients = new javax.swing.JRadioButton();
         jRadioButtonMespatients = new javax.swing.JRadioButton();
+        jButtonDeconnexion = new javax.swing.JButton();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -259,24 +266,21 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                     .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelPoidsDM, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelPrenomNomDM, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelSécuDM, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabelPoidsDM, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelSécuDM, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPrenomNomDM, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel38, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel33, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel38, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelDateNaissanceDM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelTailleDM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabelAdresseDM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelTailleDM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabelDateNaissanceDM, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0))
         );
-
-        jPanel8Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabelPoidsDM, jLabelPrenomNomDM, jLabelSécuDM});
-
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
@@ -310,7 +314,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel9)
@@ -328,7 +332,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addGap(3, 3, 3)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Dossier Medical", jPanel2);
@@ -500,7 +504,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jComboBoxCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel22))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -513,7 +517,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel25)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldAnneeAM, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
+                                .addComponent(jTextFieldAnneeAM))
                             .addComponent(jComboBoxType, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -559,7 +563,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel27)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelErreurAM)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -575,18 +579,15 @@ public class InterfaceMedicale extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8)
-                .addGap(222, 296, Short.MAX_VALUE))
+                .addGap(222, 585, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -736,7 +737,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                 .addComponent(jLabelErreurCP)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonValiderCP)
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Créer Patient", jPanel3);
@@ -758,26 +759,35 @@ public class InterfaceMedicale extends javax.swing.JFrame {
             }
         });
 
+        jButtonDeconnexion.setText("Deconnexion");
+        jButtonDeconnexion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeconnexionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelImage)
-                .addGap(18, 18, 18)
-                .addComponent(jLabelBonjour)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButtonAllPatients)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioButtonMespatients)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1)
+                        .addComponent(jLabelImage)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelBonjour)
+                            .addComponent(jButtonDeconnexion)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jRadioButtonAllPatients)
+                                .addGap(8, 8, 8)
+                                .addComponent(jRadioButtonMespatients)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jTabbedPane1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -785,12 +795,15 @@ public class InterfaceMedicale extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelImage))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(jLabelBonjour)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 13, Short.MAX_VALUE)
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabelBonjour)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonDeconnexion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(14, Short.MAX_VALUE)
+                        .addComponent(jLabelImage)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -806,13 +819,10 @@ public class InterfaceMedicale extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jListPatientsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListPatientsMouseClicked
-        JList theList = (JList) evt.getSource();
-        int index = theList.locationToIndex(evt.getPoint());
-        Object o = theList.getModel().getElementAt(index);
-        patient = (Patient) o;
+        int index = this.jListPatients.getSelectedIndex();
+        patient = this.listePatient.get(index);
+        System.out.println(index);
         this.miseAJourAffichage();
-
-
     }//GEN-LAST:event_jListPatientsMouseClicked
 
     private void jRadioButtonAllPatientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAllPatientsActionPerformed
@@ -824,7 +834,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButtonMespatientsActionPerformed
 
     private void jButtonValiderActeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValiderActeActionPerformed
-       
+
         int annee = 2020;
         int coef = 1;
         boolean erreur = false;
@@ -840,7 +850,6 @@ public class InterfaceMedicale extends javax.swing.JFrame {
         if (!this.jListPatients.isSelectionEmpty() && !erreur && !this.jTextFieldNomActe.getText().isEmpty()) {
 
             erreur = false;
-           
 
             // Récupére la date
             Date date = new Date(Integer.parseInt(this.jComboBoxjourAM.getSelectedItem().toString()),
@@ -851,9 +860,13 @@ public class InterfaceMedicale extends javax.swing.JFrame {
 
             //Cherche le medecin correspondant à la sélection
             int index = this.jComboBoxMedecin.getSelectedIndex();
-            Medecin medecinChoisi = dm.getListeMedecins().get(index);
-
-            
+            Medecin medecinChoisi = null;
+            if(this.personnel.getMetier() == MetierCHU.MEDECIN){
+                medecinChoisi = (Medecin) personnel;
+            }
+            else{
+                medecinChoisi = dm.getListeMedecins().get(index);
+            }
 
             String code = this.jComboBoxCode.getSelectedItem().toString().substring(0, this.jComboBoxCode.getSelectedItem().toString().lastIndexOf(" -"));
 
@@ -870,17 +883,20 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                 commentaire = this.jTextAreaCommentaireAM.getText();
             }
             Acte acte = new Acte(Code.valueOf(code), coef, this.jTextFieldNomActe.getText(), medecinChoisi, date, type, commentaire);
-
+            System.out.println(acte);
             //Ajoute l'acte à la derniére fiche ou en créer ue nouvelle
-            dm.trierDates();
+            dm.trierDecroissant(new ComparaisonFichesDates());
             if (this.jCheckBoxNouvelleFiche.isSelected()) {
-                FicheDeSoins fiche = new FicheDeSoins(patient, medecinChoisi, date);
+                
+                FicheDeSoins fiche = new FicheDeSoins(patient, medecinChoisi, date, dm.dernierNumeroFiche()+1);
                 fiche.ajouterActe(acte);
-                dm.ajouterFiche(fiche);
-                dm.trierDates();
+                modifXML.nouvelleFicheDeSoins(fiche);
+                modifXML.ajouterActeDansFicheDeSoins(fiche, acte);
             } else {
-                dm.getFichesDeSoinsPatient(patient).get(0).ajouterActe(acte);
+                
+                modifXML.ajouterActeDansFicheDeSoins(dm.getFichesDeSoinsPatient(patient).get(0), acte);
             }
+             dm = lectureXML.getDossier();
 
             //Indique que la création est effectuée
             this.jLabelErreurAM.setText("Créé avec succés");
@@ -910,25 +926,25 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                 && !this.jTextFieldTailleCP.getText().isEmpty() && !this.jTextField8.getText().isEmpty()
                 && !this.jTextFieldNumeroSS_CP.getText().isEmpty() && !this.jTextFieldAdresse.getText().isEmpty()
                 && !this.PoidsCP.getText().isEmpty()
-                && !error) {
+                && !error
+                && Patient.verifierSecu(this.jTextFieldNumeroSS_CP.getText())) {
 
             Date date = new Date(Integer.parseInt(this.jComboBoxJourNaissance.getSelectedItem().toString()),
                     Integer.parseInt(this.jComboBoxMoisNaissance.getSelectedItem().toString()),
                     Integer.parseInt(this.jTextFieldAnneeAM.getText()),
                     0, 0);
-
-            Patient p = new Patient(this.jTextFieldNomCP.getText(),
-                    this.jTextFieldPrenomCP.getText(),
+            
+            Patient p = new Patient(this.jTextFieldPrenomCP.getText(),
+                    this.jTextFieldNomCP.getText(),
                     this.jTextFieldAdresse.getText(),
                     date,
                     this.jTextFieldNumeroSS_CP.getText(),
-                    Double.parseDouble(this.jTextField8.getText()),
+                    Double.parseDouble(this.PoidsCP.getText()),
                     Double.parseDouble(this.jTextFieldTailleCP.getText()));
             this.jRadioButtonAllPatients.setSelected(true);
-            Vector<Patient> listePatient = dm.getListeTousPatients();
+            
             listePatient.add(p);
             this.jListPatients.setListData(listePatient);
-            this.patient = p;
 
             //Indique le succés
             this.jLabelErreurCP.setText("Créé avec succés");
@@ -937,8 +953,9 @@ public class InterfaceMedicale extends javax.swing.JFrame {
             reinitialiseChampPatient();
             this.jListPatients.setSelectedIndex(listePatient.size() - 1);
             this.jTabbedPane1.setSelectedIndex(1);
-            miseAJourAffichage();
             this.jTabbedPane1.setEnabledAt(2, false);
+            this.patient = p;
+            miseAJourAffichage();
 
         } else {
             this.jLabelErreurCP.setText("Erreur : Un ou plusieurs champs sont invalides");
@@ -953,10 +970,17 @@ public class InterfaceMedicale extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonNouveauPatientActionPerformed
 
+    private void jButtonDeconnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeconnexionActionPerformed
+        this.dispose();
+        new connexion().setVisible(true);
+                                          
+    }//GEN-LAST:event_jButtonDeconnexionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField PoidsCP;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButtonDeconnexion;
     private javax.swing.JButton jButtonNouveauPatient;
     private javax.swing.JButton jButtonValiderActe;
     private javax.swing.JButton jButtonValiderCP;
@@ -1088,4 +1112,6 @@ public class InterfaceMedicale extends javax.swing.JFrame {
         this.jComboBoxJourNaissance.setSelectedIndex(0);
         this.jComboBoxMoisNaissance.setSelectedIndex(0);
     }
+    
+    
 }

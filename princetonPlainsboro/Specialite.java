@@ -19,5 +19,6 @@ public enum Specialite {
     RADIOLOGIE, 
     UROLOGIE, 
     ONCOLOGIE, 
+    ORTHODONTIE,
     AUTRE ;
 }

@@ -5,8 +5,14 @@ class Test {
     public static void main(String[] args) {
         LectureXML test = new LectureXML("dossiers.xml");
         DossierMedical dm = test.getDossier();
-        dm.afficher();
+        ModificationXMLDossiers e = new ModificationXMLDossiers();
         
+        FicheDeSoins f= dm.getFicheDeSoins().get(0);
+        Acte a = new Acte(Code.C, 10, "Test", dm.getListeMedecins().get(0),new Date(10,01,2000,12,22), Type.THERA, "comm");
+        System.out.println("ok c'est bon 1");
+        e.ajouterActeDansFicheDeSoins(f, a);
+        System.out.println("ok c'est bon 2");
+        /*
          System.out.println("\n********\n");
         Date d1 = new Date(1, 11, 1910, 13, 56);
         Date d2 = new Date(5, 1, 2020, 9, 32);
@@ -66,6 +72,10 @@ class Test {
 ////
 ////        System.out.println();
 ////        System.out.println("Dossier trie selon les couts :");
-////        dm.trier(new ComparaisonFichesCouts());
+////        dm.trier(new ComparaisonFichesCouts());*/
+        
+       /* for( FicheDeSoins fiche : dm.fichesTriees2Dates(new Date(1,1,1970,0,0), new Date(1,1,2000,0,0))){
+            System.out.println(fiche.getDate().toStringDate());
+        }*/
     }
 }

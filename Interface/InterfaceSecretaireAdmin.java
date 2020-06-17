@@ -9,15 +9,28 @@ import java.awt.Color;
 import java.awt.Font;
 import java.text.DecimalFormat;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.RowSorter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import princetonPlainsboro.Acte;
 import princetonPlainsboro.Code;
+import princetonPlainsboro.ComparaisonFiches;
+import princetonPlainsboro.ComparaisonFichesCouts;
+import princetonPlainsboro.ComparaisonFichesDates;
 import princetonPlainsboro.DossierMedical;
 import princetonPlainsboro.FicheDeSoins;
 import princetonPlainsboro.LectureXML;
 import princetonPlainsboro.LectureXMLPersonnel;
 import princetonPlainsboro.Medecin;
+import princetonPlainsboro.MetierCHU;
 import princetonPlainsboro.Patient;
 import princetonPlainsboro.Personnel;
 import princetonPlainsboro.PersonnelHopital;
@@ -34,8 +47,10 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
      */
     DossierMedical dm;
     PersonnelHopital persHopital;
+    DefaultTableModel model;
 
     public InterfaceSecretaireAdmin(Personnel p) {
+
         LectureXML test = new LectureXML("dossiers.xml");
         dm = test.getDossier();
         LectureXMLPersonnel personnel = new LectureXMLPersonnel("personnels.xml");
@@ -47,7 +62,12 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         for (Code code : Code.values()) {
             this.jComboBoxActe1.addItem(code);
         }
+        model = (DefaultTableModel) this.jTable.getModel();
+        this.jTabbedPane1.setEnabledAt(1, false);
         initialiseCoutActe();
+        remplirPersonnel();
+        this.initialiseMedecin();
+        //editCell();
 
     }
 
@@ -64,25 +84,63 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         jLabelImage = new javax.swing.JLabel();
         jLabelBonjour = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jRadioButtonMedecin = new javax.swing.JRadioButton();
+        jRadioButtonPatient = new javax.swing.JRadioButton();
+        jRadioButtonSpecialite = new javax.swing.JRadioButton();
+        jRadioButtonActe = new javax.swing.JRadioButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jComboBoxActe1 = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         jTextFieldCoef1 = new javax.swing.JTextField();
         jPanelResultatCout = new javax.swing.JPanel();
-        jLabelCoutGras = new javax.swing.JLabel();
         jLabelCout3 = new javax.swing.JLabel();
+        jLabelCoutGras = new javax.swing.JLabel();
         jButtonCalculerCout = new javax.swing.JButton();
         jLabelErreurActe = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
-        jRadioButtonMedecin = new javax.swing.JRadioButton();
-        jRadioButtonPatient = new javax.swing.JRadioButton();
-        jRadioButtonSpecialite = new javax.swing.JRadioButton();
-        jRadioButtonActe = new javax.swing.JRadioButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jPanel11 = new javax.swing.JPanel();
+        jRadioButtonTriDate = new javax.swing.JRadioButton();
+        jRadioButtonTriCout = new javax.swing.JRadioButton();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabelNomPatient = new javax.swing.JLabel();
+        jLabelPrenomPatient = new javax.swing.JLabel();
+        jLabelDateNaissance = new javax.swing.JLabel();
+        jLabelINSEE = new javax.swing.JLabel();
+        jLabelAdresse = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabelNomMedecin = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabelPrenomMedecin = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabelSpecialite = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabelTelephoneMed = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabelRPPS = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabelTotal = new javax.swing.JLabel();
+        jLabelFiche = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jButtonDeconnexion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hopital princeton plainsboro - Administration");
@@ -92,141 +150,10 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         jLabelBonjour.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabelBonjour.setText("Bonjour ");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Calculer un acte"));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel4.setText("Acte :");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel5.setText("Coefficient : ");
-
-        jPanelResultatCout.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-        jLabelCoutGras.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabelCoutGras.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelCoutGras.setText("Coût :");
-
-        jLabelCout3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelCout3.setText("x");
-
-        javax.swing.GroupLayout jPanelResultatCoutLayout = new javax.swing.GroupLayout(jPanelResultatCout);
-        jPanelResultatCout.setLayout(jPanelResultatCoutLayout);
-        jPanelResultatCoutLayout.setHorizontalGroup(
-            jPanelResultatCoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelResultatCoutLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelResultatCoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelCoutGras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelCout3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanelResultatCoutLayout.setVerticalGroup(
-            jPanelResultatCoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelResultatCoutLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelCoutGras)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelCout3)
-                .addGap(5, 5, 5))
-        );
-
-        jButtonCalculerCout.setText("Calculer");
-        jButtonCalculerCout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCalculerCoutActionPerformed(evt);
-            }
-        });
-
-        jLabelErreurActe.setForeground(new java.awt.Color(255, 0, 0));
-        jLabelErreurActe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelErreurActe.setText("jLabel1");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxActe1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldCoef1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabelErreurActe, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanelResultatCout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButtonCalculerCout)))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jComboBoxActe1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextFieldCoef1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addComponent(jButtonCalculerCout)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabelErreurActe)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelResultatCout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
-        );
-
-        jTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "", "", "", "", "", ""
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jTable);
-
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Visualisation des coûts :"));
 
         buttonGroup2.add(jRadioButtonMedecin);
+        jRadioButtonMedecin.setSelected(true);
         jRadioButtonMedecin.setText("Medecin");
         jRadioButtonMedecin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -258,40 +185,509 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        jLabel2.setText("Cliquez dans le tableau pour plus d'informations");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jRadioButtonMedecin)
-                .addGap(26, 26, 26)
-                .addComponent(jRadioButtonPatient)
-                .addGap(46, 46, 46)
+                .addComponent(jRadioButtonMedecin, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                .addGap(67, 67, 67)
                 .addComponent(jRadioButtonSpecialite)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(146, 146, 146)
+                .addComponent(jRadioButtonPatient)
+                .addGap(127, 127, 127)
                 .addComponent(jRadioButtonActe)
-                .addGap(38, 38, 38))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(79, 79, 79))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jRadioButtonActe, jRadioButtonPatient, jRadioButtonSpecialite});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButtonMedecin)
-                    .addComponent(jRadioButtonPatient)
                     .addComponent(jRadioButtonSpecialite)
+                    .addComponent(jRadioButtonPatient)
                     .addComponent(jRadioButtonActe))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "", "", "", "", "", ""
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable.setRowHeight(20);
+        jTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTable);
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Calculer le coût d'un acte"));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setText("Acte :");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setText("Coefficient : ");
+
+        jPanelResultatCout.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        jLabelCout3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelCout3.setText("x");
+
+        jLabelCoutGras.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelCoutGras.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelCoutGras.setText("Coût :");
+
+        javax.swing.GroupLayout jPanelResultatCoutLayout = new javax.swing.GroupLayout(jPanelResultatCout);
+        jPanelResultatCout.setLayout(jPanelResultatCoutLayout);
+        jPanelResultatCoutLayout.setHorizontalGroup(
+            jPanelResultatCoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelResultatCoutLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelResultatCoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelCout3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelCoutGras, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanelResultatCoutLayout.setVerticalGroup(
+            jPanelResultatCoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelResultatCoutLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelCoutGras)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addComponent(jLabelCout3)
+                .addGap(5, 5, 5))
+        );
+
+        jButtonCalculerCout.setText("Calculer");
+        jButtonCalculerCout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCalculerCoutActionPerformed(evt);
+            }
+        });
+
+        jLabelErreurActe.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelErreurActe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelErreurActe.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonCalculerCout)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBoxActe1, 0, 118, Short.MAX_VALUE)
+                            .addComponent(jTextFieldCoef1))))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanelResultatCout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelErreurActe, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxActe1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextFieldCoef1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonCalculerCout)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabelErreurActe)
+                .addGap(13, 13, 13)
+                .addComponent(jPanelResultatCout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder("Tri décroissant des fiches de soins"));
+
+        buttonGroup1.add(jRadioButtonTriDate);
+        jRadioButtonTriDate.setText("Selon la date");
+        jRadioButtonTriDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonTriDateActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButtonTriCout);
+        jRadioButtonTriCout.setText("Selon le coût");
+        jRadioButtonTriCout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonTriCoutActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jRadioButtonTriDate)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jRadioButtonTriCout)
+                .addGap(24, 24, 24))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButtonTriDate)
+                    .addComponent(jRadioButtonTriCout))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(82, 82, 82)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jTabbedPane1.addTab("Tableau de bord", jPanel4);
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PATIENT", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Nova", 1, 12))); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setText("Nom : ");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setText("Prenom : ");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setText("Date de naissance : ");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel8.setText("N°INSEE :");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel9.setText("Adresse : ");
+
+        jLabelNomPatient.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabelINSEE, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64)
+                        .addComponent(jLabel9))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabelNomPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel6)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabelAdresse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(137, 137, 137))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabelPrenomPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabelDateNaissance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabelNomPatient)
+                    .addComponent(jLabelPrenomPatient)
+                    .addComponent(jLabelDateNaissance))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabelAdresse)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabelINSEE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "MEDECIN", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Nova", 1, 12))); // NOI18N
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel15.setText("Nom : ");
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel17.setText("Prenom : ");
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel19.setText("Spécialité : ");
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel21.setText("Telephone : ");
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel23.setText("Identifiant RPPS:");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelNomMedecin, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTelephoneMed, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabelPrenomMedecin, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
+                        .addComponent(jLabel19)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelSpecialite, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabelRPPS, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+        );
+
+        jPanel8Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabelPrenomMedecin, jLabelRPPS});
+
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabelNomMedecin)
+                    .addComponent(jLabel17)
+                    .addComponent(jLabelPrenomMedecin)
+                    .addComponent(jLabel19)
+                    .addComponent(jLabelSpecialite))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(jLabelTelephoneMed)
+                    .addComponent(jLabel23)
+                    .addComponent(jLabelRPPS))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ACTES EFFECTUES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Nova", 1, 12))); // NOI18N
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Date", "Code de l'acte", "Description", "Cout unitaire", "Coefficient", "Prix"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PAIEMENT", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Nova", 1, 12))); // NOI18N
+
+        jLabel25.setFont(new java.awt.Font("Arial Nova", 1, 12)); // NOI18N
+        jLabel25.setText("COUT TOTAL :");
+
+        jLabelTotal.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel25)
+                    .addComponent(jLabelTotal))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabelFiche.setFont(new java.awt.Font("Arial Nova", 1, 18)); // NOI18N
+        jLabelFiche.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelFiche.setText("FEUILLE DE SOINS");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelFiche, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelFiche, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Facturation - Feuilles de soins", jPanel5);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nom", "Prenom", "Identifiant", "Telephone", "Fonction", "Spécialité"
+            }
+        ));
+        jTable2.setRowHeight(30);
+        jScrollPane3.setViewportView(jTable2);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1032, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Gestion du personnel", jPanel3);
+
+        jButtonDeconnexion.setText("Deconnexion");
+        jButtonDeconnexion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeconnexionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -303,34 +699,33 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelImage)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelBonjour))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelBonjour)
+                            .addComponent(jButtonDeconnexion))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jLabel1))
-                .addContainerGap(18, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTabbedPane1)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(377, 377, 377))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelImage)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
-                        .addComponent(jLabelBonjour)))
-                .addGap(26, 26, 26)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelBonjour)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                        .addComponent(jButtonDeconnexion)))
+                .addGap(42, 42, 42)
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
 
         pack();
@@ -347,7 +742,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
             Code codeSelectionne = Code.valueOf(this.jComboBoxActe1.getSelectedItem().toString());
             int coeff = Integer.parseInt(this.jTextFieldCoef1.getText());
             double cout = codeSelectionne.calculerCout(coeff);
-            this.jLabelCoutGras.setText("Coût de " + codeSelectionne.toString(coeff));
+            this.jLabelCoutGras.setText("Coût de " + codeSelectionne.name() + "" + coeff);
             this.jLabelCout3.setText(cout + " €");
             this.jPanelResultatCout.setVisible(true);
 
@@ -361,216 +756,253 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
 
     private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
         JTable source = (JTable) evt.getSource();
-
         int row = source.rowAtPoint(evt.getPoint());
         int column = source.columnAtPoint(evt.getPoint());
 
         DefaultTableModel model = (DefaultTableModel) this.jTable.getModel();
+        if (!model.getValueAt(row, 0).equals("")) {
+            if (this.jRadioButtonMedecin.isSelected()) {
+                Medecin m = Medecin.trouveMedecin(model.getValueAt(row, 1).toString());
 
-        if (this.jRadioButtonMedecin.isSelected()) {
-            int i2 = 0;
-            Medecin m = this.persHopital.getListeMedecins().get(0);
-            System.out.println(model.getValueAt(row, column));
-            //Trouve le medecin sur lequel on a cliqué
-            while (i2 < this.persHopital.getListeMedecins().size() && !model.getValueAt(row, column).equals(this.persHopital.getListeMedecins().get(i2).toString())) {
-                i2++;
-                m = this.persHopital.getListeMedecins().get(i2);
+                System.out.println(m);
+                int nbrLignes = model.getRowCount();
+                model.setColumnIdentifiers(new Object[]{"Medecin", "n° RPPS", "", "n° de fiche", "Date", "Prix"});
 
-            }
-
-            System.out.println(m);
-            int nbrLignes = model.getRowCount();
-            model.setColumnIdentifiers(new Object[]{"Medecin", "", "Date", "Prix"});
-
-            System.out.println(row);
-            if (model.getValueAt(row + 1, column).equals("") && row < nbrLignes - 2) {
-                while (model.getValueAt(row + 1, column).equals("") && row < model.getRowCount() - 2) {
-                    model.removeRow(row + 1);
-                }
-            } else {
-                int i = 0;
-                for (Patient p : dm.getListeTousPatients()) {
-                    for (FicheDeSoins fiche : dm.getFichesDeSoinsPatient(p)) {
-                        //for (Acte a : fiche.getActes(m)) {
-                        if (fiche.getMedecin().equals(m)) {
-                            DecimalFormat df = new DecimalFormat("####.##");
-                            model.addRow(new Object[]{"", "Fiche de soins du :", fiche.getDate().toStringDate(), df.format(fiche.coutTotal()) + " €"});
-                            i++;
-                        }
-                        //}
+                System.out.println(row);
+                if (model.getValueAt(row + 1, 0).equals("") && row < nbrLignes - 2) {
+                    while (model.getValueAt(row + 1, 0).equals("") && row < model.getRowCount() - 2) {
+                        model.removeRow(row + 1);
                     }
-                }
-                model.addRow(new Object[]{"", "", "", ""});
-                model.moveRow(nbrLignes, nbrLignes + i, row + 1);
-
-            }
-        } else if (this.jRadioButtonPatient.isSelected()) {
-            int i2 = 0;
-            Patient p = this.dm.getListeTousPatients().get(0);
-            System.out.println(model.getValueAt(row, column));
-            while (i2 < this.dm.getListeTousPatients().size() && !model.getValueAt(row, column).equals(this.dm.getListeTousPatients().get(i2).toString())) {
-                i2++;
-                p = this.dm.getListeTousPatients().get(i2);
-
-            }
-            int nbrLignes = model.getRowCount();
-            model.setColumnIdentifiers(new Object[]{"Patient", "", "Date", "Prix"});
-
-            System.out.println(row);
-            if (model.getValueAt(row + 1, column).equals("") && row < nbrLignes - 2) {
-                while (model.getValueAt(row + 1, column).equals("") && row < model.getRowCount() - 2) {
-                    model.removeRow(row + 1);
-                }
-            } else {
-                int i = 0;
-
-                for (FicheDeSoins fiche : dm.getFichesDeSoinsPatient(p)) {
-
-                    DecimalFormat df = new DecimalFormat("####.##");
-                    model.addRow(new Object[]{"", "Fiche de soins du :", fiche.getDate().toStringDate(), df.format(fiche.coutTotal()) + " €"});
-                    i++;
-
-                }
-                model.addRow(new Object[]{"", "", "", ""});
-                model.moveRow(nbrLignes, nbrLignes + i, row + 1);
-            }
-        } else if (this.jRadioButtonSpecialite.isSelected()) {
-            int i2 = 0;
-            Specialite s = Specialite.valueOf(model.getValueAt(row, column).toString());
-            int nbrLignes = model.getRowCount();
-            model.setColumnIdentifiers(new Object[]{"Spécialité", "", "Date", "Prix"});
-
-            System.out.println(row);
-            if (model.getValueAt(row + 1, column).equals("") && row < nbrLignes - 2) {
-                while (model.getValueAt(row + 1, column).equals("") && row < model.getRowCount() - 2) {
-                    model.removeRow(row + 1);
-                }
-            } else {
-                int i = 0;
-
-                for (Patient p : dm.getListeTousPatients()) {
-                    for (FicheDeSoins fiche : dm.getFichesDeSoinsPatient(p)) {
-                        //System.out.println(fiche.getMedecin().getSpecialite());
-                        //System.out.println(s);
-                        if (fiche.getMedecin().getSpecialite().compareTo(s) == 0) {
-                            DecimalFormat df = new DecimalFormat("####.##");
-                            model.addRow(new Object[]{"", "Fiche de soins du :", fiche.getDate().toStringDate(), df.format(fiche.coutTotal()) + " €"});
-                            i++;
-                        }
-
-                    }
-                }
-                model.addRow(new Object[]{"", "", "", ""});
-                model.moveRow(nbrLignes, nbrLignes + i, row + 1);
-            }
-
-        } else if (this.jRadioButtonActe.isSelected()) {
-            int i2 = 0;
-            Code c = Code.valueOf(model.getValueAt(row, column).toString());
-            
-            int nbrLignes = model.getRowCount();
-            model.setColumnIdentifiers(new Object[]{"Code","Acte", "Date","Cout unitaire","Coefficient ","Prix"});
-
-            System.out.println(row);
-            if (model.getValueAt(row + 1, column).equals("") && row < nbrLignes - 2) {
-                while (model.getValueAt(row + 1, column).equals("") && row < model.getRowCount() - 2) {
-                    model.removeRow(row + 1);
-                }
-            } else {
-                int i = 0;
-
-                for (Patient p : dm.getListeTousPatients()) {
-                    for (FicheDeSoins fiche : dm.getFichesDeSoinsPatient(p)) {
-                        for (Acte a : fiche.getActes()) {
+                } else {
+                    int i = 0;
+                    for (Patient p : dm.getListeTousPatients()) {
+                        for (FicheDeSoins fiche : dm.getFichesDeSoinsPatient(p)) {
                             //for (Acte a : fiche.getActes(m)) {
-                            if (a.getCode().compareTo(c)== 0) {
+                            if (fiche.getMedecin().equals(m)) {
                                 DecimalFormat df = new DecimalFormat("####.##");
-                                model.addRow(new Object[]{"", a.getCode().toStringSansUnitaire(a.getCoef()) , a.getDate().toStringDate(),a.getCode().getCoutUnitaire(),a.getCoef(), df.format(a.cout()) + " €"});
+                                model.addRow(new Object[]{"", "", "Fiche de soins", fiche.getNumero(), fiche.getDate().toStringDate(), df.format(fiche.coutTotal()) + " €"});
                                 i++;
                             }
                             //}
                         }
                     }
+                    model.addRow(new Object[]{"", "", "", ""});
+                    model.moveRow(nbrLignes, nbrLignes + i, row + 1);
+
                 }
-                model.addRow(new Object[]{"", "","", "", ""});
-                model.moveRow(nbrLignes, nbrLignes + i, row + 1);
+            } else if (this.jRadioButtonPatient.isSelected()) {
+                Patient p = trouvePatient(model.getValueAt(row, 1).toString());
+                int nbrLignes = model.getRowCount();
+                model.setColumnIdentifiers(new Object[]{"Patient", "n° INSEE", "", "n° de fiche", "Date", "Prix"});
+
+                System.out.println(row);
+                if (model.getValueAt(row + 1, 0).equals("") && row < nbrLignes - 2) {
+                    while (model.getValueAt(row + 1, 0).equals("") && row < model.getRowCount() - 2) {
+                        model.removeRow(row + 1);
+                    }
+                } else {
+                    int i = 0;
+
+                    for (FicheDeSoins fiche : dm.getFichesDeSoinsPatient(p)) {
+
+                        DecimalFormat df = new DecimalFormat("####.##");
+                        model.addRow(new Object[]{"", "", "Fiche de soins", fiche.getNumero(), fiche.getDate().toStringDate(), df.format(fiche.coutTotal()) + " €"});
+                        i++;
+
+                    }
+                    model.addRow(new Object[]{"", "", "", ""});
+                    model.moveRow(nbrLignes, nbrLignes + i, row + 1);
+                }
+            } else if (this.jRadioButtonSpecialite.isSelected()) {
+                int i2 = 0;
+                Specialite s = Specialite.valueOf(model.getValueAt(row, 0).toString());
+                int nbrLignes = model.getRowCount();
+                model.setColumnIdentifiers(new Object[]{"Spécialité", "", "n° de fiche", "Date", "Prix"});
+
+                System.out.println(row);
+                if (model.getValueAt(row + 1, 0).equals("") && row < nbrLignes - 2) {
+                    while (model.getValueAt(row + 1, 0).equals("") && row < model.getRowCount() - 2) {
+                        model.removeRow(row + 1);
+                    }
+                } else {
+                    int i = 0;
+
+                    for (Patient p : dm.getListeTousPatients()) {
+                        for (FicheDeSoins fiche : dm.getFichesDeSoinsPatient(p)) {
+                            //System.out.println(fiche.getMedecin().getSpecialite());
+                            //System.out.println(s);
+                            if (fiche.getMedecin().getSpecialite().compareTo(s) == 0) {
+                                DecimalFormat df = new DecimalFormat("####.##");
+                                model.addRow(new Object[]{"", "Fiche de soins", fiche.getNumero(), fiche.getDate().toStringDate(), df.format(fiche.coutTotal()) + " €"});
+                                i++;
+                            }
+
+                        }
+                    }
+                    model.addRow(new Object[]{"", "", "", ""});
+                    model.moveRow(nbrLignes, nbrLignes + i, row + 1);
+                }
+
+            } else if (this.jRadioButtonActe.isSelected()) {
+                int i2 = 0;
+                Code c = Code.valueOf(model.getValueAt(row, 0).toString());
+
+                int nbrLignes = model.getRowCount();
+                model.setColumnIdentifiers(new Object[]{"Code", "Acte", "Date", "Cout unitaire", "Coefficient ", "Prix"});
+
+                System.out.println(row);
+                if (model.getValueAt(row + 1, 0).equals("") && row < nbrLignes - 2) {
+                    while (model.getValueAt(row + 1, 0).equals("") && row < model.getRowCount() - 2) {
+                        model.removeRow(row + 1);
+                    }
+                } else {
+                    int i = 0;
+
+                    for (Patient p : dm.getListeTousPatients()) {
+                        for (FicheDeSoins fiche : dm.getFichesDeSoinsPatient(p)) {
+                            for (Acte a : fiche.getActes()) {
+                                //for (Acte a : fiche.getActes(m)) {
+                                if (a.getCode().compareTo(c) == 0) {
+                                    DecimalFormat df = new DecimalFormat("####.##");
+                                    model.addRow(new Object[]{"", a.getCode().toStringSansUnitaire(a.getCoef()), a.getDate().toStringDate(), a.getCode().getCoutUnitaire(), a.getCoef(), df.format(a.cout()) + " €"});
+                                    i++;
+                                }
+                                //}
+                            }
+                        }
+                    }
+                    model.addRow(new Object[]{"", "", "", "", ""});
+                    model.moveRow(nbrLignes, nbrLignes + i, row + 1);
+                }
             }
+        } else if (model.getValueAt(row, 2).equals("Fiche de soins") && !this.jRadioButtonActe.isSelected()) {
+            int numeroColonne = 3;
+            FicheDeSoins f = this.trouveFiche(model.getValueAt(row, numeroColonne).toString());
+            remplirChampFeuilleDeSoins(f);
+        } else if (model.getValueAt(row, 1).equals("Fiche de soins") && this.jRadioButtonSpecialite.isSelected()) {
+            int numeroColonne = 2;
+            FicheDeSoins f = this.trouveFiche(model.getValueAt(row, numeroColonne).toString());
+            remplirChampFeuilleDeSoins(f);
         }
 
     }//GEN-LAST:event_jTableMouseClicked
 
     private void jRadioButtonMedecinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMedecinActionPerformed
-        DefaultTableModel model = (DefaultTableModel) this.jTable.getModel();
-        model.setRowCount(0);
-        model.setColumnCount(4);
-        model.setColumnIdentifiers(new Object[]{"Medecin", "", "", "Prix"});
-        for (Medecin medecin : this.persHopital.getListeMedecins()) {
-            DecimalFormat df = new DecimalFormat("####.##");
-            model.addRow(new Object[]{medecin.toString(), "", "", df.format(dm.coutMedecin(medecin)) + " €"});
-        }
-        model.addRow(new Object[]{"", "", "", ""});
+        this.initialiseMedecin();
     }//GEN-LAST:event_jRadioButtonMedecinActionPerformed
 
     private void jRadioButtonPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPatientActionPerformed
-        DefaultTableModel model = (DefaultTableModel) this.jTable.getModel();
-        model.setRowCount(0);
-        model.setColumnCount(4);
-        model.setColumnIdentifiers(new Object[]{"Patient", "", "", "Prix"});
-        for (Patient patient : dm.getListeTousPatients()) {
-            DecimalFormat df = new DecimalFormat("####.##");
-            model.addRow(new Object[]{patient.toString(), "", "", df.format(dm.coutPatient(patient)) + " €"});
-        }
-        model.addRow(new Object[]{"", "", "", ""});
+        this.initialisePatient();
     }//GEN-LAST:event_jRadioButtonPatientActionPerformed
 
     private void jRadioButtonSpecialiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonSpecialiteActionPerformed
-        DefaultTableModel model = (DefaultTableModel) this.jTable.getModel();
-        model.setRowCount(0);
-        model.setColumnCount(4);
-        model.setColumnIdentifiers(new Object[]{"Spécialité", "", "", "Prix"});
-        for (Specialite specialite : Specialite.values()) {
-            DecimalFormat df = new DecimalFormat("####.##");
-            model.addRow(new Object[]{specialite.toString(), "", "", df.format(dm.coutSpecialite(specialite.toString())) + " €"});
-        }
-        model.addRow(new Object[]{"", "", "", ""});
+        this.initialiseSpecialite();
     }//GEN-LAST:event_jRadioButtonSpecialiteActionPerformed
 
     private void jRadioButtonActeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonActeActionPerformed
         DefaultTableModel model = (DefaultTableModel) this.jTable.getModel();
         model.setRowCount(0);
         model.setColumnCount(6);
-        model.setColumnIdentifiers(new Object[]{"Code", "","", "Cout unitaire","Coefficient ","Prix"});
+        model.setColumnIdentifiers(new Object[]{"Code", "", "", "Cout unitaire", "Coefficient ", "Prix"});
         for (Code code : Code.values()) {
             DecimalFormat df = new DecimalFormat("####.##");
-            model.addRow(new Object[]{code.toString(), "", "","","", df.format(dm.coutActe(code)) + " €"});
+            model.addRow(new Object[]{code.toString(), "", "", "", "", df.format(dm.coutActe(code)) + " €"});
         }
-        model.addRow(new Object[]{"", "", "","", ""});
+        model.addRow(new Object[]{"", "", "", "", ""});
     }//GEN-LAST:event_jRadioButtonActeActionPerformed
+
+    private void jRadioButtonTriDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonTriDateActionPerformed
+        dm.trierDecroissant(new ComparaisonFichesDates());
+        if (this.jRadioButtonMedecin.isSelected()) {
+            this.initialiseMedecin();
+        } else if (this.jRadioButtonPatient.isSelected()) {
+            this.initialisePatient();
+        }
+        if (this.jRadioButtonSpecialite.isSelected()) {
+            this.initialiseSpecialite();
+        }
+    }//GEN-LAST:event_jRadioButtonTriDateActionPerformed
+
+    private void jRadioButtonTriCoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonTriCoutActionPerformed
+        dm.trierDecroissant(new ComparaisonFichesCouts());
+        if (this.jRadioButtonMedecin.isSelected()) {
+            this.initialiseMedecin();
+        } else if (this.jRadioButtonPatient.isSelected()) {
+            this.initialisePatient();
+        }
+        if (this.jRadioButtonSpecialite.isSelected()) {
+            this.initialiseSpecialite();
+        }
+    }//GEN-LAST:event_jRadioButtonTriCoutActionPerformed
+
+    private void jButtonDeconnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeconnexionActionPerformed
+        this.dispose();
+        new connexion().setVisible(true);
+    }//GEN-LAST:event_jButtonDeconnexionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButtonCalculerCout;
+    private javax.swing.JButton jButtonDeconnexion;
     private javax.swing.JComboBox jComboBoxActe1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelAdresse;
     private javax.swing.JLabel jLabelBonjour;
     private javax.swing.JLabel jLabelCout3;
     private javax.swing.JLabel jLabelCoutGras;
+    private javax.swing.JLabel jLabelDateNaissance;
     private javax.swing.JLabel jLabelErreurActe;
+    private javax.swing.JLabel jLabelFiche;
+    private javax.swing.JLabel jLabelINSEE;
     private javax.swing.JLabel jLabelImage;
+    private javax.swing.JLabel jLabelNomMedecin;
+    private javax.swing.JLabel jLabelNomPatient;
+    private javax.swing.JLabel jLabelPrenomMedecin;
+    private javax.swing.JLabel jLabelPrenomPatient;
+    private javax.swing.JLabel jLabelRPPS;
+    private javax.swing.JLabel jLabelSpecialite;
+    private javax.swing.JLabel jLabelTelephoneMed;
+    private javax.swing.JLabel jLabelTotal;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel jPanelResultatCout;
     private javax.swing.JRadioButton jRadioButtonActe;
     private javax.swing.JRadioButton jRadioButtonMedecin;
     private javax.swing.JRadioButton jRadioButtonPatient;
     private javax.swing.JRadioButton jRadioButtonSpecialite;
+    private javax.swing.JRadioButton jRadioButtonTriCout;
+    private javax.swing.JRadioButton jRadioButtonTriDate;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextFieldCoef1;
     // End of variables declaration//GEN-END:variables
 
@@ -581,4 +1013,137 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         this.jLabelErreurActe.setVisible(false);
     }
 
+    private Patient trouvePatient(String numeroINSEE) {
+        int i2 = 0;
+        Patient p = dm.getListeTousPatients().get(0);
+        //Trouve le medecin sur lequel on a cliqué
+        while (i2 < dm.getListeTousPatients().size() && !numeroINSEE.equals(dm.getListeTousPatients().get(i2).getSecu())) {
+            i2++;
+            p = dm.getListeTousPatients().get(i2);
+        }
+
+        return p;
+    }
+
+    private FicheDeSoins trouveFiche(String numeroFiche) {
+        int numero = Integer.parseInt(numeroFiche);
+        int i2 = 0;
+        FicheDeSoins f = this.dm.getFicheDeSoins().get(0);
+        while (i2 < this.dm.getFicheDeSoins().size() && numero != this.dm.getFicheDeSoins().get(i2).getNumero()) {
+            i2++;
+            f = this.dm.getFicheDeSoins().get(i2);
+
+        }
+        return f;
+    }
+
+    private void remplirPersonnel() {
+        DefaultTableModel model_Personnel = (DefaultTableModel) this.jTable2.getModel();
+        DecimalFormat df = new DecimalFormat("####.##");
+        for (Personnel personnel : this.persHopital.getListePersonnel()) {
+            String specialite = "";
+            if (personnel.getMetier() == MetierCHU.MEDECIN) {
+                Medecin medecin = (Medecin) personnel;
+                specialite = medecin.getSpecialite().toString();
+            }
+            model_Personnel.addRow(new Object[]{personnel.getNom(), personnel.getPrenom(), personnel.getUsername(), personnel.getTelephone(), personnel.getMetier(), specialite});
+        }
+        model_Personnel.addRow(new Object[]{"", "", "", "", "", ""});
+    }
+
+    private void remplirChampFeuilleDeSoins(FicheDeSoins fiche) {
+        this.jLabelFiche.setText("FEUILLE DE SOINS N° " + fiche.getNumero());
+
+        this.jLabelNomPatient.setText(fiche.getPatient().getNom().toUpperCase());
+        this.jLabelPrenomPatient.setText(fiche.getPatient().getPrenom());
+        this.jLabelDateNaissance.setText(fiche.getPatient().getDateN().toStringDate());
+        this.jLabelAdresse.setText(fiche.getPatient().getAdresse());
+        this.jLabelINSEE.setText(fiche.getPatient().getSecu());
+
+        this.jLabelNomMedecin.setText(fiche.getMedecin().getNom().toUpperCase());
+        this.jLabelPrenomMedecin.setText(fiche.getMedecin().getPrenom());
+        this.jLabelSpecialite.setText(fiche.getMedecin().getSpecialite().toString());
+        this.jLabelRPPS.setText(fiche.getMedecin().getUsername());
+        this.jLabelTelephoneMed.setText(fiche.getMedecin().getTelephone());
+
+        DefaultTableModel model_Acte = (DefaultTableModel) this.jTable1.getModel();
+        DecimalFormat df = new DecimalFormat("####.##");
+        for (Acte actes : fiche.getActes()) {
+
+            model_Acte.addRow(new Object[]{actes.getDate(), actes.getCode(), actes.getCode().getLibelle(), actes.getCoef(), actes.getCode().getCoutUnitaire() + " €", df.format(actes.getCode().calculerCout(actes.getCoef())) + " €"});
+        }
+
+        this.jLabelTotal.setText(df.format(fiche.coutTotal()) + " €");
+        this.jTabbedPane1.setSelectedIndex(1);
+        this.jTabbedPane1.setEnabledAt(1, true);
+    }
+
+    public void initialiseMedecin() {
+        DefaultTableModel model = (DefaultTableModel) this.jTable.getModel();
+        model.setRowCount(0);
+        model.setColumnCount(6);
+        model.setColumnIdentifiers(new Object[]{"Medecin", "n°RPPS", "", "", "", "Prix"});
+        for (Medecin medecin : this.persHopital.getListeMedecins()) {
+            DecimalFormat df = new DecimalFormat("####.##");
+            model.addRow(new Object[]{medecin.toString(), medecin.getUsername(), "", "", "", df.format(dm.coutMedecin(medecin)) + " €"});
+        }
+        model.addRow(new Object[]{"", "", "", ""});
+    }
+
+    private void initialisePatient() {
+        model.setRowCount(0);
+        model.setColumnCount(6);
+        model.setColumnIdentifiers(new Object[]{"Patient", "n° INSEE", "", "", "", "Prix"});
+        for (Patient patient : dm.getListeTousPatients()) {
+            DecimalFormat df = new DecimalFormat("####.##");
+            model.addRow(new Object[]{patient.toString(), patient.getSecu(), "", "", "", df.format(dm.coutPatient(patient)) + " €"});
+        }
+        model.addRow(new Object[]{"", "", "", ""});
+    }
+
+    private void initialiseSpecialite() {
+        model.setRowCount(0);
+        model.setColumnCount(5);
+        model.setColumnIdentifiers(new Object[]{"Spécialité", "", "", "", "Prix"});
+        for (Specialite specialite : Specialite.values()) {
+            DecimalFormat df = new DecimalFormat("####.##");
+            model.addRow(new Object[]{specialite.toString(), "", "", "", df.format(dm.coutSpecialite(specialite.toString())) + " €"});
+        }
+        model.addRow(new Object[]{"", "", "", ""});
+    }
+
+    /*private void editCell() {
+
+        TableColumn ColonneNom = this.jTable2.getColumnModel().getColumn(0);
+        TableColumn ColonnePrenom = this.jTable2.getColumnModel().getColumn(1);
+        TableColumn ColonneMatricule = this.jTable2.getColumnModel().getColumn(2);
+        TableColumn ColonneTel = this.jTable2.getColumnModel().getColumn(3);
+        TableColumn ColonneMetier = this.jTable2.getColumnModel().getColumn(4);
+        TableColumn ColonneSpe = this.jTable2.getColumnModel().getColumn(5);
+
+        JTextField texteLibreNom = new JTextField();
+        JTextField texteLibrePrenom = new JTextField();
+        JTextField texteLibreMatricule = new JTextField();
+        JTextField texteLibreTel = new JTextField();
+        ColonneNom.setCellEditor(new DefaultCellEditor(texteLibreNom));
+        ColonnePrenom.setCellEditor(new DefaultCellEditor(texteLibrePrenom));
+        ColonneMatricule.setCellEditor(new DefaultCellEditor(texteLibreMatricule));
+        ColonneTel.setCellEditor(new DefaultCellEditor(texteLibreTel));
+
+        JComboBox comboBox = new JComboBox();
+        for (MetierCHU metier : MetierCHU.values()) {
+            comboBox.addItem(metier.toString());
+        }
+        ColonneMetier.setCellEditor(new DefaultCellEditor(comboBox));
+
+        JComboBox comboBox2 = new JComboBox();
+        for (Specialite spe : Specialite.values()) {
+            comboBox2.addItem(spe.toString());
+        }
+        ColonneMetier.setCellEditor(new DefaultCellEditor(comboBox));
+
+        ColonneSpe.setCellEditor(new DefaultCellEditor(comboBox2));
+        
+
+    }*/
 }

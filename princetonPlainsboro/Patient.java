@@ -27,7 +27,7 @@ public class Patient {
     // Afficher toutes les informations du patient 
     public void infosPatient() {
         String infos = "Informations sur " + this.prenom + " " + this.nom.toUpperCase() + ", né(e) le " + this.dateN.toString() + ", demeurant à " + this.adresse + "\n Son poids actuel est : " + this.getPoids() + "kg \n Sa taille est de : " + this.getTaille() + "m" + "\n Numéro de sécurité sociale : ";
-        if (this.verifierSecu() == true) {
+        if (Patient.verifierSecu(secu) == true) {
             infos += secu;
         } else {
             infos += " numéro renseigné invalide !";
@@ -45,51 +45,42 @@ public class Patient {
     }
 
     // Vérifier que le numéro de sécurité sociale est correct
-    public boolean verifierSecu() {
+    public static boolean verifierSecu(String nSecu) {
         boolean valide = true;
         int i = 0;
-        long cle = 97 - ((Long.parseLong(secu.substring(0, 13)) % 97));
+        long cle = 97 - ((Long.parseLong(nSecu.substring(0, 13)) % 97));
         while (valide == true && i <= 12) {
 
-            if (secu.length() != 15) {
+            if (nSecu.length() != 15) {
                 valide = false;
 
             } else {
-                if (Integer.parseInt(secu.substring(0, 1)) == 1 || Integer.parseInt(secu.substring(0, 1)) == 2) {
+                if (Integer.parseInt(nSecu.substring(0, 1)) == 1 || Integer.parseInt(nSecu.substring(0, 1)) == 2) {
                     i++;
                 } else {
                     valide = false;
                 }
-                if (Integer.parseInt(secu.substring(1, 3)) >= 0 && Integer.parseInt(secu.substring(1, 3)) < 100) {
-                    i++;
-                    i++;
-                } else {
-                    valide = false;
-                }
-                if (Integer.parseInt(secu.substring(3, 5)) > 0 && Integer.parseInt(secu.substring(3, 5)) < 13) {
-                    i++;
-                    i++;
-                } else {
-                    valide = false;
-
-                }
-                if (Integer.parseInt(secu.substring(5, 7)) > 0 && Integer.parseInt(secu.substring(5, 7)) < 99) {
+                if (Integer.parseInt(nSecu.substring(1, 3)) >= 0 && Integer.parseInt(nSecu.substring(1, 3)) < 100) {
                     i++;
                     i++;
                 } else {
                     valide = false;
                 }
-
-                if (Integer.parseInt(secu.substring(7, 10)) > 0 && Integer.parseInt(secu.substring(7, 10)) < 1000) {
+                if (Integer.parseInt(nSecu.substring(3, 5)) > 0 && Integer.parseInt(nSecu.substring(3, 5)) < 13) {
                     i++;
                     i++;
-                    i++;
-
                 } else {
                     valide = false;
 
                 }
-                if (Integer.parseInt(secu.substring(10, 13)) > 0 && Integer.parseInt(secu.substring(10, 13)) < 1000) {
+                if (Integer.parseInt(nSecu.substring(5, 7)) > 0 && Integer.parseInt(nSecu.substring(5, 7)) < 99) {
+                    i++;
+                    i++;
+                } else {
+                    valide = false;
+                }
+
+                if (Integer.parseInt(nSecu.substring(7, 10)) > 0 && Integer.parseInt(nSecu.substring(7, 10)) < 1000) {
                     i++;
                     i++;
                     i++;
@@ -98,7 +89,16 @@ public class Patient {
                     valide = false;
 
                 }
-                if (Integer.parseInt(secu.substring(13, 15)) == cle) {
+                if (Integer.parseInt(nSecu.substring(10, 13)) > 0 && Integer.parseInt(nSecu.substring(10, 13)) < 1000) {
+                    i++;
+                    i++;
+                    i++;
+
+                } else {
+                    valide = false;
+
+                }
+                if (Integer.parseInt(nSecu.substring(13, 15)) == cle) {
                     i++;
 
                 } else {
@@ -143,7 +143,7 @@ public class Patient {
     }
 
     public String getSecu() {
-        if (this.verifierSecu() == true) {
+        if (Patient.verifierSecu(secu) == true) {
              return secu;
         } else {
             return " numéro renseigné invalide !";
@@ -168,5 +168,12 @@ public class Patient {
 
     public void setTaille(double taille) {
         this.taille = taille;
+    }
+    
+    public String getTailleString(){
+        return this.taille+"";
+    }
+    public String getPoidsString(){
+        return this.poids+"";
     }
 }
