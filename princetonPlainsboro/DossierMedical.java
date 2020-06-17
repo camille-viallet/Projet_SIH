@@ -1,5 +1,6 @@
 package princetonPlainsboro;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -67,10 +68,10 @@ public class DossierMedical {
         }
     }
 
-    public double coutPatient(Patient p) {
+    public double coutPatient(Patient p, List<FicheDeSoins> liste) {
         double cout = 0;
-        for (int i = 0; i < fiches.size(); i++) {
-            FicheDeSoins f = fiches.get(i);
+        for (int i = 0; i < liste.size(); i++) {
+            FicheDeSoins f = liste.get(i);
             if (p.equals(f.getPatient())) {
                 cout += f.coutTotal();
             }
@@ -78,10 +79,10 @@ public class DossierMedical {
         return cout;
     }
 
-    public double coutMedecin(Medecin m) {
+    public double coutMedecin(Medecin m, List<FicheDeSoins> liste) {
         double cout = 0;
-        for (int i = 0; i < fiches.size(); i++) {
-            FicheDeSoins f = fiches.get(i);
+        for (int i = 0; i < liste.size(); i++) {
+            FicheDeSoins f = liste.get(i);
             if (m.equals(f.getMedecin())) {
                 cout += f.coutTotal();
             }
@@ -89,11 +90,11 @@ public class DossierMedical {
         return cout;
     }
 
-    public double coutActe(Code c) {
+    public double coutActe(Code c, List<FicheDeSoins> liste) {
         double cout = 0;
-        for (int i = 0; i < fiches.size(); i++) {
-            FicheDeSoins f = fiches.get(i);
-            for (Acte a : fiches.get(i).getActes()) {
+        for (int i = 0; i < liste.size(); i++) {
+            FicheDeSoins f = liste.get(i);
+            for (Acte a : liste.get(i).getActes()) {
                 if (c.equals(a.getCode())) {
                     cout += a.getCode().calculerCout(a.getCoef());
                 }
@@ -103,10 +104,10 @@ public class DossierMedical {
 
     }
 
-    public double coutSpecialite(String specialite) {
+    public double coutSpecialite(String specialite, List<FicheDeSoins> liste) {
         double cout = 0;
-        for (int i = 0; i < fiches.size(); i++) {
-            FicheDeSoins f = fiches.get(i);
+        for (int i = 0; i < liste.size(); i++) {
+            FicheDeSoins f = liste.get(i);
             if (specialite.equals(f.getMedecin().getSpecialite().toString())) {
 
                 cout += f.coutTotal();
@@ -187,59 +188,26 @@ public class DossierMedical {
     }
 
 
-    public Vector<FicheDeSoins> fichesTriees2Dates(Date d1, Date d2) {
-        Vector<FicheDeSoins> fiche =  new Vector<FicheDeSoins>();
-        Vector<FicheDeSoins> fichesSoinTriees2Dates = new Vector<FicheDeSoins>(fiches);
-        fiches.clear();
-        while (!fichesSoinTriees2Dates.isEmpty()) {
-            int min = 0;
-            FicheDeSoins f1 = fichesSoinTriees2Dates.get(min);
-            for (int i = 0; i < fichesSoinTriees2Dates.size(); i++) {
-                FicheDeSoins copie = fichesSoinTriees2Dates.get(i);
-                Date d = copie.getDate();
-                if (d.compareTo(d1) >= 0 && d.compareTo(d2) <= 0) {
-                    min = i;
-                    f1 = copie;
-                    //System.out.println(fichesSoinTriees2Dates);
-                }
+    public List<FicheDeSoins> fichesTriees2Dates(Date d1, Date d2 ) {
+        Vector<FicheDeSoins> fichesSoinTriees2Dates =  new Vector<FicheDeSoins>();
+       
+        for(FicheDeSoins fiche : fiches){
+            if(fiche.getDate().compareTo(d1)> 0 && fiche.getDate().compareTo(d2) <0){
+                fichesSoinTriees2Dates.add(fiche);
             }
-            fiche.add(f1);
-            fichesSoinTriees2Dates.remove(min);
         }
-        return fiche;
+        return fichesSoinTriees2Dates;
     }
 
-    /**
-     * Trie les dates des fiches du plus récent au plus ancien
-     *
-     */
-//    public void trierDates() {
-//        Vector<FicheDeSoins> copieFiches = new Vector<FicheDeSoins>(fiches);
-//        fiches.clear();
-//
-//        while (!copieFiches.isEmpty()) {
-//            // on cherche la fiche de soins de date maximale :
-//            int imax = 0;
-//            FicheDeSoins f1 = copieFiches.get(imax);
-//            for (int i = 1; i < copieFiches.size(); i++) {
-//                FicheDeSoins f2 = copieFiches.get(i);
-//                if (f2.getDate().compareTo(f1.getDate()) > 0) {
-//                    imax = i;
-//                    f1 = f2;
-//                }
-//            }
-//
-//            fiches.add(f1);
-//            //on la supprime de la liste :
-//            copieFiches.remove(imax);
-//
-//        }
-   /* }*/
+   
 
-    // tri generique :
-    public void trierDecroissant(ComparaisonFiches c) {
-        Vector<FicheDeSoins> copieFiches = new Vector<FicheDeSoins>(fiches);
-        fiches.clear();
+    public void trieListeDate(){
+        this.fiches = DossierMedical.trierDecroissant(new ComparaisonFichesDates(), fiches);
+    }
+    public static List<FicheDeSoins> trierDecroissant(ComparaisonFiches c, List <FicheDeSoins> feuilleSoins) {
+        List<FicheDeSoins> copieFiches = new ArrayList<>(feuilleSoins);
+        List<FicheDeSoins> fichesSoins = new ArrayList<>();
+      
 
         while (!copieFiches.isEmpty()) {
             // on cherche la fiche de soins minimale :
@@ -253,10 +221,11 @@ public class DossierMedical {
                     //                    System.out.println(copieFiches);
                 }
             }
-            fiches.add(f1);
+            fichesSoins.add(f1);
             //on la supprime de la liste :
             copieFiches.remove(imin);
             //       } System.out.println(copieFiches);
         }
+        return fichesSoins;
     }
 }

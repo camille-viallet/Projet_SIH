@@ -880,7 +880,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
             Acte acte = new Acte(Code.valueOf(code), coef, this.jTextFieldNomActe.getText(), medecinChoisi, date, type, commentaire);
 
             //Ajoute l'acte à la derniére fiche ou en créer ue nouvelle
-            dm.trierDecroissant(new ComparaisonFichesDates());
+            dm.trieListeDate();
             FicheDeSoins fiche = null;
             if (this.jCheckBoxNouvelleFiche.isSelected()) {
 

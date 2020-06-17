@@ -8,6 +8,7 @@ package Interface;
 import java.awt.Color;
 import java.awt.Font;
 import java.text.DecimalFormat;
+import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,15 +26,20 @@ import princetonPlainsboro.Code;
 import princetonPlainsboro.ComparaisonFiches;
 import princetonPlainsboro.ComparaisonFichesCouts;
 import princetonPlainsboro.ComparaisonFichesDates;
+import princetonPlainsboro.ComparaisonFichesNumero;
+import princetonPlainsboro.Date;
 import princetonPlainsboro.DossierMedical;
 import princetonPlainsboro.FicheDeSoins;
 import princetonPlainsboro.LectureXML;
 import princetonPlainsboro.LectureXMLPersonnel;
 import princetonPlainsboro.Medecin;
 import princetonPlainsboro.MetierCHU;
+import princetonPlainsboro.ModificationXMLPersonnel;
 import princetonPlainsboro.Patient;
 import princetonPlainsboro.Personnel;
 import princetonPlainsboro.PersonnelHopital;
+import princetonPlainsboro.SecretaireAdmin;
+import princetonPlainsboro.SecretaireMed;
 import princetonPlainsboro.Specialite;
 
 /**
@@ -48,13 +54,17 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
     DossierMedical dm;
     PersonnelHopital persHopital;
     DefaultTableModel model;
+    LectureXML test;
+    List<FicheDeSoins> fiches;
+    LectureXMLPersonnel fichierXMLPersonnel;
 
     public InterfaceSecretaireAdmin(Personnel p) {
 
-        LectureXML test = new LectureXML("dossiers.xml");
+        test = new LectureXML("dossiers.xml");
         dm = test.getDossier();
-        LectureXMLPersonnel personnel = new LectureXMLPersonnel("personnels.xml");
-        persHopital = personnel.getPersonnel();
+        fichierXMLPersonnel = new LectureXMLPersonnel("personnels.xml");
+        persHopital = fichierXMLPersonnel.getPersonnel();
+        fiches = dm.getFicheDeSoins();
         initComponents();
         this.jLabelBonjour.setText("Bonjour " + p.getNom().toUpperCase() + " " + p.getPrenom());
 
@@ -68,6 +78,18 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         remplirPersonnel();
         this.initialiseMedecin();
         //editCell();
+        this.jLabelErreurDate.setVisible(false);
+        this.jPanelCreationEmploye.setVisible(false);
+        for (Specialite spe : Specialite.values()) {
+            this.jComboBoxSpecialite.addItem(spe);
+        }
+        for (MetierCHU metier : MetierCHU.values()) {
+            this.jComboBoxFonction.addItem(metier);
+        }
+        this.jComboBoxSpecialite.setVisible(false);
+        this.jLabelSpe.setVisible(false);
+        this.jComboBoxFonction.setSelectedIndex(1);
+        this.jLabelErreurEmploye.setVisible(false);
 
     }
 
@@ -92,6 +114,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         jRadioButtonPatient = new javax.swing.JRadioButton();
         jRadioButtonSpecialite = new javax.swing.JRadioButton();
         jRadioButtonActe = new javax.swing.JRadioButton();
+        jRadioButtonFicheSoins = new javax.swing.JRadioButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -107,6 +130,19 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         jPanel11 = new javax.swing.JPanel();
         jRadioButtonTriDate = new javax.swing.JRadioButton();
         jRadioButtonTriCout = new javax.swing.JRadioButton();
+        jRadioButtonTriNumero = new javax.swing.JRadioButton();
+        jComboBoxJourD = new javax.swing.JComboBox();
+        jComboBoxMoisD = new javax.swing.JComboBox();
+        jTextFieldAnneeD = new javax.swing.JTextField();
+        jComboJourF = new javax.swing.JComboBox();
+        jComboMoisF = new javax.swing.JComboBox();
+        jTextFieldAnneeF = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabelErreurDate = new javax.swing.JLabel();
+        jButtonValider2Dates = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jCheckBoxEntre2Dates = new javax.swing.JCheckBox();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -140,6 +176,24 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        jButtonCreerEmploye = new javax.swing.JButton();
+        jPanelCreationEmploye = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jTextFieldNom = new javax.swing.JTextField();
+        jTextFieldPrenom = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jTextFieldIdentifiant = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jTextFieldTelephone = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabelSpe = new javax.swing.JLabel();
+        jComboBoxFonction = new javax.swing.JComboBox();
+        jComboBoxSpecialite = new javax.swing.JComboBox();
+        jButtonValiderCreation = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        jPasswordFieldPassWord = new javax.swing.JPasswordField();
+        jLabelErreurEmploye = new javax.swing.JLabel();
         jButtonDeconnexion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -185,20 +239,30 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup2.add(jRadioButtonFicheSoins);
+        jRadioButtonFicheSoins.setText("Fiche de soins");
+        jRadioButtonFicheSoins.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonFicheSoinsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jRadioButtonMedecin, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                .addGap(67, 67, 67)
+                .addComponent(jRadioButtonMedecin, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                .addGap(71, 71, 71)
                 .addComponent(jRadioButtonSpecialite)
-                .addGap(146, 146, 146)
+                .addGap(91, 91, 91)
                 .addComponent(jRadioButtonPatient)
-                .addGap(127, 127, 127)
+                .addGap(97, 97, 97)
                 .addComponent(jRadioButtonActe)
-                .addGap(79, 79, 79))
+                .addGap(64, 64, 64)
+                .addComponent(jRadioButtonFicheSoins)
+                .addGap(49, 49, 49))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jRadioButtonActe, jRadioButtonPatient, jRadioButtonSpecialite});
@@ -211,7 +275,8 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                     .addComponent(jRadioButtonMedecin)
                     .addComponent(jRadioButtonSpecialite)
                     .addComponent(jRadioButtonPatient)
-                    .addComponent(jRadioButtonActe))
+                    .addComponent(jRadioButtonActe)
+                    .addComponent(jRadioButtonFicheSoins))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -277,7 +342,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelResultatCoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelCout3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelCoutGras, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
+                    .addComponent(jLabelCoutGras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelResultatCoutLayout.setVerticalGroup(
@@ -307,24 +372,23 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonCalculerCout)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBoxActe1, 0, 118, Short.MAX_VALUE)
-                            .addComponent(jTextFieldCoef1))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldCoef1)
+                    .addComponent(jComboBoxActe1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelResultatCout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelResultatCout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelErreurActe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelErreurActe, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonCalculerCout)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -338,18 +402,19 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTextFieldCoef1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(23, 23, 23)
                 .addComponent(jButtonCalculerCout)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelErreurActe)
-                .addGap(13, 13, 13)
-                .addComponent(jPanelResultatCout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelResultatCout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7))
         );
 
-        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder("Tri décroissant des fiches de soins"));
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder("Tri des fiches de soins"));
 
         buttonGroup1.add(jRadioButtonTriDate);
-        jRadioButtonTriDate.setText("Selon la date");
+        jRadioButtonTriDate.setText("Selon la date ( décroissante)");
         jRadioButtonTriDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonTriDateActionPerformed(evt);
@@ -357,10 +422,52 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(jRadioButtonTriCout);
-        jRadioButtonTriCout.setText("Selon le coût");
+        jRadioButtonTriCout.setText("Selon le coût ( décroissant)");
         jRadioButtonTriCout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonTriCoutActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButtonTriNumero);
+        jRadioButtonTriNumero.setText("Selon le numero ( croissant )");
+        jRadioButtonTriNumero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonTriNumeroActionPerformed(evt);
+            }
+        });
+
+        jComboBoxJourD.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        jComboBoxMoisD.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", " " }));
+
+        jTextFieldAnneeD.setText("2020");
+
+        jComboJourF.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        jComboMoisF.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", " " }));
+
+        jTextFieldAnneeF.setText("2020");
+
+        jLabel2.setText("Fin :");
+
+        jLabel10.setText("Début :");
+
+        jLabelErreurDate.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelErreurDate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelErreurDate.setText("Année saisie invalide");
+
+        jButtonValider2Dates.setText("OK");
+        jButtonValider2Dates.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonValider2DatesActionPerformed(evt);
+            }
+        });
+
+        jCheckBoxEntre2Dates.setText("Entre deux dates :");
+        jCheckBoxEntre2Dates.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxEntre2DatesActionPerformed(evt);
             }
         });
 
@@ -369,34 +476,96 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jRadioButtonTriDate)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jRadioButtonTriCout)
-                .addGap(24, 24, 24))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jComboJourF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBoxJourD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(jComboBoxMoisD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldAnneeD, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(jComboMoisF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldAnneeF, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonValider2Dates))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButtonTriDate)
+                            .addComponent(jRadioButtonTriNumero)
+                            .addComponent(jRadioButtonTriCout))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addComponent(jCheckBoxEntre2Dates)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelErreurDate, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 122, Short.MAX_VALUE))
+                            .addComponent(jSeparator1))))
+                .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addContainerGap()
+                .addComponent(jRadioButtonTriDate)
+                .addGap(3, 3, 3)
+                .addComponent(jRadioButtonTriCout)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRadioButtonTriNumero)
+                .addGap(15, 15, 15)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButtonTriDate)
-                    .addComponent(jRadioButtonTriCout))
-                .addContainerGap(16, Short.MAX_VALUE))
+                    .addComponent(jCheckBoxEntre2Dates)
+                    .addComponent(jLabelErreurDate))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jComboBoxJourD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxMoisD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldAnneeD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jComboJourF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboMoisF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldAnneeF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonValider2Dates))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -404,15 +573,16 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(29, 29, 29))
         );
 
         jTabbedPane1.addTab("Tableau de bord", jPanel4);
@@ -522,13 +692,13 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabelPrenomMedecin, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
                         .addComponent(jLabel19)
-                        .addGap(18, 18, 18)
+                        .addGap(70, 70, 70)
                         .addComponent(jLabelSpecialite, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabelRPPS, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -581,17 +751,11 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+            .addComponent(jScrollPane1)
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
         );
 
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PAIEMENT", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Nova", 1, 12))); // NOI18N
@@ -669,15 +833,150 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         jTable2.setRowHeight(30);
         jScrollPane3.setViewportView(jTable2);
 
+        jButtonCreerEmploye.setText("Créer un nouvel employé");
+        jButtonCreerEmploye.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCreerEmployeActionPerformed(evt);
+            }
+        });
+
+        jPanelCreationEmploye.setBorder(javax.swing.BorderFactory.createTitledBorder("Création employé"));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel11.setText("Nom : ");
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel12.setText("Prénom : ");
+
+        jTextFieldIdentifiant.setToolTipText("");
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel13.setText("Identifiant : ");
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel16.setText("Telephone : ");
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel18.setText("Fonction : ");
+
+        jLabelSpe.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelSpe.setText("Spécialité : ");
+
+        jComboBoxFonction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxFonctionActionPerformed(evt);
+            }
+        });
+
+        jButtonValiderCreation.setText("Valider");
+        jButtonValiderCreation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonValiderCreationActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel14.setText("Mot de passe  : ");
+
+        javax.swing.GroupLayout jPanelCreationEmployeLayout = new javax.swing.GroupLayout(jPanelCreationEmploye);
+        jPanelCreationEmploye.setLayout(jPanelCreationEmployeLayout);
+        jPanelCreationEmployeLayout.setHorizontalGroup(
+            jPanelCreationEmployeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCreationEmployeLayout.createSequentialGroup()
+                .addGroup(jPanelCreationEmployeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelCreationEmployeLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel13)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldIdentifiant, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel16)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldTelephone, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel18)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBoxFonction, 0, 128, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel14)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPasswordFieldPassWord, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelCreationEmployeLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabelSpe)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxSpecialite, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonValiderCreation)))
+                .addContainerGap())
+        );
+        jPanelCreationEmployeLayout.setVerticalGroup(
+            jPanelCreationEmployeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCreationEmployeLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelCreationEmployeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(jTextFieldPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)
+                    .addComponent(jTextFieldIdentifiant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16)
+                    .addComponent(jTextFieldTelephone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18)
+                    .addComponent(jComboBoxFonction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14)
+                    .addComponent(jPasswordFieldPassWord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelCreationEmployeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonValiderCreation)
+                    .addGroup(jPanelCreationEmployeLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(jPanelCreationEmployeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelSpe)
+                            .addComponent(jComboBoxSpecialite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(64, 64, 64))
+        );
+
+        jLabelErreurEmploye.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelErreurEmploye.setText("jLabel20");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1032, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(533, 533, 533)
+                .addComponent(jButtonCreerEmploye)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanelCreationEmploye, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelErreurEmploye, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelErreurEmploye)
+                .addGap(4, 4, 4)
+                .addComponent(jButtonCreerEmploye)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelCreationEmploye, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Gestion du personnel", jPanel3);
@@ -706,26 +1005,25 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTabbedPane1)))
-                .addContainerGap())
+                        .addComponent(jTabbedPane1))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(377, 377, 377))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabelImage)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
                         .addComponent(jLabelBonjour)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonDeconnexion)))
-                .addGap(42, 42, 42)
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonDeconnexion)
+                        .addGap(17, 17, 17))
+                    .addComponent(jLabelImage))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(377, 377, 377))))
         );
 
         pack();
@@ -775,16 +1073,16 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                     }
                 } else {
                     int i = 0;
-                    for (Patient p : dm.getListeTousPatients()) {
-                        for (FicheDeSoins fiche : dm.getFichesDeSoinsPatient(p)) {
-                            //for (Acte a : fiche.getActes(m)) {
-                            if (fiche.getMedecin().equals(m)) {
-                                DecimalFormat df = new DecimalFormat("####.##");
-                                model.addRow(new Object[]{"", "", "Fiche de soins", fiche.getNumero(), fiche.getDate().toStringDate(), df.format(fiche.coutTotal()) + " €"});
-                                i++;
-                            }
-                            //}
+
+                    //for (FicheDeSoins fiche : dm.getFichesDeSoinsPatient(p)) {
+                    for (FicheDeSoins fiche : fiches) {
+                        if (fiche.getMedecin().equals(m)) {
+                            DecimalFormat df = new DecimalFormat("####.##");
+                            model.addRow(new Object[]{"", "", "Fiche de soins", fiche.getNumero(), fiche.getDate().toStringDate(), df.format(fiche.coutTotal()) + " €"});
+                            i++;
                         }
+
+                        //}
                     }
                     model.addRow(new Object[]{"", "", "", ""});
                     model.moveRow(nbrLignes, nbrLignes + i, row + 1);
@@ -803,12 +1101,14 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                 } else {
                     int i = 0;
 
-                    for (FicheDeSoins fiche : dm.getFichesDeSoinsPatient(p)) {
+                    //for (FicheDeSoins fiche : dm.getFichesDeSoinsPatient(p)) {
+                    for (FicheDeSoins fiche : fiches) {
+                        if (fiche.getPatient().equals(p)) {
+                            DecimalFormat df = new DecimalFormat("####.##");
+                            model.addRow(new Object[]{"", "", "Fiche de soins", fiche.getNumero(), fiche.getDate().toStringDate(), df.format(fiche.coutTotal()) + " €"});
+                            i++;
 
-                        DecimalFormat df = new DecimalFormat("####.##");
-                        model.addRow(new Object[]{"", "", "Fiche de soins", fiche.getNumero(), fiche.getDate().toStringDate(), df.format(fiche.coutTotal()) + " €"});
-                        i++;
-
+                        }
                     }
                     model.addRow(new Object[]{"", "", "", ""});
                     model.moveRow(nbrLignes, nbrLignes + i, row + 1);
@@ -827,17 +1127,17 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                 } else {
                     int i = 0;
 
-                    for (Patient p : dm.getListeTousPatients()) {
-                        for (FicheDeSoins fiche : dm.getFichesDeSoinsPatient(p)) {
-                            //System.out.println(fiche.getMedecin().getSpecialite());
-                            //System.out.println(s);
-                            if (fiche.getMedecin().getSpecialite().compareTo(s) == 0) {
-                                DecimalFormat df = new DecimalFormat("####.##");
-                                model.addRow(new Object[]{"", "Fiche de soins", fiche.getNumero(), fiche.getDate().toStringDate(), df.format(fiche.coutTotal()) + " €"});
-                                i++;
-                            }
+                    // for (FicheDeSoins fiche : dm.getFichesDeSoinsPatient(p)) {
+                    for (FicheDeSoins fiche : fiches) {
 
+                        //System.out.println(fiche.getMedecin().getSpecialite());
+                        //System.out.println(s);
+                        if (fiche.getMedecin().getSpecialite().compareTo(s) == 0) {
+                            DecimalFormat df = new DecimalFormat("####.##");
+                            model.addRow(new Object[]{"", "Fiche de soins", fiche.getNumero(), fiche.getDate().toStringDate(), df.format(fiche.coutTotal()) + " €"});
+                            i++;
                         }
+
                     }
                     model.addRow(new Object[]{"", "", "", ""});
                     model.moveRow(nbrLignes, nbrLignes + i, row + 1);
@@ -858,32 +1158,36 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                 } else {
                     int i = 0;
 
-                    for (Patient p : dm.getListeTousPatients()) {
-                        for (FicheDeSoins fiche : dm.getFichesDeSoinsPatient(p)) {
-                            for (Acte a : fiche.getActes()) {
-                                //for (Acte a : fiche.getActes(m)) {
-                                if (a.getCode().compareTo(c) == 0) {
-                                    DecimalFormat df = new DecimalFormat("####.##");
-                                    model.addRow(new Object[]{"", a.getCode().toStringSansUnitaire(a.getCoef()), a.getDate().toStringDate(), a.getCode().getCoutUnitaire(), a.getCoef(), df.format(a.cout()) + " €"});
-                                    i++;
-                                }
-                                //}
+                    for (FicheDeSoins fiche : fiches) {
+
+                        for (Acte a : fiche.getActes()) {
+                            //for (Acte a : fiche.getActes(m)) {
+                            if (a.getCode().compareTo(c) == 0) {
+                                DecimalFormat df = new DecimalFormat("####.##");
+                                model.addRow(new Object[]{"", a.getCode().toStringSansUnitaire(a.getCoef()), a.getDate().toStringDate(), a.getCode().getCoutUnitaire(), a.getCoef(), df.format(a.cout()) + " €"});
+                                i++;
                             }
+                            //}
                         }
+
+                        model.addRow(new Object[]{"", "", "", "", ""});
+                        model.moveRow(nbrLignes, nbrLignes + i, row + 1);
                     }
-                    model.addRow(new Object[]{"", "", "", "", ""});
-                    model.moveRow(nbrLignes, nbrLignes + i, row + 1);
                 }
             }
         } else if (model.getValueAt(row, 2).equals("Fiche de soins") && !this.jRadioButtonActe.isSelected()) {
-            int numeroColonne = 3;
-            FicheDeSoins f = this.trouveFiche(model.getValueAt(row, numeroColonne).toString());
+
+            FicheDeSoins f = this.trouveFiche(model.getValueAt(row, 3).toString());
             remplirChampFeuilleDeSoins(f);
         } else if (model.getValueAt(row, 1).equals("Fiche de soins") && this.jRadioButtonSpecialite.isSelected()) {
-            int numeroColonne = 2;
-            FicheDeSoins f = this.trouveFiche(model.getValueAt(row, numeroColonne).toString());
+
+            FicheDeSoins f = this.trouveFiche(model.getValueAt(row, 2).toString());
+            remplirChampFeuilleDeSoins(f);
+        } else if (this.jRadioButtonFicheSoins.isSelected()) {
+            FicheDeSoins f = this.trouveFiche(model.getValueAt(row, 0).toString());
             remplirChampFeuilleDeSoins(f);
         }
+
 
     }//GEN-LAST:event_jTableMouseClicked
 
@@ -906,33 +1210,19 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         model.setColumnIdentifiers(new Object[]{"Code", "", "", "Cout unitaire", "Coefficient ", "Prix"});
         for (Code code : Code.values()) {
             DecimalFormat df = new DecimalFormat("####.##");
-            model.addRow(new Object[]{code.toString(), "", "", "", "", df.format(dm.coutActe(code)) + " €"});
+            model.addRow(new Object[]{code.toString(), "", "", "", "", df.format(dm.coutActe(code, fiches)) + " €"});
         }
         model.addRow(new Object[]{"", "", "", "", ""});
     }//GEN-LAST:event_jRadioButtonActeActionPerformed
 
     private void jRadioButtonTriDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonTriDateActionPerformed
-        dm.trierDecroissant(new ComparaisonFichesDates());
-        if (this.jRadioButtonMedecin.isSelected()) {
-            this.initialiseMedecin();
-        } else if (this.jRadioButtonPatient.isSelected()) {
-            this.initialisePatient();
-        }
-        if (this.jRadioButtonSpecialite.isSelected()) {
-            this.initialiseSpecialite();
-        }
+        fiches = DossierMedical.trierDecroissant(new ComparaisonFichesDates(), fiches);
+        intialiseSelonSelection();
     }//GEN-LAST:event_jRadioButtonTriDateActionPerformed
 
     private void jRadioButtonTriCoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonTriCoutActionPerformed
-        dm.trierDecroissant(new ComparaisonFichesCouts());
-        if (this.jRadioButtonMedecin.isSelected()) {
-            this.initialiseMedecin();
-        } else if (this.jRadioButtonPatient.isSelected()) {
-            this.initialisePatient();
-        }
-        if (this.jRadioButtonSpecialite.isSelected()) {
-            this.initialiseSpecialite();
-        }
+        fiches = DossierMedical.trierDecroissant(new ComparaisonFichesCouts(), fiches);
+        intialiseSelonSelection();
     }//GEN-LAST:event_jRadioButtonTriCoutActionPerformed
 
     private void jButtonDeconnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeconnexionActionPerformed
@@ -940,17 +1230,108 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         new connexion().setVisible(true);
     }//GEN-LAST:event_jButtonDeconnexionActionPerformed
 
+    private void jRadioButtonFicheSoinsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonFicheSoinsActionPerformed
+        this.initaliseFiches();
+    }//GEN-LAST:event_jRadioButtonFicheSoinsActionPerformed
+
+    private void jRadioButtonTriNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonTriNumeroActionPerformed
+        fiches = DossierMedical.trierDecroissant(new ComparaisonFichesNumero(), fiches);
+        intialiseSelonSelection();
+    }//GEN-LAST:event_jRadioButtonTriNumeroActionPerformed
+
+    private void jButtonValider2DatesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValider2DatesActionPerformed
+        afficheEntreDeuxDates();
+    }//GEN-LAST:event_jButtonValider2DatesActionPerformed
+
+    private void jCheckBoxEntre2DatesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxEntre2DatesActionPerformed
+        if (!this.jCheckBoxEntre2Dates.isSelected()) {
+            fiches = dm.getFicheDeSoins();
+            this.intialiseSelonSelection();
+        }
+    }//GEN-LAST:event_jCheckBoxEntre2DatesActionPerformed
+
+    private void jButtonCreerEmployeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreerEmployeActionPerformed
+        this.jPanelCreationEmploye.setVisible(true);
+    }//GEN-LAST:event_jButtonCreerEmployeActionPerformed
+
+    private void jComboBoxFonctionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxFonctionActionPerformed
+        if (this.jComboBoxFonction.getSelectedItem().toString().equals(MetierCHU.MEDECIN.toString())) {
+            this.jComboBoxSpecialite.setVisible(true);
+            this.jLabelSpe.setVisible(true);
+        } else {
+            this.jComboBoxSpecialite.setVisible(false);
+            this.jLabelSpe.setVisible(false);
+        }
+    }//GEN-LAST:event_jComboBoxFonctionActionPerformed
+
+    private void jButtonValiderCreationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValiderCreationActionPerformed
+        String nom = this.jTextFieldNom.getText();
+        String prenom = this.jTextFieldPrenom.getText();
+        String tel = this.jTextFieldTelephone.getText();
+        String id = this.jTextFieldIdentifiant.getText();
+        String mdp = new String(this.jPasswordFieldPassWord.getPassword());
+        if (nom.isEmpty() || prenom.isEmpty() || tel.isEmpty() || id.isEmpty() || mdp.isEmpty()) {
+            this.jLabelErreurEmploye.setVisible(true);
+            this.jLabelErreurEmploye.setBackground(Color.red);
+            this.jLabelErreurEmploye.setText("Veuillez remplir tous les champs");
+        } else {
+
+            this.jLabelErreurEmploye.setVisible(false);
+            ModificationXMLPersonnel modif = new ModificationXMLPersonnel();
+            switch (this.jComboBoxFonction.getSelectedItem().toString()) {
+
+                case "MEDECIN":
+                    Medecin m = new Medecin(prenom, nom, id, mdp, tel, Specialite.valueOf(this.jComboBoxSpecialite.getSelectedItem().toString()));
+                    modif.ajouterPersonnel(m);
+                    break;
+                case "SECRETAIRE_ADMINISTRATIVE":
+                    SecretaireAdmin s = new SecretaireAdmin(prenom, nom, id, mdp, tel);
+                    modif.ajouterPersonnel(s);
+                    break;
+                case "SECRETAIRE_MEDICALE":
+                    SecretaireMed sMed = new SecretaireMed(prenom, nom, id, mdp, tel);
+                    modif.ajouterPersonnel(sMed);
+                    break;
+
+            }
+            persHopital = fichierXMLPersonnel.getPersonnel();
+            remplirPersonnel();
+            viderChampPersonnel();
+            this.jLabelErreurEmploye.setVisible(true);
+            this.jLabelErreurEmploye.setBackground(Color.green);
+            this.jLabelErreurEmploye.setText("Crée avec succés");
+        }
+    }//GEN-LAST:event_jButtonValiderCreationActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButtonCalculerCout;
+    private javax.swing.JButton jButtonCreerEmploye;
     private javax.swing.JButton jButtonDeconnexion;
+    private javax.swing.JButton jButtonValider2Dates;
+    private javax.swing.JButton jButtonValiderCreation;
+    private javax.swing.JCheckBox jCheckBoxEntre2Dates;
     private javax.swing.JComboBox jComboBoxActe1;
+    private javax.swing.JComboBox jComboBoxFonction;
+    private javax.swing.JComboBox jComboBoxJourD;
+    private javax.swing.JComboBox jComboBoxMoisD;
+    private javax.swing.JComboBox jComboBoxSpecialite;
+    private javax.swing.JComboBox jComboJourF;
+    private javax.swing.JComboBox jComboMoisF;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel25;
@@ -967,6 +1348,8 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCoutGras;
     private javax.swing.JLabel jLabelDateNaissance;
     private javax.swing.JLabel jLabelErreurActe;
+    private javax.swing.JLabel jLabelErreurDate;
+    private javax.swing.JLabel jLabelErreurEmploye;
     private javax.swing.JLabel jLabelFiche;
     private javax.swing.JLabel jLabelINSEE;
     private javax.swing.JLabel jLabelImage;
@@ -975,6 +1358,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelPrenomMedecin;
     private javax.swing.JLabel jLabelPrenomPatient;
     private javax.swing.JLabel jLabelRPPS;
+    private javax.swing.JLabel jLabelSpe;
     private javax.swing.JLabel jLabelSpecialite;
     private javax.swing.JLabel jLabelTelephoneMed;
     private javax.swing.JLabel jLabelTotal;
@@ -986,24 +1370,34 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JPanel jPanelCreationEmploye;
     private javax.swing.JPanel jPanelResultatCout;
+    private javax.swing.JPasswordField jPasswordFieldPassWord;
     private javax.swing.JRadioButton jRadioButtonActe;
+    private javax.swing.JRadioButton jRadioButtonFicheSoins;
     private javax.swing.JRadioButton jRadioButtonMedecin;
     private javax.swing.JRadioButton jRadioButtonPatient;
     private javax.swing.JRadioButton jRadioButtonSpecialite;
     private javax.swing.JRadioButton jRadioButtonTriCout;
     private javax.swing.JRadioButton jRadioButtonTriDate;
+    private javax.swing.JRadioButton jRadioButtonTriNumero;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTextField jTextFieldAnneeD;
+    private javax.swing.JTextField jTextFieldAnneeF;
     private javax.swing.JTextField jTextFieldCoef1;
+    private javax.swing.JTextField jTextFieldIdentifiant;
+    private javax.swing.JTextField jTextFieldNom;
+    private javax.swing.JTextField jTextFieldPrenom;
+    private javax.swing.JTextField jTextFieldTelephone;
     // End of variables declaration//GEN-END:variables
 
     private void initialiseCoutActe() {
@@ -1028,10 +1422,10 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
     private FicheDeSoins trouveFiche(String numeroFiche) {
         int numero = Integer.parseInt(numeroFiche);
         int i2 = 0;
-        FicheDeSoins f = this.dm.getFicheDeSoins().get(0);
-        while (i2 < this.dm.getFicheDeSoins().size() && numero != this.dm.getFicheDeSoins().get(i2).getNumero()) {
+        FicheDeSoins f = fiches.get(0);
+        while (i2 < fiches.size() && numero != fiches.get(i2).getNumero()) {
             i2++;
-            f = this.dm.getFicheDeSoins().get(i2);
+            f = fiches.get(i2);
 
         }
         return f;
@@ -1039,6 +1433,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
 
     private void remplirPersonnel() {
         DefaultTableModel model_Personnel = (DefaultTableModel) this.jTable2.getModel();
+        model_Personnel.setRowCount(0);
         DecimalFormat df = new DecimalFormat("####.##");
         for (Personnel personnel : this.persHopital.getListePersonnel()) {
             String specialite = "";
@@ -1070,7 +1465,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         DecimalFormat df = new DecimalFormat("####.##");
         for (Acte actes : fiche.getActes()) {
 
-            model_Acte.addRow(new Object[]{actes.getDate(), actes.getCode(), actes.getCode().getLibelle(), actes.getCoef(), actes.getCode().getCoutUnitaire() + " €", df.format(actes.getCode().calculerCout(actes.getCoef())) + " €"});
+            model_Acte.addRow(new Object[]{actes.getDate(), actes.getCode(), actes.getCode().getLibelle(), actes.getCode().getCoutUnitaire() + " €", actes.getCoef(), df.format(actes.getCode().calculerCout(actes.getCoef())) + " €"});
         }
 
         this.jLabelTotal.setText(df.format(fiche.coutTotal()) + " €");
@@ -1085,7 +1480,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         model.setColumnIdentifiers(new Object[]{"Medecin", "n°RPPS", "", "", "", "Prix"});
         for (Medecin medecin : this.persHopital.getListeMedecins()) {
             DecimalFormat df = new DecimalFormat("####.##");
-            model.addRow(new Object[]{medecin.toString(), medecin.getUsername(), "", "", "", df.format(dm.coutMedecin(medecin)) + " €"});
+            model.addRow(new Object[]{medecin.toString(), medecin.getUsername(), "", "", "", df.format(dm.coutMedecin(medecin, fiches)) + " €"});
         }
         model.addRow(new Object[]{"", "", "", ""});
     }
@@ -1096,7 +1491,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         model.setColumnIdentifiers(new Object[]{"Patient", "n° INSEE", "", "", "", "Prix"});
         for (Patient patient : dm.getListeTousPatients()) {
             DecimalFormat df = new DecimalFormat("####.##");
-            model.addRow(new Object[]{patient.toString(), patient.getSecu(), "", "", "", df.format(dm.coutPatient(patient)) + " €"});
+            model.addRow(new Object[]{patient.toString(), patient.getSecu(), "", "", "", df.format(dm.coutPatient(patient, fiches)) + " €"});
         }
         model.addRow(new Object[]{"", "", "", ""});
     }
@@ -1107,43 +1502,68 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         model.setColumnIdentifiers(new Object[]{"Spécialité", "", "", "", "Prix"});
         for (Specialite specialite : Specialite.values()) {
             DecimalFormat df = new DecimalFormat("####.##");
-            model.addRow(new Object[]{specialite.toString(), "", "", "", df.format(dm.coutSpecialite(specialite.toString())) + " €"});
+            model.addRow(new Object[]{specialite.toString(), "", "", "", df.format(dm.coutSpecialite(specialite.toString(), fiches)) + " €"});
         }
         model.addRow(new Object[]{"", "", "", ""});
     }
 
-    /*private void editCell() {
-
-        TableColumn ColonneNom = this.jTable2.getColumnModel().getColumn(0);
-        TableColumn ColonnePrenom = this.jTable2.getColumnModel().getColumn(1);
-        TableColumn ColonneMatricule = this.jTable2.getColumnModel().getColumn(2);
-        TableColumn ColonneTel = this.jTable2.getColumnModel().getColumn(3);
-        TableColumn ColonneMetier = this.jTable2.getColumnModel().getColumn(4);
-        TableColumn ColonneSpe = this.jTable2.getColumnModel().getColumn(5);
-
-        JTextField texteLibreNom = new JTextField();
-        JTextField texteLibrePrenom = new JTextField();
-        JTextField texteLibreMatricule = new JTextField();
-        JTextField texteLibreTel = new JTextField();
-        ColonneNom.setCellEditor(new DefaultCellEditor(texteLibreNom));
-        ColonnePrenom.setCellEditor(new DefaultCellEditor(texteLibrePrenom));
-        ColonneMatricule.setCellEditor(new DefaultCellEditor(texteLibreMatricule));
-        ColonneTel.setCellEditor(new DefaultCellEditor(texteLibreTel));
-
-        JComboBox comboBox = new JComboBox();
-        for (MetierCHU metier : MetierCHU.values()) {
-            comboBox.addItem(metier.toString());
+    private void initaliseFiches() {
+        DefaultTableModel model = (DefaultTableModel) this.jTable.getModel();
+        model.setRowCount(0);
+        model.setColumnCount(6);
+        model.setColumnIdentifiers(new Object[]{"n° fiche", "Date", "Patient", "Medecin", "Prix"});
+        for (FicheDeSoins fiche : fiches) {
+            DecimalFormat df = new DecimalFormat("####.##");
+            model.addRow(new Object[]{fiche.getNumero(), fiche.getDate(), fiche.getPatient(), fiche.getMedecin(), df.format(fiche.coutTotal()) + " €"});
         }
-        ColonneMetier.setCellEditor(new DefaultCellEditor(comboBox));
+        model.addRow(new Object[]{"", "", "", ""});
+    }
 
-        JComboBox comboBox2 = new JComboBox();
-        for (Specialite spe : Specialite.values()) {
-            comboBox2.addItem(spe.toString());
+    private void intialiseSelonSelection() {
+        if (this.jRadioButtonMedecin.isSelected()) {
+            this.initialiseMedecin();
+        } else if (this.jRadioButtonPatient.isSelected()) {
+            this.initialisePatient();
+        } else if (this.jRadioButtonSpecialite.isSelected()) {
+            this.initialiseSpecialite();
+        } else if (this.jRadioButtonFicheSoins.isSelected()) {
+            initaliseFiches();
         }
-        ColonneMetier.setCellEditor(new DefaultCellEditor(comboBox));
+    }
 
-        ColonneSpe.setCellEditor(new DefaultCellEditor(comboBox2));
-        
+    private void afficheEntreDeuxDates() {
+        if (this.jCheckBoxEntre2Dates.isSelected()) {
+            int jourD = Integer.parseInt(this.jComboBoxJourD.getSelectedItem().toString());
+            int moisD = Integer.parseInt(this.jComboBoxMoisD.getSelectedItem().toString());
+            int jourF = Integer.parseInt(this.jComboJourF.getSelectedItem().toString());
+            int moisF = Integer.parseInt(this.jComboMoisF.getSelectedItem().toString());
+            int anneeD = 0;
+            int anneeF = 0;
+            Date d1 = null;
+            Date d2 = null;
+            try {
+                anneeD = Integer.parseInt(this.jTextFieldAnneeD.getText());
+                anneeF = Integer.parseInt(this.jTextFieldAnneeF.getText());
+                d1 = new Date(jourD, moisD, anneeD, 0, 0);
+                d2 = new Date(jourF, moisF, anneeF, 0, 0);
+                fiches = dm.fichesTriees2Dates(d1, d2);
+                intialiseSelonSelection();
 
-    }*/
+            } catch (Exception e) {
+                this.jLabelErreurDate.setVisible(true);
+            }
+        }
+    }
+
+    private void viderChampPersonnel() {
+        this.jTextFieldNom.setText("");
+        this.jTextFieldPrenom.setText("");
+        this.jTextFieldTelephone.setText("");
+        this.jTextFieldIdentifiant.setText("");
+        this.jPasswordFieldPassWord.setText("");
+        this.jComboBoxFonction.setSelectedIndex(1);
+        this.jComboBoxSpecialite.setSelectedIndex(0);
+        this.jPanelCreationEmploye.setVisible(false);
+    }
+
 }
