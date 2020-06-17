@@ -1463,9 +1463,9 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         this.jLabelTelephoneMed.setText(fiche.getMedecin().getTelephone());
 
         DefaultTableModel model_Acte = (DefaultTableModel) this.jTable1.getModel();
+        model_Acte.setRowCount(0);
         DecimalFormat df = new DecimalFormat("####.##");
         for (Acte actes : fiche.getActes()) {
-
             model_Acte.addRow(new Object[]{actes.getDate(), actes.getCode(), actes.getCode().getLibelle(), actes.getCode().getCoutUnitaire() + " €", actes.getCoef(), df.format(actes.getCode().calculerCout(actes.getCoef())) + " €"});
         }
 
