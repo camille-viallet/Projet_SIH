@@ -35,34 +35,40 @@ public class connexion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageLogoHopital = new javax.swing.JLabel();
-        jLabelConnexion = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jPassword = new javax.swing.JPasswordField();
         jLabelUtilisateur = new javax.swing.JLabel();
+        ImageLogoHopital = new javax.swing.JLabel();
         jTextFieldUtilisateur = new javax.swing.JTextField();
         jLabelMotPasse = new javax.swing.JLabel();
-        jPassword = new javax.swing.JPasswordField();
+        jLabelConnexion = new javax.swing.JLabel();
         jButtonValiderConnexion = new javax.swing.JButton();
         jLabelErreur = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Connexion");
 
-        ImageLogoHopital.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interface/logo.jpg"))); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+
+        jPassword.setToolTipText("");
+
+        jLabelUtilisateur.setFont(new java.awt.Font("Arial Nova", 1, 14)); // NOI18N
+        jLabelUtilisateur.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelUtilisateur.setText("Utilisateur :");
+
+        ImageLogoHopital.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interface/logobien.png"))); // NOI18N
+
+        jTextFieldUtilisateur.setToolTipText("");
+
+        jLabelMotPasse.setFont(new java.awt.Font("Arial Nova", 1, 14)); // NOI18N
+        jLabelMotPasse.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelMotPasse.setText("Mot de passe : ");
 
         jLabelConnexion.setFont(new java.awt.Font("Verdana Pro Cond", 1, 24)); // NOI18N
         jLabelConnexion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelConnexion.setText("Connexion");
         jLabelConnexion.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
-        jLabelUtilisateur.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelUtilisateur.setText("Utilisateur :");
-
-        jTextFieldUtilisateur.setToolTipText("");
-
-        jLabelMotPasse.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelMotPasse.setText("Mot de passe : ");
-
-        jPassword.setToolTipText("");
 
         jButtonValiderConnexion.setText("Valider");
         jButtonValiderConnexion.addActionListener(new java.awt.event.ActionListener() {
@@ -72,48 +78,34 @@ public class connexion extends javax.swing.JFrame {
         });
 
         jLabelErreur.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelErreur.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelErreur.setText("Erreur");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ImageLogoHopital)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jPassword)
-                            .addComponent(jLabelMotPasse, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
-                            .addComponent(jTextFieldUtilisateur)
-                            .addComponent(jLabelUtilisateur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(121, 121, 121)
-                                .addComponent(jButtonValiderConnexion, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap(156, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(jLabelConnexion, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(168, 168, 168)
-                .addComponent(jLabelErreur, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jTextFieldUtilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelUtilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelMotPasse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelErreur, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonValiderConnexion, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ImageLogoHopital)
+                    .addComponent(jLabelConnexion, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(ImageLogoHopital)
-                        .addGap(3, 3, 3))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabelConnexion)
-                        .addGap(53, 53, 53)))
+                .addComponent(jLabelConnexion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ImageLogoHopital)
+                .addGap(25, 25, 25)
                 .addComponent(jLabelUtilisateur)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldUtilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -123,12 +115,40 @@ public class connexion extends javax.swing.JFrame {
                 .addComponent(jPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelErreur)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonValiderConnexion)
-                .addContainerGap())
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jLabelErreur.setVisible(false);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(57, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(47, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -214,6 +234,8 @@ public class connexion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelErreur;
     private javax.swing.JLabel jLabelMotPasse;
     private javax.swing.JLabel jLabelUtilisateur;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPassword;
     private javax.swing.JTextField jTextFieldUtilisateur;
     // End of variables declaration//GEN-END:variables

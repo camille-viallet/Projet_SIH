@@ -69,6 +69,8 @@ public class InterfaceMedicale extends javax.swing.JFrame {
         this.jLabelErreurAM.setVisible(false);
         this.jLabelErreurCP.setVisible(false);
         this.jTabbedPane1.setEnabledAt(2, false);
+        this.jLabelTel.setText(personnel.getTelephone());
+        this.jLabelnumRPPS.setText(personnel.getUsername());
 
     }
 
@@ -166,6 +168,10 @@ public class InterfaceMedicale extends javax.swing.JFrame {
         jRadioButtonAllPatients = new javax.swing.JRadioButton();
         jRadioButtonMespatients = new javax.swing.JRadioButton();
         jButtonDeconnexion = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabelnumRPPS = new javax.swing.JLabel();
+        jLabelTel = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -757,6 +763,18 @@ public class InterfaceMedicale extends javax.swing.JFrame {
             }
         });
 
+        jLabel11.setFont(new java.awt.Font("Arial Nova", 1, 11)); // NOI18N
+        jLabel11.setText("Telephone : ");
+
+        jLabel15.setFont(new java.awt.Font("Arial Nova", 1, 11)); // NOI18N
+        jLabel15.setText("n° RPPS :");
+
+        jLabelnumRPPS.setFont(new java.awt.Font("Arial Nova", 0, 11)); // NOI18N
+        jLabelnumRPPS.setText("-");
+
+        jLabelTel.setFont(new java.awt.Font("Arial Nova", 0, 11)); // NOI18N
+        jLabelTel.setText("-");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -765,12 +783,6 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelImage)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelBonjour)
-                            .addComponent(jButtonDeconnexion)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
@@ -778,7 +790,26 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                                 .addGap(8, 8, 8)
                                 .addComponent(jRadioButtonMespatients)))
                         .addGap(18, 18, 18)
-                        .addComponent(jTabbedPane1)))
+                        .addComponent(jTabbedPane1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelImage)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelnumRPPS)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelTel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonDeconnexion))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(111, 111, 111)
+                                .addComponent(jLabelBonjour)))
+                        .addGap(11, 11, 11)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -788,8 +819,18 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(jLabelBonjour)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonDeconnexion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel15))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelTel)
+                                    .addComponent(jButtonDeconnexion))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelnumRPPS)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(14, Short.MAX_VALUE)
@@ -993,9 +1034,11 @@ public class InterfaceMedicale extends javax.swing.JFrame {
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -1033,6 +1076,8 @@ public class InterfaceMedicale extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelPrenomNomDM;
     private javax.swing.JLabel jLabelSécuDM;
     private javax.swing.JLabel jLabelTailleDM;
+    private javax.swing.JLabel jLabelTel;
+    private javax.swing.JLabel jLabelnumRPPS;
     private javax.swing.JList jListPatients;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

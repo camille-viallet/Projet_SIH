@@ -90,6 +90,8 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         this.jLabelSpe.setVisible(false);
         this.jComboBoxFonction.setSelectedIndex(1);
         this.jLabelErreurEmploye.setVisible(false);
+        this.jLabelTel.setText(p.getTelephone());
+        this.jLabelMatricule.setText(p.getUsername());
 
     }
 
@@ -195,6 +197,10 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         jPasswordFieldPassWord = new javax.swing.JPasswordField();
         jLabelErreurEmploye = new javax.swing.JLabel();
         jButtonDeconnexion = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabelMatricule = new javax.swing.JLabel();
+        jLabelTel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hopital princeton plainsboro - Administration");
@@ -988,6 +994,22 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
             }
         });
 
+        jLabel20.setFont(new java.awt.Font("Arial Nova", 1, 11)); // NOI18N
+        jLabel20.setText("Telephone : ");
+        jLabel20.setToolTipText("");
+
+        jLabel22.setFont(new java.awt.Font("Arial Nova", 1, 11)); // NOI18N
+        jLabel22.setText("Matricule : ");
+        jLabel22.setToolTipText("");
+
+        jLabelMatricule.setFont(new java.awt.Font("Arial Nova", 0, 11)); // NOI18N
+        jLabelMatricule.setText(" - ");
+        jLabelMatricule.setToolTipText("");
+
+        jLabelTel.setFont(new java.awt.Font("Arial Nova", 0, 11)); // NOI18N
+        jLabelTel.setText(" - ");
+        jLabelTel.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -999,13 +1021,26 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                         .addComponent(jLabelImage)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelBonjour)
-                            .addComponent(jButtonDeconnexion))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelMatricule, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelTel, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonDeconnexion)
+                                .addGap(22, 22, 22))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTabbedPane1))))
+                        .addComponent(jTabbedPane1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(107, 107, 107)
+                        .addComponent(jLabelBonjour)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1015,8 +1050,15 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelBonjour)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonDeconnexion)
-                        .addGap(17, 17, 17))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel20)
+                            .addComponent(jLabelTel)
+                            .addComponent(jButtonDeconnexion))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel22)
+                            .addComponent(jLabelMatricule))
+                        .addGap(13, 13, 13))
                     .addComponent(jLabelImage))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1061,8 +1103,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         if (this.jRadioButtonFicheSoins.isSelected()) {
             FicheDeSoins f = this.trouveFiche(model.getValueAt(row, 0).toString());
             remplirChampFeuilleDeSoins(f);
-        }
-        else if (!model.getValueAt(row, 0).equals("")) {
+        } else if (!model.getValueAt(row, 0).equals("")) {
             if (this.jRadioButtonMedecin.isSelected()) {
                 Medecin m = Medecin.trouveMedecin(model.getValueAt(row, 1).toString());
 
@@ -1333,7 +1374,9 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
@@ -1354,6 +1397,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelFiche;
     private javax.swing.JLabel jLabelINSEE;
     private javax.swing.JLabel jLabelImage;
+    private javax.swing.JLabel jLabelMatricule;
     private javax.swing.JLabel jLabelNomMedecin;
     private javax.swing.JLabel jLabelNomPatient;
     private javax.swing.JLabel jLabelPrenomMedecin;
@@ -1361,6 +1405,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelRPPS;
     private javax.swing.JLabel jLabelSpe;
     private javax.swing.JLabel jLabelSpecialite;
+    private javax.swing.JLabel jLabelTel;
     private javax.swing.JLabel jLabelTelephoneMed;
     private javax.swing.JLabel jLabelTotal;
     private javax.swing.JPanel jPanel1;
