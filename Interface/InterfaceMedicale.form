@@ -634,7 +634,7 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jTextFieldAnneeAM" max="32767" attributes="0"/>
+                                          <Component id="jTextFieldAnneeAM" pref="243" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="jComboBoxType" min="-2" pref="208" max="-2" attributes="0"/>
                                   </Group>
@@ -652,11 +652,9 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jTextFieldNomActe" pref="155" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldCoef" max="32767" attributes="0"/>
-                              </Group>
                               <Component id="jComboBoxMinAM" min="-2" pref="51" max="-2" attributes="0"/>
+                              <Component id="jTextFieldCoef" alignment="0" min="-2" pref="317" max="-2" attributes="0"/>
+                              <Component id="jTextFieldNomActe" alignment="0" min="-2" pref="317" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -1032,8 +1030,8 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel14" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -1044,44 +1042,37 @@
                                   <Component id="jLabel3" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButtonValiderCP" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldNumeroSS_CP" linkSize="1" alignment="1" min="-2" pref="433" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldAdresse" min="-2" pref="433" max="-2" attributes="0"/>
+                                  <Component id="PoidsCP" pref="737" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldTailleCP" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldPrenomCP" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldNumeroSS_CP" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldAdresse" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldNomCP" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="166" pref="166" max="-2" attributes="0"/>
-                              <Component id="jTextFieldNomCP" linkSize="1" min="-2" pref="220" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="166" pref="166" max="-2" attributes="0"/>
+                                  <Component id="jComboBoxJourNaissance" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jComboBoxMoisNaissance" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jTextField8" min="-2" pref="43" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jLabelErreurCP" alignment="1" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="166" pref="166" max="-2" attributes="0"/>
-                              <Component id="jComboBoxJourNaissance" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jComboBoxMoisNaissance" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField8" min="-2" pref="43" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="jButtonValiderCP" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="166" pref="166" max="-2" attributes="0"/>
-                              <Component id="jTextFieldPrenomCP" linkSize="1" min="-2" pref="220" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="166" pref="166" max="-2" attributes="0"/>
-                              <Component id="jTextFieldTailleCP" linkSize="1" min="-2" pref="220" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="166" pref="166" max="-2" attributes="0"/>
-                              <Component id="PoidsCP" linkSize="1" min="-2" pref="220" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jLabelErreurCP" alignment="1" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1131,9 +1122,9 @@
                       </Group>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="jLabelErreurCP" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButtonValiderCP" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="117" max="32767" attributes="0"/>
+                      <EmptySpace pref="129" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1172,7 +1163,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="11" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Poids :"/>
+                <Property name="text" type="java.lang.String" value="Poids (en kg) :"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
@@ -1180,7 +1171,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="11" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Taille : "/>
+                <Property name="text" type="java.lang.String" value="Taille (en m) : "/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="PoidsCP">

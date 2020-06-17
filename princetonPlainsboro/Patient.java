@@ -11,13 +11,13 @@ public class Patient {
     private double taille;
 
     public Patient(String prenom, String nom, String adresse, Date dateN, String secu, double poids, double taille) {
-        this.prenom = prenom ;
-        this.nom = nom ;
-        this.adresse = adresse ;
-        this.dateN = dateN ;
-        this.secu = secu ;
-        this.poids = poids ;
-        this.taille = taille ;
+        this.prenom = prenom;
+        this.nom = nom;
+        this.adresse = adresse;
+        this.dateN = dateN;
+        this.secu = secu;
+        this.poids = poids;
+        this.taille = taille;
     }
 
     public String toString() {
@@ -48,64 +48,70 @@ public class Patient {
     public static boolean verifierSecu(String nSecu) {
         boolean valide = true;
         int i = 0;
-        long cle = 97 - ((Long.parseLong(nSecu.substring(0, 13)) % 97));
-        while (valide == true && i <= 12) {
+        try {
+            long cle = 97 - ((Long.parseLong(nSecu.substring(0, 13)) % 97));
 
-            if (nSecu.length() != 15) {
-                valide = false;
+            while (valide == true && i <= 12) {
 
-            } else {
-                if (Integer.parseInt(nSecu.substring(0, 1)) == 1 || Integer.parseInt(nSecu.substring(0, 1)) == 2) {
-                    i++;
-                } else {
-                    valide = false;
-                }
-                if (Integer.parseInt(nSecu.substring(1, 3)) >= 0 && Integer.parseInt(nSecu.substring(1, 3)) < 100) {
-                    i++;
-                    i++;
-                } else {
-                    valide = false;
-                }
-                if (Integer.parseInt(nSecu.substring(3, 5)) > 0 && Integer.parseInt(nSecu.substring(3, 5)) < 13) {
-                    i++;
-                    i++;
-                } else {
+                if (nSecu.length() != 15) {
                     valide = false;
 
-                }
-                if (Integer.parseInt(nSecu.substring(5, 7)) > 0 && Integer.parseInt(nSecu.substring(5, 7)) < 99) {
-                    i++;
-                    i++;
                 } else {
-                    valide = false;
+                    if (Integer.parseInt(nSecu.substring(0, 1)) == 1 || Integer.parseInt(nSecu.substring(0, 1)) == 2) {
+                        i++;
+                    } else {
+                        valide = false;
+                    }
+                    if (Integer.parseInt(nSecu.substring(1, 3)) >= 0 && Integer.parseInt(nSecu.substring(1, 3)) < 100) {
+                        i++;
+                        i++;
+                    } else {
+                        valide = false;
+                    }
+                    if (Integer.parseInt(nSecu.substring(3, 5)) > 0 && Integer.parseInt(nSecu.substring(3, 5)) < 13) {
+                        i++;
+                        i++;
+                    } else {
+                        valide = false;
+
+                    }
+                    if (Integer.parseInt(nSecu.substring(5, 7)) > 0 && Integer.parseInt(nSecu.substring(5, 7)) < 99) {
+                        i++;
+                        i++;
+                    } else {
+                        valide = false;
+                    }
+
+                    if (Integer.parseInt(nSecu.substring(7, 10)) > 0 && Integer.parseInt(nSecu.substring(7, 10)) < 1000) {
+                        i++;
+                        i++;
+                        i++;
+
+                    } else {
+                        valide = false;
+
+                    }
+                    if (Integer.parseInt(nSecu.substring(10, 13)) > 0 && Integer.parseInt(nSecu.substring(10, 13)) < 1000) {
+                        i++;
+                        i++;
+                        i++;
+
+                    } else {
+                        valide = false;
+
+                    }
+                    if (Integer.parseInt(nSecu.substring(13, 15)) == cle) {
+                        i++;
+
+                    } else {
+                        valide = false;
+                    }
                 }
 
-                if (Integer.parseInt(nSecu.substring(7, 10)) > 0 && Integer.parseInt(nSecu.substring(7, 10)) < 1000) {
-                    i++;
-                    i++;
-                    i++;
-
-                } else {
-                    valide = false;
-
-                }
-                if (Integer.parseInt(nSecu.substring(10, 13)) > 0 && Integer.parseInt(nSecu.substring(10, 13)) < 1000) {
-                    i++;
-                    i++;
-                    i++;
-
-                } else {
-                    valide = false;
-
-                }
-                if (Integer.parseInt(nSecu.substring(13, 15)) == cle) {
-                    i++;
-
-                } else {
-                    valide = false;
-                }
             }
-            
+        } catch (Exception e) {
+            return false;
+
         }
         return valide;
     }
@@ -144,7 +150,7 @@ public class Patient {
 
     public String getSecu() {
         if (Patient.verifierSecu(secu) == true) {
-             return secu;
+            return secu;
         } else {
             return " numéro renseigné invalide !";
         }
@@ -169,11 +175,12 @@ public class Patient {
     public void setTaille(double taille) {
         this.taille = taille;
     }
-    
-    public String getTailleString(){
-        return this.taille+"";
+
+    public String getTailleString() {
+        return this.taille + "";
     }
-    public String getPoidsString(){
-        return this.poids+"";
+
+    public String getPoidsString() {
+        return this.poids + "";
     }
 }

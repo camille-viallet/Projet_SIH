@@ -119,7 +119,6 @@ public class LectureXML {
                             } else {
                                 medecinCourant = new Medecin(prenomCourant, nomCourant, RPPS, "hopital", telephone, specialite);
                             }
-                            System.out.println(medecinCourant);
                         }
                         if (parser.getLocalName().equals("medecinActe")) {
 

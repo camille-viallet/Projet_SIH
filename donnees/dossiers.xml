@@ -64,7 +64,7 @@
             <dateActe>2006-01-08</dateActe>
             <comm>RAS</comm>
         </acte>
-    <acte><code>CSC</code><coef>5</coef><type>DIAG</type><dateActe>2020-6-17</dateActe><acte>RAS</acte><medecinActe><nom>HOUSE</nom><prenom>Gregory</prenom><specialite>CARDIOLOGIE</specialite><telephone>0619283746</telephone><rpps>123456789012</rpps></medecinActe></acte></ficheDeSoins>
+   </ficheDeSoins>
   
     <ficheDeSoins>
         <date>2005-10-23</date>
@@ -132,7 +132,7 @@
             <prenom>Maggy</prenom>
             <adresse>24 route des mimosas 74 000 ANNECY</adresse>
             <dateN>1989-01-27</dateN>
-            <secu>276089241824696</secu>
+            <secu>292113206865065</secu>
             <poids>54</poids>
             <taille>1.62</taille>
         </patient>
@@ -168,7 +168,7 @@
             <prenom>Maggy</prenom>
             <adresse>24 route des mimosas 74 000 ANNECY</adresse>
             <dateN>1989-01-27</dateN>
-            <secu>276089241824696</secu>
+            <secu>292113206865065</secu>
             <poids>54</poids>
             <taille>1.62</taille>
         </patient>
@@ -191,7 +191,7 @@
 
     <ficheDeSoins>
         <date>2008-03-31</date>
-		<numero>6</numero>
+		<numero>5</numero>
         <medecin>
             <nom>CHASE</nom>
             <prenom>Robert</prenom>
@@ -204,7 +204,7 @@
             <prenom>Fanie</prenom>
             <adresse>35 avenue de la fontaine 33 000 BORDEAUX</adresse>
             <dateN>1998-01-31</dateN>
-            <secu>298012512598531</secu>
+            <secu>282058087539837</secu>
             <poids>60</poids>
             <taille>1.44</taille>
         </patient>
@@ -242,7 +242,7 @@
     
     <ficheDeSoins>
         <date>2005-08-31</date>
-		<numero>7</numero>
+		<numero>6</numero>
         <medecin>
             <nom>TUCKNER</nom>
             <prenom>Lawrence</prenom>
@@ -255,7 +255,7 @@
             <prenom>Melusine</prenom>
             <adresse>25 chemin du moulin</adresse>
             <dateN>1970-05-31</dateN>
-            <secu>270056912478536</secu>
+            <secu>272111949232955</secu>
             <poids>62</poids>
             <taille>1.60</taille>
         </patient>

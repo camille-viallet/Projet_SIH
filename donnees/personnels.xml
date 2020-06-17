@@ -1,8 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-
-
-<personnels>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><personnels>
     <medecin>
         <nom>HOUSE</nom>
         <prenom>Gregory</prenom>
@@ -78,4 +74,4 @@
         <matricule>567483</matricule>
         <mdp>melon11</mdp>
     </secretaireAdm>
-</personnels>
+<secretaireMed><nom>COULOMBE</nom><prenom>Michel</prenom><telephone>01.98.67.89.63</telephone><matricule>158469865</matricule><mdp>jaimelacompta</mdp></secretaireMed></personnels>
