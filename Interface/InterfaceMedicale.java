@@ -821,7 +821,6 @@ public class InterfaceMedicale extends javax.swing.JFrame {
     private void jListPatientsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListPatientsMouseClicked
         int index = this.jListPatients.getSelectedIndex();
         patient = this.listePatient.get(index);
-        System.out.println(index);
         this.miseAJourAffichage();
     }//GEN-LAST:event_jListPatientsMouseClicked
 
@@ -883,7 +882,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                 commentaire = this.jTextAreaCommentaireAM.getText();
             }
             Acte acte = new Acte(Code.valueOf(code), coef, this.jTextFieldNomActe.getText(), medecinChoisi, date, type, commentaire);
-            System.out.println(acte);
+            
             //Ajoute l'acte à la derniére fiche ou en créer ue nouvelle
             dm.trierDecroissant(new ComparaisonFichesDates());
             if (this.jCheckBoxNouvelleFiche.isSelected()) {

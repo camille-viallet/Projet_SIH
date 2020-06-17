@@ -40,8 +40,9 @@ public class ModificationXMLDossiers {
             // Récupérer l'élément racine
             Node dossiers = doc.getFirstChild();
             // Récupérer l'élément employee
-            Node fiche = doc.getElementsByTagName("ficheDeSoins").item(this.getnumeroFiche(f) - 1);
+            Node fiche = doc.getElementsByTagName("ficheDeSoins").item(this.getnumeroFiche(f)-1);
             // Ajouter un nouveau nœud
+            
             fiche.appendChild(this.createBaliseActe(a));
             // écrire le contenu dans un fichier xml
             TransformerFactory tf = TransformerFactory.newInstance();
@@ -139,20 +140,22 @@ public class ModificationXMLDossiers {
         Element type = doc.createElement("type");
         Element date = doc.createElement("dateActe");
         Element comm = doc.createElement("acte");
+        
         code.appendChild(doc.createTextNode(a.getCode().name()));
         nom.appendChild(doc.createTextNode(a.getNomActe()));
         coef.appendChild(doc.createTextNode(a.getCoefString()));
         type.appendChild(doc.createTextNode(a.getType().name()));
         date.appendChild(doc.createTextNode(a.getDate().toStringXML()));
         comm.appendChild(doc.createTextNode(a.getComm()));
+        
         acte.appendChild(code);
+        acte.appendChild(nom);
         acte.appendChild(coef);
         acte.appendChild(type);
         acte.appendChild(date);
         acte.appendChild(comm);
         acte.appendChild(this.createBaliseMedecin(a.getMed(), true));
-        System.out.println("acte");
-
+        
         return acte;
 
     }
@@ -182,7 +185,6 @@ public class ModificationXMLDossiers {
         boolean ok = false;
 
         for (int i = 0; i < nbRacineNoeuds; i++) {
-            System.out.println("for");
             if (racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
                 final Element fiche = (Element) racineNoeuds.item(i);
                 final Element numero = (Element) fiche.getElementsByTagName("numero").item(0);
@@ -193,7 +195,7 @@ public class ModificationXMLDossiers {
                 }
             }
         }
-        System.out.println(num);
+        System.out.println("Numero fiche :" +num);
         return num;
     }
 }
