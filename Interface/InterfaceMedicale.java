@@ -894,7 +894,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
             dm = lectureXML.getDossier();
 
             //Indique que la création est effectuée
-            this.jLabelErreurAM.setText("Créé avec succés");
+            this.jLabelErreurAM.setText("Créé avec succès !");
             this.jLabelErreurAM.setForeground(Color.GREEN);
             this.jLabelErreurAM.setVisible(true);
             réinitialiseChampActe();
