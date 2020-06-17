@@ -1058,7 +1058,11 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         int column = source.columnAtPoint(evt.getPoint());
 
         DefaultTableModel model = (DefaultTableModel) this.jTable.getModel();
-        if (!model.getValueAt(row, 0).equals("")) {
+        if (this.jRadioButtonFicheSoins.isSelected()) {
+            FicheDeSoins f = this.trouveFiche(model.getValueAt(row, 0).toString());
+            remplirChampFeuilleDeSoins(f);
+        }
+        else if (!model.getValueAt(row, 0).equals("")) {
             if (this.jRadioButtonMedecin.isSelected()) {
                 Medecin m = Medecin.trouveMedecin(model.getValueAt(row, 1).toString());
 
@@ -1182,9 +1186,6 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         } else if (model.getValueAt(row, 1).equals("Fiche de soins") && this.jRadioButtonSpecialite.isSelected()) {
 
             FicheDeSoins f = this.trouveFiche(model.getValueAt(row, 2).toString());
-            remplirChampFeuilleDeSoins(f);
-        } else if (this.jRadioButtonFicheSoins.isSelected()) {
-            FicheDeSoins f = this.trouveFiche(model.getValueAt(row, 0).toString());
             remplirChampFeuilleDeSoins(f);
         }
 
