@@ -31,7 +31,7 @@
 				<rpps>123456789012</rpps>
             </medecinActe>
             <type>DIAG</type>
-            <dateActe>2006-01-06</dateActe>
+            <dateActe>2006-01-06_15h30</dateActe>
             <comm>RAS</comm>
         </acte>
         <acte>
@@ -46,7 +46,7 @@
 				<rpps>123456789015</rpps>
             </medecinActe>
             <type>THERA</type>
-            <dateActe>2006-01-07</dateActe>
+            <dateActe>2006-01-07_18h20</dateActe>
             <comm>Besoin d'une intervention urgente !</comm>
         </acte>
         <acte>
@@ -61,7 +61,7 @@
 				<rpps>123456789015</rpps>
             </medecinActe>
             <type>THERA</type>
-            <dateActe>2006-01-08</dateActe>
+            <dateActe>2006-01-08_14h13</dateActe>
             <comm>RAS</comm>
         </acte>
    </ficheDeSoins>
@@ -97,7 +97,7 @@
 				<rpps>123456789016</rpps>
             </medecinActe>
             <type>DIAG</type>
-            <dateActe>2005-10-23</dateActe>
+            <dateActe>2005-10-23_8h22</dateActe>
             <comm>RAS</comm>
         </acte>
         <acte>
@@ -112,7 +112,7 @@
 				<rpps>123456789012</rpps>
             </medecinActe>
             <type>THERA</type>
-            <dateActe>2005-10-25</dateActe>
+            <dateActe>2005-10-25_9h35</dateActe>
             <comm>OK</comm>
         </acte>
 		</ficheDeSoins>
@@ -148,7 +148,7 @@
 				<rpps>123456789016</rpps>
             </medecinActe>
             <type>THERA</type>
-            <dateActe>2018-01-03</dateActe>
+            <dateActe>2018-01-03_15h16</dateActe>
             <comm>RAS</comm>
         </acte>
     </ficheDeSoins>
@@ -184,7 +184,7 @@
 				<rpps>123456789013</rpps>
             </medecinActe>
             <type>DIAG</type>
-            <dateActe>2019-11-13</dateActe>
+            <dateActe>2019-11-13_23h52</dateActe>
             <comm>HYPERTENSION</comm>
         </acte>
     </ficheDeSoins>
@@ -220,7 +220,7 @@
 				<rpps>123456789014</rpps>
             </medecinActe>
             <type>DIAG</type>
-            <dateActe>2008-03-31</dateActe>
+            <dateActe>2008-03-31_16h56</dateActe>
             <comm>BONNE CROISSANCE</comm>
         </acte>
         <acte>
@@ -235,7 +235,7 @@
 				<rpps>123456789014</rpps>
             </medecinActe>
             <type>DIAG</type>
-            <dateActe>2008-03-31</dateActe>
+            <dateActe>2008-03-31_18h39</dateActe>
             <comm>RAS</comm>
         </acte>
     </ficheDeSoins>
@@ -271,7 +271,7 @@
 				<rpps>123456789013</rpps>
             </medecinActe>
             <type>DIAG</type>
-            <dateActe>2005-08-31</dateActe>
+            <dateActe>2005-08-31_15h45</dateActe>
             <comm>RAS</comm>
         </acte>
         <acte>
@@ -286,7 +286,7 @@
 				<rpps>123456789013</rpps>
             </medecinActe>
             <type>DIAG</type>
-            <dateActe>2005-08-31</dateActe>
+            <dateActe>2005-08-31_12h12</dateActe>
             <comm>RAS</comm>
         </acte>
         <acte>
@@ -301,7 +301,7 @@
 				<rpps>123456789013</rpps>
             </medecinActe>
             <type>DIAG</type>
-            <dateActe>2005-08-31</dateActe>
+            <dateActe>2005-08-31_22h30</dateActe>
             <comm>RAS</comm>
         </acte>
         <acte>
@@ -316,7 +316,7 @@
 				<rpps>123456789013</rpps>
             </medecinActe>
             <type>DIAG</type>
-            <dateActe>2005-08-31</dateActe>
+            <dateActe>2005-08-31_16h28</dateActe>
             <comm>HYPOTENSION</comm>
         </acte>
         <acte>
@@ -331,7 +331,7 @@
 				<rpps>123456789015</rpps>
             </medecinActe>
             <type>DIAG</type>
-            <dateActe>2005-08-31</dateActe>
+            <dateActe>2005-08-31_17h30</dateActe>
             <comm>RAS</comm>
         </acte>
         <acte>
@@ -346,8 +346,8 @@
 				<rpps>123456789015</rpps>
             </medecinActe>
             <type>DIAG</type>
-            <dateActe>2005-09-02</dateActe>
+            <dateActe>2005-09-02_22h45</dateActe>
             <comm>RAS</comm>
         </acte>
     </ficheDeSoins>
-<ficheDeSoins><date>2020-1-1</date><numero>7</numero><medecin><nom>HOUSE</nom><prenom>Gregory</prenom><specialite>CARDIOLOGIE</specialite><telephone>0619283746</telephone><rpps>123456789012</rpps></medecin><patient><nom>Track</nom><prenom>Pat</prenom><adresse>2 rue du chemin 59 000 LILLE </adresse><dateN>1976-9-14</dateN><secu>192011300135260</secu><poids>83.6</poids><taille>1.82</taille></patient><acte><code>CSC</code><nomActe>Bilan complet</nomActe><coef>5</coef><type>DIAG</type><dateActe>2020-1-1</dateActe><comm>RAS</comm><medecinActe><nom>HOUSE</nom><prenom>Gregory</prenom><specialite>CARDIOLOGIE</specialite><telephone>0619283746</telephone><rpps>123456789012</rpps></medecinActe></acte><acte><code>CSC</code><nomActe>ECG</nomActe><coef>9</coef><type>DIAG</type><dateActe>2020-6-17</dateActe><comm>Faire des examens complémentaires</comm><medecinActe><nom>HOUSE</nom><prenom>Gregory</prenom><specialite>CARDIOLOGIE</specialite><telephone>0619283746</telephone><rpps>123456789012</rpps></medecinActe></acte></ficheDeSoins><ficheDeSoins><date>2020-6-17</date><numero>8</numero><medecin><nom>HOUSE</nom><prenom>Gregory</prenom><specialite>CARDIOLOGIE</specialite><telephone>0619283746</telephone><rpps>123456789012</rpps></medecin><patient><nom>OUELLET</nom><prenom>Arienne</prenom><adresse>99, rue Beauvau 13002 MARSEILLE</adresse><dateN>2020-2-25</dateN><secu>266027169542683</secu><poids>96.4</poids><taille>1.7</taille></patient><acte><code>CS</code><nomActe>Bilan complet</nomActe><coef>6</coef><type>DIAG</type><dateActe>2020-6-17</dateActe><comm>Examen complémentaires et IRM a effectuer pour le 12/02</comm><medecinActe><nom>HOUSE</nom><prenom>Gregory</prenom><specialite>CARDIOLOGIE</specialite><telephone>0619283746</telephone><rpps>123456789012</rpps></medecinActe></acte></ficheDeSoins><ficheDeSoins><date>2020-6-17</date><numero>9</numero><medecin><nom>HOUSE</nom><prenom>Gregory</prenom><specialite>CARDIOLOGIE</specialite><telephone>0619283746</telephone><rpps>123456789012</rpps></medecin><patient><nom>LABOSSIERE</nom><prenom>Melodie</prenom><adresse>57, rue des six frères Ruellan 44230 SAINT-SÉBASTIEN-SUR-LOIRE</adresse><dateN>2020-2-9</dateN><secu>288025230637287</secu><poids>81.7</poids><taille>1.65</taille></patient><acte><code>CSC</code><nomActe>Suivi général</nomActe><coef>3</coef><type>THERA</type><dateActe>2020-6-17</dateActe><comm>RAS</comm><medecinActe><nom>HOUSE</nom><prenom>Gregory</prenom><specialite>CARDIOLOGIE</specialite><telephone>0619283746</telephone><rpps>123456789012</rpps></medecinActe></acte><acte><code>KE</code><nomActe>Consultation échographie</nomActe><coef>5</coef><type>DIAG</type><dateActe>2020-1-1</dateActe><comm>Bébé en bonne santé</comm><medecinActe><nom>TUCKNER</nom><prenom>Lawrence</prenom><specialite>GYNECOLOGIE</specialite><telephone>0621638164</telephone><rpps>123456789013</rpps></medecinActe></acte></ficheDeSoins><ficheDeSoins><date>2020-6-17</date><numero>10</numero><medecin><nom>CUDDY</nom><prenom>Lysa</prenom><specialite>RADIOLOGIE</specialite><telephone>0619284567</telephone><rpps>123456789016</rpps></medecin><patient><nom>DOUCET</nom><prenom>Carolos</prenom><adresse>52, rue des Soeurs 78170 LA CELLE-SAINT-CLOUD</adresse><dateN>2020-1-1</dateN><secu>187067092663807</secu><poids>76.6</poids><taille>1.76</taille></patient><acte><code>CS</code><nomActe>Radio du bras</nomActe><coef>4</coef><type>DIAG</type><dateActe>2020-6-17</dateActe><comm>bras cassé : porter un platre 2 semaines puis atelle</comm><medecinActe><nom>CUDDY</nom><prenom>Lysa</prenom><specialite>RADIOLOGIE</specialite><telephone>0619284567</telephone><rpps>123456789016</rpps></medecinActe></acte></ficheDeSoins></dossiers>
+<ficheDeSoins><date>2020-1-1</date><numero>7</numero><medecin><nom>HOUSE</nom><prenom>Gregory</prenom><specialite>CARDIOLOGIE</specialite><telephone>0619283746</telephone><rpps>123456789012</rpps></medecin><patient><nom>Track</nom><prenom>Pat</prenom><adresse>2 rue du chemin 59 000 LILLE </adresse><dateN>1976-9-14</dateN><secu>192011300135260</secu><poids>83.6</poids><taille>1.82</taille></patient><acte><code>CSC</code><nomActe>Bilan complet</nomActe><coef>5</coef><type>DIAG</type><dateActe>2020-1-1_16h32</dateActe><comm>RAS</comm><medecinActe><nom>HOUSE</nom><prenom>Gregory</prenom><specialite>CARDIOLOGIE</specialite><telephone>0619283746</telephone><rpps>123456789012</rpps></medecinActe></acte><acte><code>CSC</code><nomActe>ECG</nomActe><coef>9</coef><type>DIAG</type><dateActe>2020-6-17_14h26</dateActe><comm>Faire des examens complémentaires</comm><medecinActe><nom>HOUSE</nom><prenom>Gregory</prenom><specialite>CARDIOLOGIE</specialite><telephone>0619283746</telephone><rpps>123456789012</rpps></medecinActe></acte></ficheDeSoins><ficheDeSoins><date>2020-6-17</date><numero>8</numero><medecin><nom>HOUSE</nom><prenom>Gregory</prenom><specialite>CARDIOLOGIE</specialite><telephone>0619283746</telephone><rpps>123456789012</rpps></medecin><patient><nom>OUELLET</nom><prenom>Arienne</prenom><adresse>99, rue Beauvau 13002 MARSEILLE</adresse><dateN>2020-2-25</dateN><secu>266027169542683</secu><poids>96.4</poids><taille>1.7</taille></patient><acte><code>CS</code><nomActe>Bilan complet</nomActe><coef>6</coef><type>DIAG</type><dateActe>2020-6-17_10h12</dateActe><comm>Examen complémentaires et IRM a effectuer pour le 12/02</comm><medecinActe><nom>HOUSE</nom><prenom>Gregory</prenom><specialite>CARDIOLOGIE</specialite><telephone>0619283746</telephone><rpps>123456789012</rpps></medecinActe></acte></ficheDeSoins><ficheDeSoins><date>2020-6-17</date><numero>9</numero><medecin><nom>HOUSE</nom><prenom>Gregory</prenom><specialite>CARDIOLOGIE</specialite><telephone>0619283746</telephone><rpps>123456789012</rpps></medecin><patient><nom>LABOSSIERE</nom><prenom>Melodie</prenom><adresse>57, rue des six frères Ruellan 44230 SAINT-SÉBASTIEN-SUR-LOIRE</adresse><dateN>2020-2-9</dateN><secu>288025230637287</secu><poids>81.7</poids><taille>1.65</taille></patient><acte><code>CSC</code><nomActe>Suivi général</nomActe><coef>3</coef><type>THERA</type><dateActe>2020-6-17_22h56</dateActe><comm>RAS</comm><medecinActe><nom>HOUSE</nom><prenom>Gregory</prenom><specialite>CARDIOLOGIE</specialite><telephone>0619283746</telephone><rpps>123456789012</rpps></medecinActe></acte><acte><code>KE</code><nomActe>Consultation échographie</nomActe><coef>5</coef><type>DIAG</type><dateActe>2020-1-1_05h59</dateActe><comm>Bébé en bonne santé</comm><medecinActe><nom>TUCKNER</nom><prenom>Lawrence</prenom><specialite>GYNECOLOGIE</specialite><telephone>0621638164</telephone><rpps>123456789013</rpps></medecinActe></acte></ficheDeSoins><ficheDeSoins><date>2020-6-17</date><numero>10</numero><medecin><nom>CUDDY</nom><prenom>Lysa</prenom><specialite>RADIOLOGIE</specialite><telephone>0619284567</telephone><rpps>123456789016</rpps></medecin><patient><nom>DOUCET</nom><prenom>Carolos</prenom><adresse>52, rue des Soeurs 78170 LA CELLE-SAINT-CLOUD</adresse><dateN>2020-1-1</dateN><secu>187067092663807</secu><poids>76.6</poids><taille>1.76</taille></patient><acte><code>CS</code><nomActe>Radio du bras</nomActe><coef>4</coef><type>DIAG</type><dateActe>2020-6-17_14h45</dateActe><comm>bras cassé : porter un platre 2 semaines puis atelle</comm><medecinActe><nom>CUDDY</nom><prenom>Lysa</prenom><specialite>RADIOLOGIE</specialite><telephone>0619284567</telephone><rpps>123456789016</rpps></medecinActe></acte></ficheDeSoins></dossiers>

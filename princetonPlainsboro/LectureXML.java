@@ -57,7 +57,7 @@ public class LectureXML {
         Date dateN = null;
         Date dateActe = null;
         Type type = null;
-        String comm ="";
+        String comm = "";
 
         // analyser le fichier par StAX
         try {
@@ -76,7 +76,6 @@ public class LectureXML {
                         }
                         break;
                     case XMLStreamConstants.END_ELEMENT:
-                       
 
                         if (parser.getLocalName().equals("code")) {
                             codeCourant = getCode(donneesCourantes);
@@ -106,10 +105,11 @@ public class LectureXML {
                         if (parser.getLocalName().equals("dateActe")) {
                             int annee = Integer.parseInt(donneesCourantes.substring(0, donneesCourantes.indexOf('-')));
                             int mois = Integer.parseInt(donneesCourantes.substring(donneesCourantes.indexOf('-') + 1, donneesCourantes.lastIndexOf('-')));
-                            int jour = Integer.parseInt(donneesCourantes.substring(donneesCourantes.lastIndexOf('-') + 1, donneesCourantes.length()));
-
+                            int jour = Integer.parseInt(donneesCourantes.substring(donneesCourantes.lastIndexOf('-') + 1, donneesCourantes.lastIndexOf('_')));
+                            int heure = Integer.parseInt(donneesCourantes.substring(donneesCourantes.lastIndexOf('_') + 1, donneesCourantes.lastIndexOf('h')));
+                            int minutes = Integer.parseInt(donneesCourantes.substring(donneesCourantes.lastIndexOf('h') + 1, donneesCourantes.length()));
                             //A CHANGER
-                            dateActe = new Date(jour, mois, annee, 0, 0);
+                            dateActe = new Date(jour, mois, annee, heure, minutes);
                         }
 
                         if (parser.getLocalName().equals("medecin")) {

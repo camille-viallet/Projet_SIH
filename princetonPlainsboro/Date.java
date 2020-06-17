@@ -16,6 +16,12 @@ public class Date implements Comparable {
         this.heure = heure;
         this.minute = minute;
     }
+    public String getHeure(){
+        return heure+"";
+    }
+    public String getMinutes(){
+        return minute+"";
+    }
 
     public String toString() {
         if (verifierDate() == true) {
@@ -27,7 +33,7 @@ public class Date implements Comparable {
 
     public String toStringXML() {
 
-        return annee + "-" + mois + "-" + jour;
+        return annee + "-" + mois + "-" + jour+"_"+heure+"h"+minute;
 
     }
 
