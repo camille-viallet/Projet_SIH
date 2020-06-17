@@ -1,7 +1,5 @@
 package princetonPlainsboro;
 
-import java.text.DateFormat;
-import java.util.Locale;
 
 public class Date implements Comparable {
 
@@ -10,7 +8,7 @@ public class Date implements Comparable {
     private int annee;
     private int heure;
     private int minute;
-
+    
     public Date(int jour, int mois, int annee, int heure, int minute) {
         this.jour = jour;
         this.mois = mois;
@@ -33,14 +31,27 @@ public class Date implements Comparable {
 
     }
 
+
     public String toStringDate() {
-        if (verifierDate() == true) {
-            return jour + "/" + mois + "/" + annee;
+        if (verifierDate()) {
+            return jour + "/" + mois + "/" + annee ;
         } else {
             return "La date rentrée n'est pas valide. Veuillez réessayer.";
         }
     }
 
+    public void verifBissextile() {
+        if (annee  % 4 == 0 && annee % 100 != 0) {
+            System.out.println(annee + " est une année bissextile.");
+        }
+        else if ( annee %  400 == 0) {
+            System.out.println(annee + " est une année bissextile.");
+        }
+        else {
+            System.out.println(annee + " n est pas une année bissextile.");
+        }
+    }
+    
     public boolean equals(Object o) {
         if (o instanceof Date) {
             Date d = (Date) o;

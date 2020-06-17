@@ -15,12 +15,14 @@ class Test {
         /*
          System.out.println("\n********\n");
         Date d1 = new Date(1, 11, 1910, 13, 56);
-        Date d2 = new Date(5, 1, 2020, 9, 32);
+        
+       Date d2 = new Date(5, 1, 2020, 9, 32);
        //  dm.fichesTriees2Dates(d1,d2);
         System.out.println("\n********\n");
-        
-        ComparaisonFichesCouts coutc = new ComparaisonFichesCouts();  // j'arrive même pas à les trier par côut avec la méthode déjà utilisée :/
-        dm.trier(coutc) ;
+        d2.verifBissextile();
+        d1.verifBissextile();
+//        ComparaisonFichesCouts coutc = new ComparaisonFichesCouts();  // j'arrive même pas à les trier par côut avec la méthode déjà utilisée :/
+//         dm.trier(coutc) ;
          System.out.println("\n********\n");
       //   ComparaisonFichesDates 2dates = new ComparaisonFichesDates(); 
          
