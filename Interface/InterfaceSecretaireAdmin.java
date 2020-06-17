@@ -224,7 +224,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         });
 
         buttonGroup2.add(jRadioButtonSpecialite);
-        jRadioButtonSpecialite.setText("Spécialié");
+        jRadioButtonSpecialite.setText("Spécialité");
         jRadioButtonSpecialite.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonSpecialiteActionPerformed(evt);
@@ -517,7 +517,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                                 .addComponent(jCheckBoxEntre2Dates)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabelErreurDate, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 122, Short.MAX_VALUE))
+                                .addGap(0, 110, Short.MAX_VALUE))
                             .addComponent(jSeparator1))))
                 .addContainerGap())
         );
@@ -1300,7 +1300,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
             viderChampPersonnel();
             this.jLabelErreurEmploye.setVisible(true);
             this.jLabelErreurEmploye.setBackground(Color.green);
-            this.jLabelErreurEmploye.setText("Crée avec succés");
+            this.jLabelErreurEmploye.setText("Créé avec succès !");
         }
     }//GEN-LAST:event_jButtonValiderCreationActionPerformed
 
