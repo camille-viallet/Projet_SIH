@@ -33,7 +33,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
     Personnel personnel;
     DossierMedical dm;
     Patient patient;
-    Vector<Patient> listePatient ;
+    Vector<Patient> listePatient;
     ModificationXMLDossiers modifXML;
     LectureXML lectureXML;
 
@@ -819,8 +819,14 @@ public class InterfaceMedicale extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jListPatientsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListPatientsMouseClicked
-        int index = this.jListPatients.getSelectedIndex();
-        patient = this.listePatient.get(index);
+        int index = 0;
+        index = this.jListPatients.getSelectedIndex();
+        if (this.jRadioButtonAllPatients.isSelected()) {
+            
+            patient = dm.getListeTousPatients().get(index);
+        } else {
+            patient = dm.getListePatients((Medecin) personnel).get(index);
+        }
         this.miseAJourAffichage();
     }//GEN-LAST:event_jListPatientsMouseClicked
 
@@ -860,10 +866,9 @@ public class InterfaceMedicale extends javax.swing.JFrame {
             //Cherche le medecin correspondant à la sélection
             int index = this.jComboBoxMedecin.getSelectedIndex();
             Medecin medecinChoisi = null;
-            if(this.personnel.getMetier() == MetierCHU.MEDECIN){
+            if (this.personnel.getMetier() == MetierCHU.MEDECIN) {
                 medecinChoisi = (Medecin) personnel;
-            }
-            else{
+            } else {
                 medecinChoisi = dm.getListeMedecins().get(index);
             }
 
@@ -882,20 +887,20 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                 commentaire = this.jTextAreaCommentaireAM.getText();
             }
             Acte acte = new Acte(Code.valueOf(code), coef, this.jTextFieldNomActe.getText(), medecinChoisi, date, type, commentaire);
-            
+
             //Ajoute l'acte à la derniére fiche ou en créer ue nouvelle
             dm.trierDecroissant(new ComparaisonFichesDates());
+            FicheDeSoins fiche = null;
             if (this.jCheckBoxNouvelleFiche.isSelected()) {
-                
-                FicheDeSoins fiche = new FicheDeSoins(patient, medecinChoisi, date, dm.dernierNumeroFiche()+1);
-                fiche.ajouterActe(acte);
+
+                fiche = new FicheDeSoins(patient, medecinChoisi, date, dm.dernierNumeroFiche() + 1);
+                // fiche.ajouterActe(acte);
                 modifXML.nouvelleFicheDeSoins(fiche);
-                modifXML.ajouterActeDansFicheDeSoins(fiche, acte);
             } else {
-                
-                modifXML.ajouterActeDansFicheDeSoins(dm.getFichesDeSoinsPatient(patient).get(0), acte);
+                fiche = dm.getFichesDeSoinsPatient(patient).get(0);
             }
-             dm = lectureXML.getDossier();
+            modifXML.ajouterActeDansFicheDeSoins(fiche, acte);
+            dm = lectureXML.getDossier();
 
             //Indique que la création est effectuée
             this.jLabelErreurAM.setText("Créé avec succés");
@@ -932,7 +937,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                     Integer.parseInt(this.jComboBoxMoisNaissance.getSelectedItem().toString()),
                     Integer.parseInt(this.jTextFieldAnneeAM.getText()),
                     0, 0);
-            
+
             Patient p = new Patient(this.jTextFieldPrenomCP.getText(),
                     this.jTextFieldNomCP.getText(),
                     this.jTextFieldAdresse.getText(),
@@ -941,7 +946,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                     Double.parseDouble(this.PoidsCP.getText()),
                     Double.parseDouble(this.jTextFieldTailleCP.getText()));
             this.jRadioButtonAllPatients.setSelected(true);
-            
+
             listePatient.add(p);
             this.jListPatients.setListData(listePatient);
 
@@ -972,7 +977,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
     private void jButtonDeconnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeconnexionActionPerformed
         this.dispose();
         new connexion().setVisible(true);
-                                          
+
     }//GEN-LAST:event_jButtonDeconnexionActionPerformed
 
 
@@ -1111,6 +1116,5 @@ public class InterfaceMedicale extends javax.swing.JFrame {
         this.jComboBoxJourNaissance.setSelectedIndex(0);
         this.jComboBoxMoisNaissance.setSelectedIndex(0);
     }
-    
-    
+
 }

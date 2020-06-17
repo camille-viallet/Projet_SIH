@@ -35,14 +35,14 @@ public class ModificationXMLDossiers {
     }
 
     public void ajouterActeDansFicheDeSoins(FicheDeSoins f, Acte a) {
+        System.out.println("new acte");
         try {
 
             // Récupérer l'élément racine
             Node dossiers = doc.getFirstChild();
-            // Récupérer l'élément employee
-            Node fiche = doc.getElementsByTagName("ficheDeSoins").item(this.getnumeroFiche(f)-1);
-            // Ajouter un nouveau nœud
-            
+
+            Node fiche = doc.getElementsByTagName("ficheDeSoins").item(f.getNumero() - 1);
+
             fiche.appendChild(this.createBaliseActe(a));
             // écrire le contenu dans un fichier xml
             TransformerFactory tf = TransformerFactory.newInstance();
@@ -57,13 +57,11 @@ public class ModificationXMLDossiers {
     }
 
     public void nouvelleFicheDeSoins(FicheDeSoins f) {
+        System.out.println("new fiche de soin ");
         try {
 
             // Récupérer l'élément racine
             Node dossiers = doc.getFirstChild();
-            // Récupérer l'élément employee
-
-            // Ajouter un nouveau nœud
             dossiers.appendChild(this.createBaliseFiche(f));
 
             // écrire le contenu dans un fichier xml
@@ -90,11 +88,13 @@ public class ModificationXMLDossiers {
         Element spe = doc.createElement("specialite");
         Element telephone = doc.createElement("telephone");
         Element rpps = doc.createElement("rpps");
+        
         nom.appendChild(doc.createTextNode(m.getNom()));
         prenom.appendChild(doc.createTextNode(m.getPrenom()));
         spe.appendChild(doc.createTextNode(m.getSpecialite().toString()));
         telephone.appendChild(doc.createTextNode(m.getTelephone()));
         rpps.appendChild(doc.createTextNode(m.getUsername()));
+        
         medecin.appendChild(nom);
         medecin.appendChild(prenom);
         medecin.appendChild(spe);
@@ -133,21 +133,22 @@ public class ModificationXMLDossiers {
     }
 
     private Element createBaliseActe(Acte a) {
+        System.out.println("acte");
         Element acte = doc.createElement("acte");
         Element code = doc.createElement("code");
         Element coef = doc.createElement("coef");
         Element nom = doc.createElement("nomActe");
         Element type = doc.createElement("type");
         Element date = doc.createElement("dateActe");
-        Element comm = doc.createElement("acte");
-        
+        Element comm = doc.createElement("comm");
+
         code.appendChild(doc.createTextNode(a.getCode().name()));
         nom.appendChild(doc.createTextNode(a.getNomActe()));
         coef.appendChild(doc.createTextNode(a.getCoefString()));
         type.appendChild(doc.createTextNode(a.getType().name()));
         date.appendChild(doc.createTextNode(a.getDate().toStringXML()));
         comm.appendChild(doc.createTextNode(a.getComm()));
-        
+
         acte.appendChild(code);
         acte.appendChild(nom);
         acte.appendChild(coef);
@@ -155,7 +156,7 @@ public class ModificationXMLDossiers {
         acte.appendChild(date);
         acte.appendChild(comm);
         acte.appendChild(this.createBaliseMedecin(a.getMed(), true));
-        
+
         return acte;
 
     }
@@ -167,7 +168,6 @@ public class ModificationXMLDossiers {
 
         date.appendChild(doc.createTextNode(f.getDate().toStringXML()));
         numero.appendChild(doc.createTextNode(f.getNumeroString()));
-
         fiche.appendChild(date);
         fiche.appendChild(numero);
         fiche.appendChild(this.createBaliseMedecin(f.getMedecin(), false));
@@ -177,25 +177,5 @@ public class ModificationXMLDossiers {
 
     }
 
-    private int getnumeroFiche(FicheDeSoins f) {
-        int num = 0;
-        final Element racine = doc.getDocumentElement();
-        final NodeList racineNoeuds = racine.getChildNodes();
-        final int nbRacineNoeuds = racineNoeuds.getLength();
-        boolean ok = false;
-
-        for (int i = 0; i < nbRacineNoeuds; i++) {
-            if (racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
-                final Element fiche = (Element) racineNoeuds.item(i);
-                final Element numero = (Element) fiche.getElementsByTagName("numero").item(0);
-                String numeroFiche = numero.getTextContent();
-                if (numeroFiche.equals(f.getNumeroString())) {
-                    num = i;
-                    ok = true;
-                }
-            }
-        }
-        System.out.println("Numero fiche :" +num);
-        return num;
-    }
+    
 }

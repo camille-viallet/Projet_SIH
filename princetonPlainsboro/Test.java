@@ -7,11 +7,7 @@ class Test {
         DossierMedical dm = test.getDossier();
         ModificationXMLDossiers e = new ModificationXMLDossiers();
         
-        FicheDeSoins f= dm.getFicheDeSoins().get(0);
-        Acte a = new Acte(Code.C, 10, "Test", dm.getListeMedecins().get(0),new Date(10,01,2000,12,22), Type.THERA, "comm");
-        System.out.println("ok c'est bon 1");
-        e.ajouterActeDansFicheDeSoins(f, a);
-        System.out.println("ok c'est bon 2");
+        System.out.println(dm.dernierNumeroFiche());
         /*
          System.out.println("\n********\n");
         Date d1 = new Date(1, 11, 1910, 13, 56);
