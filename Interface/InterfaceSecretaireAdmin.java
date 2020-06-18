@@ -1283,7 +1283,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         model.setColumnIdentifiers(new Object[]{"Code", "", "", "Cout unitaire", "Coefficient ", "Prix"});
         for (Code code : Code.values()) {
             DecimalFormat df = new DecimalFormat("####.##");
-            model.addRow(new Object[]{code.toString(), "", "", "", "", df.format(dm.coutActe(code, fiches)) + " €"});
+            model.addRow(new Object[]{code.toString(), "", "", "", "", df.format(dm.coutCode(code, fiches)) + " €"});
         }
         model.addRow(new Object[]{"", "", "", "", ""});
     }//GEN-LAST:event_jRadioButtonActeActionPerformed
@@ -1348,36 +1348,38 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
             this.jLabelErreurEmploye.setBackground(Color.red);
             this.jLabelErreurEmploye.setText("Veuillez remplir tous les champs");
         } else {
-            try {
+            boolean estOk = true;
+            
                 this.jLabelErreurEmploye.setVisible(false);
                 ModificationXMLPersonnel modif = new ModificationXMLPersonnel();
                 switch (this.jComboBoxFonction.getSelectedItem().toString()) {
 
                     case "MEDECIN":
                         Medecin m = new Medecin(prenom, nom, id, mdp, tel, Specialite.valueOf(this.jComboBoxSpecialite.getSelectedItem().toString()));
-                        modif.ajouterPersonnel(m);
+                        estOk = modif.ajouterPersonnel(m);
                         break;
                     case "SECRETAIRE_ADMINISTRATIVE":
                         SecretaireAdmin s = new SecretaireAdmin(prenom, nom, id, mdp, tel);
-                        modif.ajouterPersonnel(s);
+                        estOk = modif.ajouterPersonnel(s);
                         break;
                     case "SECRETAIRE_MEDICALE":
                         SecretaireMed sMed = new SecretaireMed(prenom, nom, id, mdp, tel);
-                        modif.ajouterPersonnel(sMed);
+                        estOk = modif.ajouterPersonnel(sMed);
                         break;
 
                 }
                 persHopital = fichierXMLPersonnel.getPersonnel();
                 remplirPersonnel();
                 this.jLabelErreurEmploye.setVisible(true);
-                this.jLabelErreurEmploye.setBackground(Color.green);
+                this.jLabelErreurEmploye.setForeground(Color.green);
                 this.jLabelErreurEmploye.setText("Créé avec succès !");
                 viderChampPersonnel();
-            } catch (Exception e) {
+            if( !estOk){
                 this.jLabelErreurEmploye.setVisible(true);
-                this.jLabelErreurEmploye.setBackground(Color.RED);
-                this.jLabelErreurEmploye.setText("Erreur : " + e.toString());
+                this.jLabelErreurEmploye.setForeground(Color.RED);
+                this.jLabelErreurEmploye.setText("Erreur : le personnel demandé n'a pas été ajouté");
             }
+            
 
         }
     }//GEN-LAST:event_jButtonValiderCreationActionPerformed

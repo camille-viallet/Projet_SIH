@@ -77,7 +77,8 @@ public class ModificationXMLPersonnel {
 
     }
 
-    public void ajouterPersonnel(Personnel p) {
+    public boolean ajouterPersonnel(Personnel p) {
+        boolean correct  =true;
         try {
 
             // Récupérer l'élément racine
@@ -126,14 +127,17 @@ public class ModificationXMLPersonnel {
             
             //StreamResult res = new StreamResult(getClass().getResource("/donnees/personnels.xml").getFile());
             
-            StreamResult res = new StreamResult(new File("src/donnees/personnels.xml").getAbsolutePath());
+            StreamResult res = new StreamResult(new File("src/donnees/personnels.xml"));
+            
             
             transformer.transform(src, res);
             
            
         } catch (Exception e) {
             e.printStackTrace();
+            correct = false; 
         }
+        return correct;
 
     }
 

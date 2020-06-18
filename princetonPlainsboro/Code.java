@@ -1,12 +1,13 @@
 package princetonPlainsboro;
 
-// Cette enumeration fait intervenir des valeurs qui possedent des
-import java.text.DecimalFormat;
-
-// attributs ('libelle' et 'cout') qui sont initialises par un appel du
-// constructeur (arguments entre parentheses apres le nom de chaque valeur).
-// Par exemple, la valeur Code.FP a un attribut 'libelle' contenant la chaine
-// de caracteres "forfait pediatrique" et un attribut 'cout' ayant la valeur 5.0
+/**
+ * Cette enumeration fait intervenir des valeurs qui possedent des attributs
+ * ('libelle' et 'cout') qui sont initialises par un appel du constructeur
+ * (arguments entre parentheses apres le nom de chaque valeur). Par exemple, la
+ * valeur Code.FP a un attribut 'libelle' contenant la chaine de caracteres
+ * "forfait pediatrique" et un attribut 'cout' ayant la valeur 5.0
+ *
+ */
 public enum Code {
 
     // valeurs de l'�num :
@@ -31,28 +32,63 @@ public enum Code {
     private String libelle;
     private double cout;
 
-    // constructeur :
+    /**
+     * Construit un code
+     *
+     * @param libelle
+     * @param cout
+     */
     private Code(String libelle, double cout) {
         this.libelle = libelle;
         this.cout = cout;
     }
 
+    /**
+     * Obtient le prix unitaire du code
+     *
+     * @return le prix
+     */
     public double getCoutUnitaire() {
         return cout;
     }
 
+    /**
+     * Définit une chaine de caractére représentant le code. De la forme : " C50
+     * : consultation generale au cabinet ( Coût unitaire : 23.0 € )"
+     *
+     * @param coefficient le coefficient du code utilisé dans l'acte
+     * @return la chaine de caractére
+     */
     public String toString(int coefficient) {
         return super.toString() + "" + coefficient + " : " + libelle + " ( Coût unitaire : " + cout + " € )";
     }
-    public String getLibelle(){
-        return libelle;
-    }
 
+    /**
+     * Définit une chaine de caractére représentant le code sans le cout
+     * unitaire. De la forme : " C50 : consultation generale au cabinet "
+     *
+     * @param coefficient le coefficient du code utilisé dans l'acte
+     * @return la chaine de caractére
+     */
     public String toStringSansUnitaire(int coefficient) {
         return super.toString() + "" + coefficient + " : " + libelle;
     }
 
-    // calcule le prix pour un coefficient donne :
+    /**
+     * Obtient le libellé du code
+     *
+     * @return le libellé
+     */
+    public String getLibelle() {
+        return libelle;
+    }
+
+    /**
+     * Calcule le cout du code en fonction du coefficient
+     *
+     * @param coefficient coefficient multiplié au cout unitaire
+     * @return le prix
+     */
     public double calculerCout(int coefficient) {
         return coefficient * cout;
     }

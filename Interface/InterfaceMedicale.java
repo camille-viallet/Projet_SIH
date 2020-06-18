@@ -17,7 +17,7 @@ import princetonPlainsboro.FicheDeSoins;
 import princetonPlainsboro.Acte;
 import princetonPlainsboro.Code;
 import princetonPlainsboro.ComparaisonFichesDates;
-import princetonPlainsboro.ModificationXMLDossiers;
+import princetonPlainsboro.FicheDeSoinsACreer;
 import princetonPlainsboro.MetierCHU;
 import princetonPlainsboro.Personnel;
 
@@ -34,12 +34,12 @@ public class InterfaceMedicale extends javax.swing.JFrame {
     DossierMedical dm;
     Patient patient;
     Vector<Patient> listePatient;
-    ModificationXMLDossiers modifXML;
+    FicheDeSoinsACreer modifXML;
     LectureXML lectureXML;
 
     public InterfaceMedicale(Personnel personnel) {
         initComponents();
-        modifXML = new ModificationXMLDossiers();
+        modifXML = new FicheDeSoinsACreer();
         this.personnel = personnel;
         if (personnel.getMetier() == MetierCHU.MEDECIN) {
             Medecin medecin = (Medecin) personnel;

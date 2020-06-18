@@ -5,17 +5,14 @@
  */
 package princetonPlainsboro;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
-import java.util.Vector;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
 /**
+ * Lit un fichier XML contenant le personnel de l'hopital
  *
  * @author Camille
  */
@@ -30,6 +27,11 @@ public class LectureXMLPersonnel {
         this.nomFichier = nomFichier;
     }
 
+    /**
+     * Obtient le personnel de l'hopital à partir du fichier XML
+     *
+     * @return le personnel de l'hopital
+     */
     public PersonnelHopital getPersonnel() {
         PersonnelHopital PersonnelEnCours = null;
         String donneesCourantes = "";
@@ -44,16 +46,13 @@ public class LectureXMLPersonnel {
         String rpps = "";
         String matricule = "";
 
-        // analyser le fichier par StAX
         try {
             // instanciation du parser
-             //getClass().getResource("/Interface/hop.jpg"))
+            //getClass().getResource("/Interface/hop.jpg"))
             //InputStream in = new FileInputStream(repBase + nomFichier);
-            InputStream in = getClass().getResourceAsStream("/donnees/"+nomFichier);
-            
+            InputStream in = getClass().getResourceAsStream("/donnees/" + nomFichier);
             XMLInputFactory factory = XMLInputFactory.newInstance();
             XMLStreamReader parser = factory.createXMLStreamReader(in);
-            
 
             // lecture des evenements
             for (int event = parser.next(); event != XMLStreamConstants.END_DOCUMENT; event = parser.next()) {
@@ -118,64 +117,11 @@ public class LectureXMLPersonnel {
             System.out.println("Details (class LectureXMLPersonnel ):");
             System.out.println(ex);
         } /*catch (IOException ex) {
-            System.out.println("Exception de type 'IOException' lors de la lecture du fichier : " + nomFichier);
-            System.out.println("Verifier le chemin.");
-            System.out.println(ex.getMessage());
-        }*/
+         System.out.println("Exception de type 'IOException' lors de la lecture du fichier : " + nomFichier);
+         System.out.println("Verifier le chemin.");
+         System.out.println(ex.getMessage());
+         }*/
 
         return PersonnelEnCours;
-    }
-
-    private static Code getCode(String code) {
-        if (code.equals("CS")) {
-            return Code.CS;
-        }
-        if (code.equals("C")) {
-            return Code.C;
-        }
-        if (code.equals("TCG")) {
-            return Code.TCG;
-        }
-        if (code.equals("COE")) {
-            return Code.COE;
-        }
-        if (code.equals("CCP")) {
-            return Code.CCP;
-        }
-        if (code.equals("CNPSY")) {
-            return Code.CNPSY;
-        }
-        if (code.equals("CDE")) {
-            return Code.CDE;
-        }
-        if (code.equals("CSC")) {
-            return Code.CSC;
-        }
-        if (code.equals("FP")) {
-            return Code.FP;
-        }
-        if (code.equals("KC")) {
-            return Code.KC;
-        }
-        if (code.equals("KE")) {
-            return Code.KE;
-        }
-        if (code.equals("K")) {
-            return Code.K;
-        }
-        if (code.equals("KFA")) {
-            return Code.KFA;
-        }
-        if (code.equals("KFB")) {
-            return Code.KFB;
-        }
-        if (code.equals("ORT")) {
-            return Code.ORT;
-        }
-        if (code.equals("PRO")) {
-            return Code.PRO;
-        }
-        // probleme : code inconnu
-        return null;
     }
 }

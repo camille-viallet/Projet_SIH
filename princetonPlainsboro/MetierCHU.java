@@ -6,7 +6,7 @@
 package princetonPlainsboro;
 
 /**
- *
+ * Represente les metiers dans le CHU
  * @author dudaa
  */
 public enum MetierCHU {

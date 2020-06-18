@@ -1,15 +1,23 @@
 package princetonPlainsboro;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * Modélise un medecin de l'hopital
+ * @author Camille
+ */
 public class Medecin extends Personnel {
 
     private Specialite specialite;
-//    private List <Acte> listActes; 
-
-    public Medecin(String prenom, String nom, String username, String mdp, String telephone, Specialite specialite) {
-        super(prenom, nom, username, mdp, telephone);
+/**
+ * Construit un medecin
+ * @param prenom
+ * @param nom
+ * @param username numero RPPS du medecin
+ * @param motDePasse mot de passe pour accéder au logiciel
+ * @param telephone
+ * @param specialite spécialité médicale à laquelle il appartient
+ */
+    public Medecin(String prenom, String nom, String username, String motDePasse, String telephone, Specialite specialite) {
+        super(prenom, nom, username, motDePasse, telephone);
         this.specialite = specialite;
 //        listActes = new ArrayList <Acte>() ; 
     }

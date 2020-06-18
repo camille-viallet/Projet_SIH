@@ -7,9 +7,7 @@
  */
 package princetonPlainsboro;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.FileInputStream;
 import java.util.List;
 import java.util.Vector;
 import javax.xml.stream.XMLInputFactory;
@@ -33,6 +31,12 @@ public class LectureXML {
         this.nomFichier = nomFichier;
     }
 
+    /**
+     * Obtient le dossier medical (ensemble des fiches de soins )stocké dans le
+     * fichier java
+     *
+     * @return le dossier medical
+     */
     public DossierMedical getDossier() {
         DossierMedical dossierCourant = null;
         Date date = null;
@@ -63,7 +67,8 @@ public class LectureXML {
         try {
             // instanciation du parser
             InputStream in = getClass().getResourceAsStream("/donnees/" + nomFichier);
-            //System.out.println(getClass().getResource("/donnees/" + nomFichier).getFile());
+            //InputStream in = new FileInputStream(repBase + nomFichier);
+            //ystem.out.println(getClass().getResource("/donnees/" + nomFichier).getFile());
             XMLInputFactory factory = XMLInputFactory.newInstance();
             XMLStreamReader parser = factory.createXMLStreamReader(in);
 
@@ -200,15 +205,22 @@ public class LectureXML {
             System.out.println("Exception de type 'XMLStreamException' lors de la lecture du fichier : " + nomFichier);
             System.out.println("Details :");
             System.out.println(ex);
-        }/* catch (IOException ex) {
-            System.out.println("Exception de type 'IOException' lors de la lecture du fichier : " + nomFichier);
-            System.out.println("Verifier le chemin.");
-            System.out.println(ex.getMessage());
-        }*/
+        }/*catch (IOException ex) {
+         System.out.println("Exception de type 'IOException' lors de la lecture du fichier : " + nomFichier);
+         System.out.println("Verifier le chemin.");
+         System.out.println(ex.getMessage());
+         }*/
 
         return dossierCourant;
     }
 
+    /**
+     * Obtient une instance de code correspondant à la chaine de caractére
+     * associée
+     *
+     * @param code code dans le fichier java
+     * @return instance de Code
+     */
     private static Code getCode(String code) {
         if (code.equals("CS")) {
             return Code.CS;

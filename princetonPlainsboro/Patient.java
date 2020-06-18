@@ -1,5 +1,8 @@
 package princetonPlainsboro;
-
+/**
+ * Modélise un patient
+ * @author Camille
+ */
 public class Patient {
 
     private String nom;
