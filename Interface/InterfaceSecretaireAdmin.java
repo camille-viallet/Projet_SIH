@@ -417,7 +417,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder("Tri des fiches de soins"));
 
         buttonGroup1.add(jRadioButtonTriDate);
-        jRadioButtonTriDate.setText("Selon la date ( décroissante)");
+        jRadioButtonTriDate.setText("Selon la date (décroissante)");
         jRadioButtonTriDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonTriDateActionPerformed(evt);
@@ -425,7 +425,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(jRadioButtonTriCout);
-        jRadioButtonTriCout.setText("Selon le coût ( décroissant)");
+        jRadioButtonTriCout.setText("Selon le coût (décroissant)");
         jRadioButtonTriCout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonTriCoutActionPerformed(evt);
@@ -433,8 +433,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(jRadioButtonTriNumero);
-        jRadioButtonTriNumero.setSelected(true);
-        jRadioButtonTriNumero.setText("Selon le numero ( croissant )");
+        jRadioButtonTriNumero.setText("Selon le numero (croissant)");
         jRadioButtonTriNumero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonTriNumeroActionPerformed(evt);
@@ -634,14 +633,14 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabelAdresse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(137, 137, 137))
+                        .addComponent(jLabelAdresse, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+                        .addGap(260, 260, 260))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabelPrenomPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabelDateNaissance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jLabelDateNaissance, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
