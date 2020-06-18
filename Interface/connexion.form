@@ -126,7 +126,7 @@
             <Component class="javax.swing.JLabel" name="ImageLogoHopital">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Interface/3091270297_1_5_AUBKYYWu.png"/>
+                  <Image iconType="3" name="/Interface/logoPrinceton.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -170,7 +170,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Interface/hop.jpg"/>
+              <Image iconType="3" name="/Interface/hopitalConnexion.jpg"/>
             </Property>
           </Properties>
         </Component>

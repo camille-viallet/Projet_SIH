@@ -7,26 +7,35 @@ package princetonPlainsboro;
 
 /**
  * Type énuméré indiquant le type d'un acte ( diagnostique ou thérapeutique )
+ *
  * @author Eduarda DA SILVA
  */
-
 public enum Type {
+
     // valeurs de l'�num :
+
     DIAG("Diagnostique"),
     THERA("Thérapeutique");
-                             
-    // attributs de l'enum :
+
     private String libelle;
-    
-    // constructeur :
-    private Type (String libelle) {
+
+    /**
+     * Construit un nouveau type
+     *
+     * @param libelle
+     */
+    private Type(String libelle) {
         this.libelle = libelle;
-  
-        }
-    
-    // m�thodes :
-    public String toString() {
-        return super.toString() + " : " + libelle ;
-        }
-    
+
     }
+
+    /**
+     * Obtient la chaine de caractére correspondant au type
+     *
+     * @return la chaine de caractére
+     */
+    public String toString() {
+        return super.toString() + " : " + libelle;
+    }
+
+}

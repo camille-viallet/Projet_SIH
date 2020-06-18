@@ -19,7 +19,7 @@ import org.xml.sax.SAXException;
  *
  * @author Camille
  */
-public class FicheDeSoinsACreer {
+public class ModificationXMLDossierMedical {
 
     String file;
     DocumentBuilderFactory dbf;
@@ -30,7 +30,7 @@ public class FicheDeSoinsACreer {
      * Construit une nouvelle modification
      *
      */
-    public FicheDeSoinsACreer() {
+    public ModificationXMLDossierMedical() {
         try {
             file = "src/donnees/dossiers.xml";
             //file =this.getClass().getResource("/donnees/dossiers.xml").toString();
@@ -150,8 +150,8 @@ public class FicheDeSoinsACreer {
         nom.appendChild(doc.createTextNode(patient.getNom()));
         prenom.appendChild(doc.createTextNode(patient.getPrenom()));
         adresse.appendChild(doc.createTextNode(patient.getAdresse()));
-        dateN.appendChild(doc.createTextNode(patient.getDateN().toStringXML()));
-        secu.appendChild(doc.createTextNode(patient.getSecu()));
+        dateN.appendChild(doc.createTextNode(patient.getDateDeNaissance().toStringXML()));
+        secu.appendChild(doc.createTextNode(patient.getNumeroSecuriteSociale()));
         poids.appendChild(doc.createTextNode(patient.getPoidsString()));
         taille.appendChild(doc.createTextNode(patient.getTailleString()));
         balisePatient.appendChild(nom);

@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * Modélise l'ensemble des personnels de l'hopital
  *
  * @author Camille
  */
@@ -17,19 +18,35 @@ public class PersonnelHopital {
 
     private ArrayList<Personnel> listePersonnel;
 
+    /**
+     * Construit une liste vide de personnels
+     */
     public PersonnelHopital() {
         listePersonnel = new ArrayList<Personnel>();
     }
 
-    public void addPersonnel(Personnel p) {
-        listePersonnel.add(p);
+    /**
+     * Ajoute un personnel dans la liste du personnel
+     *
+     * @param personnel personnel a ajouter dans la liste
+     */
+    public void addPersonnel(Personnel personnel) {
+        listePersonnel.add(personnel);
     }
 
-    public void removePersonnel(Personnel p) {
-        listePersonnel.remove(p);
+    /**
+     * Eneleve un personnel dans la liste
+     * @param personnel 
+     */
+    public void removePersonnel(Personnel personnel) {
+        listePersonnel.remove(personnel);
     }
 
-    public void sizePersonnel(Personnel p) {
+    /**
+     * Affiche le nombre de personnels de la liste dans la console
+     * @param p 
+     */
+    public void sizePersonnel() {
         System.out.println("Il y a " + listePersonnel.size() + "personnes travaillant au CHU de Princeton Plainsboro.");
     }
 

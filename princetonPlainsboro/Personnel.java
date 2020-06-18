@@ -6,72 +6,97 @@
 package princetonPlainsboro;
 
 /**
+ * Modélise les caractéristiques principales du personnel de l'hopital
  *
  * @author dasilvae
  */
 public abstract class Personnel {
-    
-    private String prenom ;
-    private String nom ;
-    private String username ;
-    private String mdp;
-    private String telephone ;
 
+    private String prenom;
+    private String nom;
+    private String username;
+    private String motDePasse;
+    private String telephone;
 
-    
-    public Personnel(String prenom, String nom, String username, String mdp, String telephone){
-        this.prenom = prenom ;
-        this.nom = nom ;
-        this.username = username ;
-        this.mdp = mdp ;
-        this.telephone = telephone ; 
-      }
-
-    public String toString() {
-        return "NOM : " + this.prenom + this.nom.toUpperCase() + " \n METIER : " + this.getMetier() + " \n NUMERO DE TELEPHONE : " + this.telephone ;
+    /**
+     * Construit un personnel
+     *
+     * @param prenom
+     * @param nom
+     * @param username
+     * @param motDePasse
+     * @param telephone
+     */
+    public Personnel(String prenom, String nom, String username, String motDePasse, String telephone) {
+        this.prenom = prenom;
+        this.nom = nom;
+        this.username = username;
+        this.motDePasse = motDePasse;
+        this.telephone = telephone;
     }
- 
-    // getter et setter pour le prénom du personnel
+
+    /**
+     * Determine une chaine de caractére représentant le personnel
+     *
+     * @return la chaine de caractére
+     */
+    @Override
+    public String toString() {
+        return "NOM : " + this.prenom + this.nom.toUpperCase() + " \n METIER : " + this.getMetier() + " \n NUMERO DE TELEPHONE : " + this.telephone;
+    }
+
+    /**
+     * Obtient le prenom
+     *
+     * @return le prenom
+     */
     public String getPrenom() {
         return prenom;
     }
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
 
-    // getter et setter pour le nom du personnel
+    /**
+     *
+     * Obtient le nom
+     *
+     * @return le nom
+     */
     public String getNom() {
         return nom;
     }
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
 
-    // getter et setter pour le login du personnel
+    /**
+     * Obtient l'identifiant (unique)
+     *
+     * @return l'indentifiant
+     */
     public String getUsername() {
         return username;
     }
-    public void setUsername(String username) {
-        this.username = username;
+
+    /**
+     * Obtient le mot de passe pour se connecter à l'application
+     *
+     * @return le mot de passe
+     */
+    public String getMotDePasse() {
+        return motDePasse;
     }
 
-    // getter et setter pour le mot-de-passe du personnel
-    public String getMdp() {
-        return mdp;
-    }
-    public void setMdp(String mdp) {
-        this.mdp = mdp;
-    }
-
-    // getter et setter pour le métierr
+    /**
+     * Obtient le metier correspondant au personnel. Les classes héritant de
+     * personnel devront implementer cette méthode
+     *
+     * @return le metier correspondant
+     */
     public abstract MetierCHU getMetier();
-    
 
-    // getter et setter pour le numéro de téléphone du personnel
+    /**
+     * Obtient le numéro de téléphone
+     *
+     * @return le numéro de telephone
+     */
     public String getTelephone() {
         return telephone;
     }
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
+
 }

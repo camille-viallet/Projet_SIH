@@ -4,7 +4,7 @@
 package princetonPlainsboro;
 
 /**
- *
+ * Modélise les spécialités présentes dans dans l'hopital
  * @author dasilvae
  */
 public enum Specialite {

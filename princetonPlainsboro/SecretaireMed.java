@@ -6,16 +6,28 @@
 package princetonPlainsboro;
 
 /**
- *
+ * Modélise une secrétaire Médicale
  * @author dasilvae
  */
 public class SecretaireMed extends Personnel {
 
-    public SecretaireMed(String prenom, String nom, String username, String mdp, String telephone) {
-        super(prenom, nom, username, mdp, telephone);
+    /**
+     * Construit une secretaire medicale
+     * @param prenom
+     * @param nom
+     * @param username
+     * @param motDePasse
+     * @param telephone 
+     */
+    public SecretaireMed(String prenom, String nom, String username, String motDePasse, String telephone) {
+        super(prenom, nom, username, motDePasse, telephone);
 
     }
 
+    /**
+     * Obtient le métier
+     * @return le métier
+     */
     @Override
     public MetierCHU getMetier() {
         return  MetierCHU.SECRETAIRE_MEDICALE;

@@ -1,6 +1,8 @@
 package princetonPlainsboro;
+
 /**
  * Modélise un patient
+ *
  * @author Camille
  */
 public class Patient {
@@ -8,36 +10,62 @@ public class Patient {
     private String nom;
     private String prenom;
     private String adresse;
-    private Date dateN;
-    private String secu;
+    private Date dateDeNaissance;
+    private String numeroSecuriteSociale;
     private double poids;
     private double taille;
 
-    public Patient(String prenom, String nom, String adresse, Date dateN, String secu, double poids, double taille) {
+    /**
+     * Construit un patient
+     *
+     * @param prenom
+     * @param nom
+     * @param adresse
+     * @param dateNaissance
+     * @param numeroSecuriteSociale
+     * @param poids
+     * @param taille
+     */
+    public Patient(String prenom, String nom, String adresse, Date dateNaissance, String numeroSecuriteSociale, double poids, double taille) {
         this.prenom = prenom;
         this.nom = nom;
         this.adresse = adresse;
-        this.dateN = dateN;
-        this.secu = secu;
+        this.dateDeNaissance = dateNaissance;
+        this.numeroSecuriteSociale = numeroSecuriteSociale;
         this.poids = poids;
         this.taille = taille;
     }
 
+    /**
+     * Renvoie une chaine de caractére avec le nom et le prenom du patient
+     *
+     * @return la chaine de caractére
+     */
+    @Override
     public String toString() {
         return prenom + " " + nom.toUpperCase();
     }
 
-    // Afficher toutes les informations du patient 
+    /**
+     * Affiche toute les informations du patient
+     */
     public void infosPatient() {
-        String infos = "Informations sur " + this.prenom + " " + this.nom.toUpperCase() + ", né(e) le " + this.dateN.toString() + ", demeurant à " + this.adresse + "\n Son poids actuel est : " + this.getPoids() + "kg \n Sa taille est de : " + this.getTaille() + "m" + "\n Numéro de sécurité sociale : ";
-        if (Patient.verifierSecu(secu) == true) {
-            infos += secu;
+        String infos = "Informations sur " + this.prenom + " " + this.nom.toUpperCase() + ", né(e) le " + this.dateDeNaissance.toString() + ", demeurant à " + this.adresse + "\n Son poids actuel est : " + this.getPoids() + "kg \n Sa taille est de : " + this.getTaille() + "m" + "\n Numéro de sécurité sociale : ";
+        if (Patient.verifierSecu(numeroSecuriteSociale) == true) {
+            infos += numeroSecuriteSociale;
         } else {
             infos += " numéro renseigné invalide !";
         }
         System.out.println(infos);
     }
 
+    /**
+     * Determine si deux instances de patient sont égales
+     *
+     * @param o le patient a comparer à l'instance
+     * @return true si les deux instances sont égales , false sinon
+     */
+    @Override
     public boolean equals(Object o) {
         if (o instanceof Patient) {
             Patient p = (Patient) o;
@@ -47,7 +75,12 @@ public class Patient {
         }
     }
 
-    // Vérifier que le numéro de sécurité sociale est correct
+    /**
+     * Verifie si le numéro de sécurité sociale est conforme
+     *
+     * @param nSecu le numero de sécurité sociale a tester
+     * @return true si le numéro est conforme false sinon
+     */
     public static boolean verifierSecu(String nSecu) {
         boolean valide = true;
         int i = 0;
@@ -119,70 +152,103 @@ public class Patient {
         return valide;
     }
 
+    /**
+     * Obtient le nom du patient
+     *
+     * @return le nom
+     */
     public String getNom() {
         return nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
+    /**
+     * Obtient le prenom du patient
+     *
+     * @return le prenom
+     */
     public String getPrenom() {
         return prenom;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
+    /**
+     * Obtient l'adresse du patient
+     *
+     * @return l'adresse
+     */
     public String getAdresse() {
         return adresse;
     }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
+    /**
+     * Obtient la date de naissance du patient
+     *
+     * @return la date de naissance
+     */
+    public Date getDateDeNaissance() {
+        return dateDeNaissance;
     }
 
-    public Date getDateN() {
-        return dateN;
-    }
-
-    public void setDateN(Date dateN) {
-        this.dateN = dateN;
-    }
-
-    public String getSecu() {
-        if (Patient.verifierSecu(secu) == true) {
-            return secu;
+    /**
+     * Obtient le numéro de sécurité sociale.
+     *
+     * @return le numéro de sécurité sociale , si le numéro n'est pas valide
+     * renvoie " numéro renseigné invalide !"
+     */
+    public String getNumeroSecuriteSociale() {
+        if (Patient.verifierSecu(numeroSecuriteSociale) == true) {
+            return numeroSecuriteSociale;
         } else {
             return " numéro renseigné invalide !";
         }
     }
 
-    public void setSecu(String secu) {
-        this.secu = secu;
-    }
-
+    /**
+     * Obtient le poids du patient (en kilos)
+     *
+     * @return le poids
+     */
     public double getPoids() {
         return poids;
     }
 
+    /**
+     * Dtermine le poids du patient (en kilos)
+     *
+     * @param poids
+     */
     public void setPoids(double poids) {
         this.poids = poids;
     }
 
+    /**
+     * Obtient la taille du patient (en m)
+     *
+     * @return la taille
+     */
     public double getTaille() {
         return taille;
     }
 
+    /**
+     * Determine la taille du patient (en m)
+     *
+     * @param taille
+     */
     public void setTaille(double taille) {
         this.taille = taille;
     }
 
+    /**
+     * Obtient la taille en format String
+     * @return chaine de caractére correspondante
+     */
     public String getTailleString() {
         return this.taille + "";
     }
-
+/**
+     * Obtient le poids en format String
+     * @return chaine de caractére correspondante
+     */
     public String getPoidsString() {
         return this.poids + "";
     }
