@@ -115,11 +115,10 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         jComboBoxActe1 = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         jTextFieldCoef1 = new javax.swing.JTextField();
-        jPanelResultatCout = new javax.swing.JPanel();
-        jLabelCout3 = new javax.swing.JLabel();
-        jLabelCoutGras = new javax.swing.JLabel();
         jButtonCalculerCout = new javax.swing.JButton();
         jLabelErreurActe = new javax.swing.JLabel();
+        jLabelCout3 = new javax.swing.JLabel();
+        jLabelCoutGras = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jRadioButtonTriDate = new javax.swing.JRadioButton();
         jRadioButtonTriCout = new javax.swing.JRadioButton();
@@ -321,36 +320,6 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Coefficient : ");
 
-        jPanelResultatCout.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-        jLabelCout3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelCout3.setText("x");
-
-        jLabelCoutGras.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabelCoutGras.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelCoutGras.setText("Coût :");
-
-        javax.swing.GroupLayout jPanelResultatCoutLayout = new javax.swing.GroupLayout(jPanelResultatCout);
-        jPanelResultatCout.setLayout(jPanelResultatCoutLayout);
-        jPanelResultatCoutLayout.setHorizontalGroup(
-            jPanelResultatCoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelResultatCoutLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelResultatCoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelCout3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelCoutGras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanelResultatCoutLayout.setVerticalGroup(
-            jPanelResultatCoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelResultatCoutLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelCoutGras)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabelCout3)
-                .addGap(5, 5, 5))
-        );
-
         jButtonCalculerCout.setText("Calculer");
         jButtonCalculerCout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -362,10 +331,21 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         jLabelErreurActe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelErreurActe.setText("jLabel1");
 
+        jLabelCout3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabelCout3.setText("x");
+
+        jLabelCoutGras.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelCoutGras.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelCoutGras.setText("Coût :");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonCalculerCout)
+                .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,14 +357,12 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                     .addComponent(jComboBoxActe1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(10, 10, 10))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelResultatCout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelErreurActe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addComponent(jLabelCoutGras, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelCout3, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonCalculerCout)
+                .addContainerGap()
+                .addComponent(jLabelErreurActe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -400,11 +378,13 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                     .addComponent(jTextFieldCoef1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addComponent(jButtonCalculerCout)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelErreurActe)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelResultatCout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCoutGras)
+                    .addComponent(jLabelCout3))
+                .addGap(36, 36, 36))
         );
 
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder("Tri des fiches de soins"));
@@ -574,13 +554,13 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 20, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(3, 3, 3))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
         jTabbedPane1.addTab("Tableau de bord", jPanel4);
@@ -1115,7 +1095,9 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
             double cout = codeSelectionne.calculerCout(coeff);
             this.jLabelCoutGras.setText("Coût de " + codeSelectionne.name() + "" + coeff);
             this.jLabelCout3.setText(cout + " €");
-            this.jPanelResultatCout.setVisible(true);
+            this.jLabelCout3.setVisible(true);
+            this.jLabelCoutGras.setVisible(true);
+            
 
         } else {
             this.jLabelErreurActe.setBackground(Color.red);
@@ -1345,6 +1327,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
      */
     private void jButtonValider2DatesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValider2DatesActionPerformed
         afficheEntreDeuxDates();
+        this.jCheckBoxEntre2Dates.setSelected(true);
     }//GEN-LAST:event_jButtonValider2DatesActionPerformed
 
     /**
@@ -1506,7 +1489,6 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel jPanelCreationEmploye;
-    private javax.swing.JPanel jPanelResultatCout;
     private javax.swing.JPasswordField jPasswordFieldPassWord;
     private javax.swing.JRadioButton jRadioButtonActe;
     private javax.swing.JRadioButton jRadioButtonFicheSoins;
@@ -1539,7 +1521,8 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
     private void initialiseCoutActe() {
         this.jLabelCout3.setText("");
         this.jTextFieldCoef1.setText("");
-        this.jPanelResultatCout.setVisible(false);
+        this.jLabelCoutGras.setVisible(false);
+        this.jLabelCout3.setVisible(false);
         this.jLabelErreurActe.setVisible(false);
     }
 

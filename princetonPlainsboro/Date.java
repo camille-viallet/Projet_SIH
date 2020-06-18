@@ -75,6 +75,18 @@ public class Date implements Comparable {
         return annee + "-" + mois + "-" + jour + "_" + heure + "h" + minute;
 
     }
+    
+        /**
+     * Determine une chaine de caractére de la date sans heures et minutes. Sous la forme
+     * "2020-6-18"
+     *
+     * @return la chaine de caractére
+     */
+    public String toStringXMLSansHeuresMinutes() {
+
+        return annee + "-" + mois + "-" + jour;
+
+    }
 
     /**
      * Determine une chaine de caractére sans les heures et minutes. De la forme

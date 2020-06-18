@@ -5,6 +5,8 @@
  */
 package princetonPlainsboro;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
@@ -49,8 +51,8 @@ public class LectureXMLPersonnel {
         try {
             // instanciation du parser
             //getClass().getResource("/Interface/hop.jpg"))
-            //InputStream in = new FileInputStream(repBase + nomFichier);
-            InputStream in = getClass().getResourceAsStream("/donnees/" + nomFichier);
+            InputStream in = new FileInputStream(repBase + nomFichier);
+            //InputStream in = getClass().getResourceAsStream("/donnees/" + nomFichier);
             XMLInputFactory factory = XMLInputFactory.newInstance();
             XMLStreamReader parser = factory.createXMLStreamReader(in);
 
@@ -116,11 +118,11 @@ public class LectureXMLPersonnel {
             System.out.println("Exception de type 'XMLStreamException' lors de la lecture du fichier : " + nomFichier);
             System.out.println("Details (class LectureXMLPersonnel ):");
             System.out.println(ex);
-        } /*catch (IOException ex) {
+        } catch (IOException ex) {
          System.out.println("Exception de type 'IOException' lors de la lecture du fichier : " + nomFichier);
          System.out.println("Verifier le chemin.");
          System.out.println(ex.getMessage());
-         }*/
+         }
 
         return PersonnelEnCours;
     }

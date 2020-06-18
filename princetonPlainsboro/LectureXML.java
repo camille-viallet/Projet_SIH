@@ -7,6 +7,8 @@
  */
 package princetonPlainsboro;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Vector;
@@ -66,8 +68,8 @@ public class LectureXML {
         // analyser le fichier par StAX
         try {
             // instanciation du parser
-            InputStream in = getClass().getResourceAsStream("/donnees/" + nomFichier);
-            //InputStream in = new FileInputStream(repBase + nomFichier);
+           //InputStream in = getClass().getResourceAsStream("/donnees/" + nomFichier);
+            InputStream in = new FileInputStream(repBase + nomFichier);
             //ystem.out.println(getClass().getResource("/donnees/" + nomFichier).getFile());
             XMLInputFactory factory = XMLInputFactory.newInstance();
             XMLStreamReader parser = factory.createXMLStreamReader(in);
@@ -105,7 +107,7 @@ public class LectureXML {
                             int mois = Integer.parseInt(donneesCourantes.substring(donneesCourantes.indexOf('-') + 1, donneesCourantes.lastIndexOf('-')));
                             int jour = Integer.parseInt(donneesCourantes.substring(donneesCourantes.lastIndexOf('-') + 1, donneesCourantes.length()));
 
-                            //A CHANGER
+                           
                             dateN = new Date(jour, mois, annee, 0, 0);
                         }
                         if (parser.getLocalName().equals("dateActe")) {
@@ -114,7 +116,7 @@ public class LectureXML {
                             int jour = Integer.parseInt(donneesCourantes.substring(donneesCourantes.lastIndexOf('-') + 1, donneesCourantes.lastIndexOf('_')));
                             int heure = Integer.parseInt(donneesCourantes.substring(donneesCourantes.lastIndexOf('_') + 1, donneesCourantes.lastIndexOf('h')));
                             int minutes = Integer.parseInt(donneesCourantes.substring(donneesCourantes.lastIndexOf('h') + 1, donneesCourantes.length()));
-                            //A CHANGER
+                            
                             dateActe = new Date(jour, mois, annee, heure, minutes);
                         }
 
@@ -205,11 +207,11 @@ public class LectureXML {
             System.out.println("Exception de type 'XMLStreamException' lors de la lecture du fichier : " + nomFichier);
             System.out.println("Details :");
             System.out.println(ex);
-        }/*catch (IOException ex) {
+        }catch (IOException ex) {
          System.out.println("Exception de type 'IOException' lors de la lecture du fichier : " + nomFichier);
          System.out.println("Verifier le chemin.");
          System.out.println(ex.getMessage());
-         }*/
+         }
 
         return dossierCourant;
     }

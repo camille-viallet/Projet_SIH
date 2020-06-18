@@ -150,7 +150,7 @@ public class ModificationXMLDossierMedical {
         nom.appendChild(doc.createTextNode(patient.getNom()));
         prenom.appendChild(doc.createTextNode(patient.getPrenom()));
         adresse.appendChild(doc.createTextNode(patient.getAdresse()));
-        dateN.appendChild(doc.createTextNode(patient.getDateDeNaissance().toStringXML()));
+        dateN.appendChild(doc.createTextNode(patient.getDateDeNaissance().toStringXMLSansHeuresMinutes()));
         secu.appendChild(doc.createTextNode(patient.getNumeroSecuriteSociale()));
         poids.appendChild(doc.createTextNode(patient.getPoidsString()));
         taille.appendChild(doc.createTextNode(patient.getTailleString()));
@@ -209,7 +209,7 @@ public class ModificationXMLDossierMedical {
         Element date = doc.createElement("date");
         Element numero = doc.createElement("numero");
 
-        date.appendChild(doc.createTextNode(fiche.getDate().toStringXML()));
+        date.appendChild(doc.createTextNode(fiche.getDate().toStringXMLSansHeuresMinutes()));
         numero.appendChild(doc.createTextNode(fiche.getNumeroString()));
         baliseFiche.appendChild(date);
         baliseFiche.appendChild(numero);
