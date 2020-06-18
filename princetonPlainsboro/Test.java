@@ -6,7 +6,7 @@ class Test {
         LectureXML test = new LectureXML("dossiers.xml");
         DossierMedical dm = test.getDossier();
         ModificationXMLDossiers e = new ModificationXMLDossiers();
-        
+       
         System.out.println(dm.dernierNumeroFiche());
         /*
          System.out.println("\n********\n");

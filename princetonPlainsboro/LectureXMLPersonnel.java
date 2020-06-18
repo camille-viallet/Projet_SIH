@@ -47,9 +47,13 @@ public class LectureXMLPersonnel {
         // analyser le fichier par StAX
         try {
             // instanciation du parser
-            InputStream in = new FileInputStream(repBase + nomFichier);
+             //getClass().getResource("/Interface/hop.jpg"))
+            //InputStream in = new FileInputStream(repBase + nomFichier);
+            InputStream in = getClass().getResourceAsStream("/donnees/"+nomFichier);
+            
             XMLInputFactory factory = XMLInputFactory.newInstance();
             XMLStreamReader parser = factory.createXMLStreamReader(in);
+            
 
             // lecture des evenements
             for (int event = parser.next(); event != XMLStreamConstants.END_DOCUMENT; event = parser.next()) {
@@ -111,13 +115,13 @@ public class LectureXMLPersonnel {
             parser.close();
         } catch (XMLStreamException ex) {
             System.out.println("Exception de type 'XMLStreamException' lors de la lecture du fichier : " + nomFichier);
-            System.out.println("Details :");
+            System.out.println("Details (class LectureXMLPersonnel ):");
             System.out.println(ex);
-        } catch (IOException ex) {
+        } /*catch (IOException ex) {
             System.out.println("Exception de type 'IOException' lors de la lecture du fichier : " + nomFichier);
             System.out.println("Verifier le chemin.");
             System.out.println(ex.getMessage());
-        }
+        }*/
 
         return PersonnelEnCours;
     }

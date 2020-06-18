@@ -14,6 +14,6 @@ public class ComparaisonFichesNumero implements ComparaisonFiches {
     public int comparer(FicheDeSoins fiche1, FicheDeSoins fiche2) {
         Integer c1 = new Integer(fiche1.getNumero());
         Integer c2 = new Integer(fiche2.getNumero());
-        return c1.compareTo(c2);
+        return -c1.compareTo(c2);
         }
 }

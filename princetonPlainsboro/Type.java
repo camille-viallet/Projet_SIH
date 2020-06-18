@@ -6,8 +6,8 @@
 package princetonPlainsboro;
 
 /**
- *
- * @author dasilvae
+ * Type énuméré indiquant le type d'un acte ( diagnostique ou thérapeutique )
+ * @author Eduarda DA SILVA
  */
 
 public enum Type {
@@ -15,7 +15,7 @@ public enum Type {
     DIAG("Diagnostique"),
     THERA("Thérapeutique");
                              
-    // attributs de l'�num :
+    // attributs de l'enum :
     private String libelle;
     
     // constructeur :

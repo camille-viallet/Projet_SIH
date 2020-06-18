@@ -96,7 +96,7 @@ public class DossierMedical {
             FicheDeSoins f = liste.get(i);
             for (Acte a : liste.get(i).getActes()) {
                 if (c.equals(a.getCode())) {
-                    cout += a.getCode().calculerCout(a.getCoef());
+                    cout += a.getCode().calculerCout(a.getCoefficient());
                 }
             }
         }

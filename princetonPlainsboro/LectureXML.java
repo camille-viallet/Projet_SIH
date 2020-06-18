@@ -62,7 +62,8 @@ public class LectureXML {
         // analyser le fichier par StAX
         try {
             // instanciation du parser
-            InputStream in = new FileInputStream(repBase + nomFichier);
+            InputStream in = getClass().getResourceAsStream("/donnees/" + nomFichier);
+            //System.out.println(getClass().getResource("/donnees/" + nomFichier).getFile());
             XMLInputFactory factory = XMLInputFactory.newInstance();
             XMLStreamReader parser = factory.createXMLStreamReader(in);
 
@@ -199,11 +200,11 @@ public class LectureXML {
             System.out.println("Exception de type 'XMLStreamException' lors de la lecture du fichier : " + nomFichier);
             System.out.println("Details :");
             System.out.println(ex);
-        } catch (IOException ex) {
+        }/* catch (IOException ex) {
             System.out.println("Exception de type 'IOException' lors de la lecture du fichier : " + nomFichier);
             System.out.println("Verifier le chemin.");
             System.out.println(ex.getMessage());
-        }
+        }*/
 
         return dossierCourant;
     }

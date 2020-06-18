@@ -86,8 +86,6 @@ public class InterfaceMedicale extends javax.swing.JFrame {
         jDialog1 = new javax.swing.JDialog();
         jFrame1 = new javax.swing.JFrame();
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jLabelImage = new javax.swing.JLabel();
-        jLabelBonjour = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListPatients = new javax.swing.JList();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -167,11 +165,16 @@ public class InterfaceMedicale extends javax.swing.JFrame {
         jLabelErreurCP = new javax.swing.JLabel();
         jRadioButtonAllPatients = new javax.swing.JRadioButton();
         jRadioButtonMespatients = new javax.swing.JRadioButton();
-        jButtonDeconnexion = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabelnumRPPS = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
         jLabelTel = new javax.swing.JLabel();
+        jLabelnumRPPS = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jButtonDeconnexion = new javax.swing.JButton();
+        jLabelBonjour = new javax.swing.JLabel();
+        jLabelImage = new javax.swing.JLabel();
+        jLabelBonjour1 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -198,11 +201,6 @@ public class InterfaceMedicale extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hôpital  Princeton Plainsboro");
 
-        jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interface/medecin.png"))); // NOI18N
-
-        jLabelBonjour.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabelBonjour.setText("Bonjour Docteur ");
-
         jListPatients.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -219,7 +217,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Dossier Médical ");
+        jLabel1.setText("DOSSIER MEDICAL");
 
         jTextAreaDossierMed.setEditable(false);
         jTextAreaDossierMed.setColumns(20);
@@ -228,7 +226,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
         jTextAreaDossierMed.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jScrollPane2.setViewportView(jTextAreaDossierMed);
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Patient"));
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PATIENT", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Nova", 0, 12))); // NOI18N
 
         jLabel30.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel30.setText(" Identité : ");
@@ -338,7 +336,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addGap(3, 3, 3)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Dossier Medical", jPanel2);
@@ -568,7 +566,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel27)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelErreurAM)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -734,7 +732,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                 .addComponent(jLabelErreurCP)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonValiderCP)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Créer Patient", jPanel3);
@@ -756,6 +754,21 @@ public class InterfaceMedicale extends javax.swing.JFrame {
             }
         });
 
+        jPanel6.setBackground(new java.awt.Color(255, 255, 204));
+        jPanel6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        jLabelTel.setFont(new java.awt.Font("Arial Nova", 0, 11)); // NOI18N
+        jLabelTel.setText("-");
+
+        jLabelnumRPPS.setFont(new java.awt.Font("Arial Nova", 0, 11)); // NOI18N
+        jLabelnumRPPS.setText("-");
+
+        jLabel15.setFont(new java.awt.Font("Arial Nova", 1, 11)); // NOI18N
+        jLabel15.setText("n° RPPS :");
+
+        jLabel11.setFont(new java.awt.Font("Arial Nova", 1, 11)); // NOI18N
+        jLabel11.setText("Telephone : ");
+
         jButtonDeconnexion.setText("Deconnexion");
         jButtonDeconnexion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -763,17 +776,72 @@ public class InterfaceMedicale extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Arial Nova", 1, 11)); // NOI18N
-        jLabel11.setText("Telephone : ");
+        jLabelBonjour.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabelBonjour.setText("Bonjour Docteur ");
 
-        jLabel15.setFont(new java.awt.Font("Arial Nova", 1, 11)); // NOI18N
-        jLabel15.setText("n° RPPS :");
+        jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interface/medecin.png"))); // NOI18N
 
-        jLabelnumRPPS.setFont(new java.awt.Font("Arial Nova", 0, 11)); // NOI18N
-        jLabelnumRPPS.setText("-");
+        jLabelBonjour1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        jLabelTel.setFont(new java.awt.Font("Arial Nova", 0, 11)); // NOI18N
-        jLabelTel.setText("-");
+        jLabel16.setFont(new java.awt.Font("Arial Nova", 1, 18)); // NOI18N
+        jLabel16.setText("PORTAIL MEDICAL");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabelImage)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel15))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabelnumRPPS, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonDeconnexion))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabelTel, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel16)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelBonjour1))
+                    .addComponent(jLabelBonjour))
+                .addGap(23, 23, 23))
+        );
+
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabelTel, jLabelnumRPPS});
+
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelImage)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabelBonjour)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabelBonjour1)
+                                .addComponent(jLabel16))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabelTel))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonDeconnexion)
+                            .addComponent(jLabelnumRPPS)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -782,6 +850,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -790,52 +859,15 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                                 .addGap(8, 8, 8)
                                 .addComponent(jRadioButtonMespatients)))
                         .addGap(18, 18, 18)
-                        .addComponent(jTabbedPane1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelImage)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelnumRPPS)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabelTel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButtonDeconnexion))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(111, 111, 111)
-                                .addComponent(jLabelBonjour)))
-                        .addGap(11, 11, 11)))
+                        .addComponent(jTabbedPane1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabelBonjour)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel15))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelTel)
-                                    .addComponent(jButtonDeconnexion))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelnumRPPS)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(14, Short.MAX_VALUE)
-                        .addComponent(jLabelImage)
-                        .addGap(18, 18, 18)))
+                .addGap(14, 14, 14)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1039,6 +1071,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -1066,6 +1099,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelAdresseDM;
     private javax.swing.JLabel jLabelBonjour;
+    private javax.swing.JLabel jLabelBonjour1;
     private javax.swing.JLabel jLabelDateNaissanceDM;
     private javax.swing.JLabel jLabelErreurAM;
     private javax.swing.JLabel jLabelErreurCP;
@@ -1084,6 +1118,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JRadioButton jRadioButtonAllPatients;

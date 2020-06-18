@@ -1,139 +1,177 @@
 package princetonPlainsboro;
-
+/**
+ * Modélise un acte médical
+ * @author Camille
+ */
 public class Acte {
 
     private Code code;
-    private int coef;
+    private int coefficient;
     private String nomActe;
-    private Medecin med;
+    private Medecin medecin;
     private Date date;
     private Type type;
-    private String comm;
+    private String commentaire;
 
-    public Acte(Code code, int coef, String nomActe, Medecin med, Date date, Type type, String comm) {
+    /**
+     * Construit un acte
+     * @param code Code de l'acte issu de la nomenclature médicale
+     * @param coefficient Coefficient de l'acte ( nombre par lequel est multiplié le cout unitaire)
+     * @param nomActe Description de l'acte
+     * @param medecin Medecin ayant réalisé l'acte
+     * @param date Date de réalisation de l'acte
+     * @param type Type d'acte ( diagnostique ou thérapeutique ) 
+     * @param commentaire Commentaire sur l'acte
+     */
+    public Acte(Code code, int coefficient, String nomActe, Medecin medecin, Date date, Type type, String commentaire) {
         this.code = code;
-        this.coef = coef;
+        this.coefficient = coefficient;
         this.nomActe = nomActe;
-        this.med = med;
+        this.medecin = medecin;
         this.date = date;
         this.type = type;
-        this.comm = comm;
+        this.commentaire = commentaire;
     }
    
-      
+    /**
+     * Renvoie une chaine de caractére définissant l'acte
+     * @return chaine de caractére avec tous les éléments d'un acte
+     */  
     @Override
     public String toString() {
-        return getCode().toString(getCoef()) + ", "
+        return getCode().toString(getCoefficient()) + ", "
                 + "\n         nom de l'acte : " + getNomActe() + 
-                ", \n         nom du médecin : " + med.getNom()+" "+med.getPrenom()+" - "+med.getSpecialite()+
+                ", \n         nom du médecin : " + medecin.getNom()+" "+medecin.getPrenom()+" - "+medecin.getSpecialite()+
                 ", \n         date : " + getDate() + 
                 ", \n         type d'acte : " + getType().toString() + 
-                ", \n         Observations : " + getComm();
+                ", \n         Observations : " + getCommentaire();
     }
-
-    public double cout() {
-        return getCode().calculerCout(getCoef());
+    
+    /**
+     * Calcule le coût d'un acte
+     * @return le cout de l'acte 
+     */
+    public double calculeCout() {
+        return getCode().calculerCout(getCoefficient());
     }
 
     /**
-     * @return the code
+     * Obtient le code de l'acte
+     * @return le code
      */
     public Code getCode() {
         return code;
     }
 
     /**
-     * @param code the code to set
+     * Définit le code de l'acte
+     * @param code code à définir
      */
     public void setCode(Code code) {
         this.code = code;
     }
 
     /**
+     * Obtient le coefficient de l'acte
      * @return the coef
      */
-    public int getCoef() {
-        return coef;
+    public int getCoefficient() {
+        return coefficient;
     }
 
     /**
-     * @param coef the coef to set
+     * Définit le coefficient de l'acte
+     * @param coefficient le coeffcient à définir
      */
-    public void setCoef(int coef) {
-        this.coef = coef;
+    public void setCoefficient(int coefficient) {
+        this.coefficient = coefficient;
     }
 
     /**
-     * @return the nomActe
+     * Obtient le nom de l'acte
+     * @return le nom de l'acte
      */
     public String getNomActe() {
         return nomActe;
     }
 
     /**
-     * @param nomActe the nomActe to set
+     * Determine le nom de l'acte
+     * @param nomActe nom à determiner
      */
     public void setNomActe(String nomActe) {
         this.nomActe = nomActe;
     }
 
     /**
-     * @return the nomMed
+     * Obtient le medecin ayant réalisé l'acte
+     * @return le medecin
      */
-    public Medecin getMed() {
-        return med;
+    public Medecin getMedecin() {
+        return medecin;
     }
 
     /**
-     * @param nomMed the nomMed to set
+     * Définit le medecin ayant réalisé l'acte
+     * @param medecin 
      */
-    public void setNomMed(Medecin Med) {
-        this.med = Med;
+    public void setNomMedecin(Medecin medecin) {
+        this.medecin = medecin;
     }
 
     /**
-     * @return the date
+     * Obtient la date de réalisation de l'acte
+     * @return la date
      */
     public Date getDate() {
         return date;
     }
 
     /**
-     * @param date the date to set
+     * Définit la date
+     * @param date date à définir
      */
     public void setDate(Date date) {
         this.date = date;
     }
 
     /**
-     * @return the type
+     * Obtient le type de l'acte
+     * @return le type
      */
     public Type getType() {
         return type;
     }
 
     /**
-     * @param type the type to set
+     * Définit le type de l'acte
+     * @param type 
      */
     public void setType(Type type) {
         this.type = type;
     }
 
     /**
-     * @return the comm
+     * Obtient le commentaire du médecin sur l'acte
+     * @return le commentaire
      */
-    public String getComm() {
-        return comm;
+    public String getCommentaire() {
+        return commentaire;
     }
 
     /**
-     * @param comm the comm to set
+     * Définit le commentaire
+     * @param comm 
      */
-    public void setComm(String comm) {
-        this.comm = comm;
+    public void setCommentaire(String comm) {
+        this.commentaire = comm;
     }
     
+    /**
+     * Obtient le coefficient sous forme de chaine de caractére
+     * @return le coefficient au format String
+     */
     public String getCoefString(){
-        return this.getCoef()+"";
+        return this.getCoefficient()+"";
     }
 }

@@ -53,7 +53,7 @@ public class FicheDeSoins {
      Vector<Acte> liste = new Vector<Acte>();
      for (int i = 0; i < this.actes.size(); i++) {
      Acte a = actes.get(i);
-     if (m.equals(a.getMed())) {
+     if (m.equals(a.getMedecin())) {
      if (!liste.contains(a)) {
      liste.add(a);
      }
@@ -88,7 +88,7 @@ public class FicheDeSoins {
         double total = 0;
         for (int i = 0; i < actes.size(); i++) {
             Acte a = actes.get(i);
-            total += a.cout();
+            total += a.calculeCout();
         }
         return total;
     }

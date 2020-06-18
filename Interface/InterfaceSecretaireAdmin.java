@@ -106,8 +106,6 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
-        jLabelImage = new javax.swing.JLabel();
-        jLabelBonjour = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
@@ -196,19 +194,18 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jPasswordFieldPassWord = new javax.swing.JPasswordField();
         jLabelErreurEmploye = new javax.swing.JLabel();
-        jButtonDeconnexion = new javax.swing.JButton();
-        jLabel20 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
+        jLabelBonjour = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         jLabelMatricule = new javax.swing.JLabel();
+        jLabelImage = new javax.swing.JLabel();
         jLabelTel = new javax.swing.JLabel();
+        jButtonDeconnexion = new javax.swing.JButton();
+        jLabel24 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hopital princeton plainsboro - Administration");
-
-        jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interface/dossier-ConvertImage.png"))); // NOI18N
-
-        jLabelBonjour.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabelBonjour.setText("Bonjour ");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Visualisation des coûts :"));
 
@@ -436,6 +433,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(jRadioButtonTriNumero);
+        jRadioButtonTriNumero.setSelected(true);
         jRadioButtonTriNumero.setText("Selon le numero ( croissant )");
         jRadioButtonTriNumero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -512,9 +510,9 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButtonTriDate)
                             .addComponent(jRadioButtonTriNumero)
-                            .addComponent(jRadioButtonTriCout))
+                            .addComponent(jRadioButtonTriCout)
+                            .addComponent(jRadioButtonTriDate))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
                         .addContainerGap()
@@ -523,18 +521,18 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                                 .addComponent(jCheckBoxEntre2Dates)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabelErreurDate, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 110, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jSeparator1))))
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(13, 13, 13)
                 .addComponent(jRadioButtonTriDate)
-                .addGap(3, 3, 3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButtonTriCout)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButtonTriNumero)
                 .addGap(15, 15, 15)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -582,18 +580,20 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(29, 29, 29))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(3, 3, 3))
         );
 
         jTabbedPane1.addTab("Tableau de bord", jPanel4);
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PATIENT", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Nova", 1, 12))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PATIENT", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Nova", 1, 12), new java.awt.Color(0, 102, 153))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Nom : ");
@@ -664,7 +664,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "MEDECIN", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Nova", 1, 12))); // NOI18N
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "MEDECIN", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Nova", 1, 12), new java.awt.Color(0, 102, 153))); // NOI18N
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel15.setText("Nom : ");
@@ -698,11 +698,11 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabelPrenomMedecin, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
                         .addComponent(jLabel19)
                         .addGap(70, 70, 70)
                         .addComponent(jLabelSpecialite, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -733,7 +733,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ACTES EFFECTUES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Nova", 1, 12))); // NOI18N
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ACTES EFFECTUES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Nova", 1, 12), new java.awt.Color(0, 102, 153))); // NOI18N
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -764,7 +764,8 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
         );
 
-        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PAIEMENT", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Nova", 1, 12))); // NOI18N
+        jPanel10.setBackground(new java.awt.Color(227, 227, 227));
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PAIEMENT", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Nova", 1, 12), new java.awt.Color(0, 51, 102))); // NOI18N
 
         jLabel25.setFont(new java.awt.Font("Arial Nova", 1, 12)); // NOI18N
         jLabel25.setText("COUT TOTAL :");
@@ -846,7 +847,8 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
             }
         });
 
-        jPanelCreationEmploye.setBorder(javax.swing.BorderFactory.createTitledBorder("Création employé"));
+        jPanelCreationEmploye.setBackground(new java.awt.Color(227, 227, 227));
+        jPanelCreationEmploye.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CREATION EMPLOYE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Nova", 1, 14))); // NOI18N
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel11.setText("Nom : ");
@@ -889,9 +891,9 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         jPanelCreationEmployeLayout.setHorizontalGroup(
             jPanelCreationEmployeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCreationEmployeLayout.createSequentialGroup()
-                .addGroup(jPanelCreationEmployeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(14, 14, 14)
+                .addGroup(jPanelCreationEmployeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelCreationEmployeLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -902,26 +904,28 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel13)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextFieldIdentifiant, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldIdentifiant, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelCreationEmployeLayout.createSequentialGroup()
+                        .addComponent(jLabelSpe)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxSpecialite, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelCreationEmployeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelCreationEmployeLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonValiderCreation))
+                    .addGroup(jPanelCreationEmployeLayout.createSequentialGroup()
                         .addComponent(jLabel16)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFieldTelephone, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldTelephone, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel18)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBoxFonction, 0, 128, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBoxFonction, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel14)
                         .addGap(18, 18, 18)
-                        .addComponent(jPasswordFieldPassWord, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelCreationEmployeLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabelSpe)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxSpecialite, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonValiderCreation)))
+                        .addComponent(jPasswordFieldPassWord, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanelCreationEmployeLayout.setVerticalGroup(
@@ -941,15 +945,12 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                     .addComponent(jLabel14)
                     .addComponent(jPasswordFieldPassWord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelCreationEmployeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonValiderCreation)
-                    .addGroup(jPanelCreationEmployeLayout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addGroup(jPanelCreationEmployeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelSpe)
-                            .addComponent(jComboBoxSpecialite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(64, 64, 64))
+                .addGap(13, 13, 13)
+                .addGroup(jPanelCreationEmployeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelSpe)
+                    .addComponent(jComboBoxSpecialite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonValiderCreation))
+                .addGap(62, 62, 62))
         );
 
         jLabelErreurEmploye.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -960,22 +961,22 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(533, 533, 533)
-                .addComponent(jButtonCreerEmploye)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanelCreationEmploye, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelErreurEmploye, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jButtonCreerEmploye)
+                    .addComponent(jLabelErreurEmploye, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1147, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanelCreationEmploye, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelErreurEmploye)
                 .addGap(4, 4, 4)
@@ -987,6 +988,29 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Gestion du personnel", jPanel3);
 
+        jPanel7.setBackground(new java.awt.Color(204, 204, 255));
+
+        jLabel22.setFont(new java.awt.Font("Arial Nova", 1, 11)); // NOI18N
+        jLabel22.setText("Matricule : ");
+        jLabel22.setToolTipText("");
+
+        jLabelBonjour.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabelBonjour.setText("Bonjour ");
+
+        jLabel20.setFont(new java.awt.Font("Arial Nova", 1, 11)); // NOI18N
+        jLabel20.setText("Telephone : ");
+        jLabel20.setToolTipText("");
+
+        jLabelMatricule.setFont(new java.awt.Font("Arial Nova", 0, 11)); // NOI18N
+        jLabelMatricule.setText(" - ");
+        jLabelMatricule.setToolTipText("");
+
+        jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interface/dossier-ConvertImage.png"))); // NOI18N
+
+        jLabelTel.setFont(new java.awt.Font("Arial Nova", 0, 11)); // NOI18N
+        jLabelTel.setText(" - ");
+        jLabelTel.setToolTipText("");
+
         jButtonDeconnexion.setText("Deconnexion");
         jButtonDeconnexion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -994,21 +1018,59 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
             }
         });
 
-        jLabel20.setFont(new java.awt.Font("Arial Nova", 1, 11)); // NOI18N
-        jLabel20.setText("Telephone : ");
-        jLabel20.setToolTipText("");
+        jLabel24.setFont(new java.awt.Font("Arial Nova", 1, 18)); // NOI18N
+        jLabel24.setText("PORTAIL ADMINISTRATIF");
 
-        jLabel22.setFont(new java.awt.Font("Arial Nova", 1, 11)); // NOI18N
-        jLabel22.setText("Matricule : ");
-        jLabel22.setToolTipText("");
-
-        jLabelMatricule.setFont(new java.awt.Font("Arial Nova", 0, 11)); // NOI18N
-        jLabelMatricule.setText(" - ");
-        jLabelMatricule.setToolTipText("");
-
-        jLabelTel.setFont(new java.awt.Font("Arial Nova", 0, 11)); // NOI18N
-        jLabelTel.setText(" - ");
-        jLabelTel.setToolTipText("");
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelImage)
+                .addGap(10, 10, 10)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jLabelTel, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel24))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jLabelMatricule, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonDeconnexion))))
+                    .addComponent(jLabelBonjour))
+                .addGap(18, 18, 18))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelImage)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jLabelBonjour)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel20)
+                                    .addComponent(jLabelTel)))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel24)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel22)
+                            .addComponent(jLabelMatricule)
+                            .addComponent(jButtonDeconnexion))))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1018,54 +1080,27 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelImage)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelMatricule, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelTel, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonDeconnexion)
-                                .addGap(22, 22, 22))))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTabbedPane1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(jLabelBonjour)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelBonjour)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel20)
-                            .addComponent(jLabelTel)
-                            .addComponent(jButtonDeconnexion))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel22)
-                            .addComponent(jLabelMatricule))
-                        .addGap(13, 13, 13))
-                    .addComponent(jLabelImage))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
-                        .addGap(377, 377, 377))))
+                        .addGap(377, 377, 377))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -1195,7 +1230,6 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                 int nbrLignes = model.getRowCount();
                 model.setColumnIdentifiers(new Object[]{"Code", "Acte", "Date", "Cout unitaire", "Coefficient ", "Prix"});
 
-                System.out.println(row);
                 if (model.getValueAt(row + 1, 0).equals("") && row < nbrLignes - 2) {
                     while (model.getValueAt(row + 1, 0).equals("") && row < model.getRowCount() - 2) {
                         model.removeRow(row + 1);
@@ -1204,20 +1238,18 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                     int i = 0;
 
                     for (FicheDeSoins fiche : fiches) {
-
                         for (Acte a : fiche.getActes()) {
                             //for (Acte a : fiche.getActes(m)) {
                             if (a.getCode().compareTo(c) == 0) {
                                 DecimalFormat df = new DecimalFormat("####.##");
-                                model.addRow(new Object[]{"", a.getCode().toStringSansUnitaire(a.getCoef()), a.getDate().toStringDate(), a.getCode().getCoutUnitaire(), a.getCoef(), df.format(a.cout()) + " €"});
+                                model.addRow(new Object[]{"", a.getCode().toStringSansUnitaire(a.getCoefficient()), a.getDate().toStringDate(), a.getCode().getCoutUnitaire(), a.getCoefficient(), df.format(a.calculeCout()) + " €"});
                                 i++;
                             }
                             //}
                         }
-
-                        model.addRow(new Object[]{"", "", "", "", ""});
-                        model.moveRow(nbrLignes, nbrLignes + i, row + 1);
                     }
+                    model.addRow(new Object[]{"", "", "", "", ""});
+                    model.moveRow(nbrLignes, nbrLignes + i, row + 1);
                 }
             }
         } else if (model.getValueAt(row, 2).equals("Fiche de soins") && !this.jRadioButtonActe.isSelected()) {
@@ -1317,31 +1349,37 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
             this.jLabelErreurEmploye.setBackground(Color.red);
             this.jLabelErreurEmploye.setText("Veuillez remplir tous les champs");
         } else {
+            try {
+                this.jLabelErreurEmploye.setVisible(false);
+                ModificationXMLPersonnel modif = new ModificationXMLPersonnel();
+                switch (this.jComboBoxFonction.getSelectedItem().toString()) {
 
-            this.jLabelErreurEmploye.setVisible(false);
-            ModificationXMLPersonnel modif = new ModificationXMLPersonnel();
-            switch (this.jComboBoxFonction.getSelectedItem().toString()) {
+                    case "MEDECIN":
+                        Medecin m = new Medecin(prenom, nom, id, mdp, tel, Specialite.valueOf(this.jComboBoxSpecialite.getSelectedItem().toString()));
+                        modif.ajouterPersonnel(m);
+                        break;
+                    case "SECRETAIRE_ADMINISTRATIVE":
+                        SecretaireAdmin s = new SecretaireAdmin(prenom, nom, id, mdp, tel);
+                        modif.ajouterPersonnel(s);
+                        break;
+                    case "SECRETAIRE_MEDICALE":
+                        SecretaireMed sMed = new SecretaireMed(prenom, nom, id, mdp, tel);
+                        modif.ajouterPersonnel(sMed);
+                        break;
 
-                case "MEDECIN":
-                    Medecin m = new Medecin(prenom, nom, id, mdp, tel, Specialite.valueOf(this.jComboBoxSpecialite.getSelectedItem().toString()));
-                    modif.ajouterPersonnel(m);
-                    break;
-                case "SECRETAIRE_ADMINISTRATIVE":
-                    SecretaireAdmin s = new SecretaireAdmin(prenom, nom, id, mdp, tel);
-                    modif.ajouterPersonnel(s);
-                    break;
-                case "SECRETAIRE_MEDICALE":
-                    SecretaireMed sMed = new SecretaireMed(prenom, nom, id, mdp, tel);
-                    modif.ajouterPersonnel(sMed);
-                    break;
-
+                }
+                persHopital = fichierXMLPersonnel.getPersonnel();
+                remplirPersonnel();
+                this.jLabelErreurEmploye.setVisible(true);
+                this.jLabelErreurEmploye.setBackground(Color.green);
+                this.jLabelErreurEmploye.setText("Créé avec succès !");
+                viderChampPersonnel();
+            } catch (Exception e) {
+                this.jLabelErreurEmploye.setVisible(true);
+                this.jLabelErreurEmploye.setBackground(Color.RED);
+                this.jLabelErreurEmploye.setText("Erreur : " + e.toString());
             }
-            persHopital = fichierXMLPersonnel.getPersonnel();
-            remplirPersonnel();
-            viderChampPersonnel();
-            this.jLabelErreurEmploye.setVisible(true);
-            this.jLabelErreurEmploye.setBackground(Color.green);
-            this.jLabelErreurEmploye.setText("Créé avec succès !");
+
         }
     }//GEN-LAST:event_jButtonValiderCreationActionPerformed
 
@@ -1378,6 +1416,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1416,6 +1455,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel jPanelCreationEmploye;
@@ -1511,7 +1551,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         model_Acte.setRowCount(0);
         DecimalFormat df = new DecimalFormat("####.##");
         for (Acte actes : fiche.getActes()) {
-            model_Acte.addRow(new Object[]{actes.getDate(), actes.getCode(), actes.getCode().getLibelle(), actes.getCode().getCoutUnitaire() + " €", actes.getCoef(), df.format(actes.getCode().calculerCout(actes.getCoef())) + " €"});
+            model_Acte.addRow(new Object[]{actes.getDate(), actes.getCode(), actes.getCode().getLibelle(), actes.getCode().getCoutUnitaire() + " €", actes.getCoefficient(), df.format(actes.getCode().calculerCout(actes.getCoefficient())) + " €"});
         }
 
         this.jLabelTotal.setText(df.format(fiche.coutTotal()) + " €");

@@ -7,6 +7,7 @@ package Interface;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.FileNotFoundException;
 import javax.swing.ImageIcon;
 import princetonPlainsboro.LectureXMLPersonnel;
 import princetonPlainsboro.MetierCHU;
@@ -24,8 +25,18 @@ public class connexion extends javax.swing.JFrame {
      */
     private static PersonnelHopital persHopital;
 
-    public connexion() {
+    public connexion()  {
         initComponents();
+        
+        LectureXMLPersonnel personnel = new LectureXMLPersonnel("personnels.xml");
+        persHopital = personnel.getPersonnel();
+        System.out.println(persHopital);
+        if(persHopital== null){
+            this.jLabelErreur.setVisible(true);
+                this.jLabelErreur.setText("Chemin d'accés au fichier 'personnels.xml' incorrect");
+        }
+        
+        
         
     }
 
@@ -51,9 +62,11 @@ public class connexion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Connexion");
+        setResizable(false);
 
-        jPanel1.setBackground(java.awt.SystemColor.controlHighlight);
+        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
 
+        jPassword.setText("pasteque231");
         jPassword.setToolTipText("");
 
         jLabelUtilisateur.setFont(new java.awt.Font("Arial Nova", 1, 14)); // NOI18N
@@ -62,6 +75,7 @@ public class connexion extends javax.swing.JFrame {
 
         ImageLogoHopital.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interface/3091270297_1_5_AUBKYYWu.png"))); // NOI18N
 
+        jTextFieldUtilisateur.setText("758493");
         jTextFieldUtilisateur.setToolTipText("");
 
         jLabelMotPasse.setFont(new java.awt.Font("Arial Nova", 1, 14)); // NOI18N
@@ -100,7 +114,7 @@ public class connexion extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ImageLogoHopital, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(47, 47, 47)
+                .addGap(56, 56, 56)
                 .addComponent(jLabelUtilisateur)
                 .addGap(18, 18, 18)
                 .addComponent(jTextFieldUtilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -145,9 +159,7 @@ public class connexion extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -216,8 +228,8 @@ public class connexion extends javax.swing.JFrame {
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        LectureXMLPersonnel personnel = new LectureXMLPersonnel("personnels.xml");
-        persHopital = personnel.getPersonnel();
+        
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

@@ -26,9 +26,12 @@ public class ModificationXMLDossiers {
     public ModificationXMLDossiers() {
         try {
             file = "src/donnees/dossiers.xml";
+            //file =this.getClass().getResource("/donnees/dossiers.xml").toString();
+            
             dbf = DocumentBuilderFactory.newInstance();
             db = dbf.newDocumentBuilder();
             doc = db.parse(file);
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -49,6 +52,7 @@ public class ModificationXMLDossiers {
             Transformer transformer = tf.newTransformer();
             DOMSource src = new DOMSource(doc);
             StreamResult res = new StreamResult(new File(file));
+            
             transformer.transform(src, res);
         } catch (Exception e) {
             e.printStackTrace();
@@ -147,7 +151,7 @@ public class ModificationXMLDossiers {
         coef.appendChild(doc.createTextNode(a.getCoefString()));
         type.appendChild(doc.createTextNode(a.getType().name()));
         date.appendChild(doc.createTextNode(a.getDate().toStringXML()));
-        comm.appendChild(doc.createTextNode(a.getComm()));
+        comm.appendChild(doc.createTextNode(a.getCommentaire()));
 
         acte.appendChild(code);
         acte.appendChild(nom);
@@ -155,7 +159,7 @@ public class ModificationXMLDossiers {
         acte.appendChild(type);
         acte.appendChild(date);
         acte.appendChild(comm);
-        acte.appendChild(this.createBaliseMedecin(a.getMed(), true));
+        acte.appendChild(this.createBaliseMedecin(a.getMedecin(), true));
 
         return acte;
 
