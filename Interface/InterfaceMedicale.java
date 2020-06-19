@@ -101,7 +101,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
         jLabel32 = new javax.swing.JLabel();
         jLabelDateNaissanceDM = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
-        jLabelSécuDM = new javax.swing.JLabel();
+        jLabelSecuDM = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         jLabelPoidsDM = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
@@ -243,7 +243,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
         jLabel34.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel34.setText("Numéro de sécurité sociale :");
 
-        jLabelSécuDM.setText("-");
+        jLabelSecuDM.setText("-");
 
         jLabel36.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel36.setText("Poids : ");
@@ -273,7 +273,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelPoidsDM, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelSécuDM, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelSecuDM, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelPrenomNomDM, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,7 +297,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                     .addComponent(jLabelDateNaissanceDM))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelSécuDM)
+                    .addComponent(jLabelSecuDM)
                     .addComponent(jLabel34)
                     .addComponent(jLabel33)
                     .addComponent(jLabelAdresseDM))
@@ -988,7 +988,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
             this.jLabelErreurAM.setText("Créé avec succès !");
             this.jLabelErreurAM.setForeground(Color.GREEN);
             this.jLabelErreurAM.setVisible(true);
-            réinitialiseChampActe();
+            reinitialiseChampActe();
             this.jTabbedPane1.setSelectedIndex(0);
 
         } else {
@@ -1144,7 +1144,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelPoidsDM;
     private javax.swing.JLabel jLabelPrenomAM;
     private javax.swing.JLabel jLabelPrenomNomDM;
-    private javax.swing.JLabel jLabelSécuDM;
+    private javax.swing.JLabel jLabelSecuDM;
     private javax.swing.JLabel jLabelTailleDM;
     private javax.swing.JLabel jLabelTel;
     private javax.swing.JLabel jLabelnumRPPS;
@@ -1182,7 +1182,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
     private void miseAJourAffichage() {
         //Dossier médical
         this.jLabelPrenomNomDM.setText(patient.getNom().toUpperCase() + " " + patient.getPrenom());
-        this.jLabelSécuDM.setText(patient.getNumeroSecuriteSociale());
+        this.jLabelSecuDM.setText(patient.getNumeroSecuriteSociale());
         this.jLabelTailleDM.setText(patient.getTaille() + " m");
         this.jLabelPoidsDM.setText(patient.getPoids() + " kg");
         this.jLabelDateNaissanceDM.setText(patient.getDateDeNaissance().toStringDate());
@@ -1204,7 +1204,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
     /**
      * Vide les champs dans l'onglet acte
      */
-    private void réinitialiseChampActe() {
+    private void reinitialiseChampActe() {
         this.jComboBoxCode.setSelectedIndex(0);
         this.jComboBoxHeureAM.setSelectedIndex(0);
         this.jComboBoxMinAM.setSelectedIndex(0);

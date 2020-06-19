@@ -231,7 +231,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabelPoidsDM" alignment="0" min="-2" pref="286" max="-2" attributes="0"/>
-                              <Component id="jLabelSécuDM" alignment="0" min="-2" pref="297" max="-2" attributes="0"/>
+                              <Component id="jLabelSecuDM" alignment="0" min="-2" pref="297" max="-2" attributes="0"/>
                               <Component id="jLabelPrenomNomDM" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
@@ -261,7 +261,7 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabelSécuDM" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelSecuDM" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel34" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel33" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelAdresseDM" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -315,7 +315,7 @@
                     <Property name="text" type="java.lang.String" value="Num&#xe9;ro de s&#xe9;curit&#xe9; sociale :"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabelS&#xe9;cuDM">
+                <Component class="javax.swing.JLabel" name="jLabelSecuDM">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="-"/>
                   </Properties>
