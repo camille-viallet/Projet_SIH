@@ -161,7 +161,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
         jComboBoxJourNaissance = new javax.swing.JComboBox();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        jTextFieldAnneeCP = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jTextFieldAdresse = new javax.swing.JTextField();
         jLabelErreurCP = new javax.swing.JLabel();
@@ -643,7 +643,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
 
         jLabel29.setText("/");
 
-        jTextField8.setText("2020");
+        jTextFieldAnneeCP.setText("2020");
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel14.setText("Adresse : ");
@@ -687,7 +687,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jLabel29)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldAnneeCP, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jLabelErreurCP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -713,7 +713,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
                         .addComponent(jComboBoxJourNaissance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel28)
                         .addComponent(jLabel29)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextFieldAnneeCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(7, 7, 7)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldTailleCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1009,13 +1009,13 @@ public class InterfaceMedicale extends javax.swing.JFrame {
         //Test si le format attendu est fourni
         try {
             Integer.parseInt(this.jTextFieldAnneeAM.getText());
-            Double.parseDouble(this.jTextField8.getText());
+            Double.parseDouble(this.jTextFieldAnneeCP.getText());
             Double.parseDouble(this.jTextFieldTailleCP.getText());
         } catch (Exception e) {
             error = true;
         }
         if (!this.jTextFieldNomCP.getText().isEmpty() && !this.jTextFieldPrenomCP.getText().isEmpty()
-                && !this.jTextFieldTailleCP.getText().isEmpty() && !this.jTextField8.getText().isEmpty()
+                && !this.jTextFieldTailleCP.getText().isEmpty() && !this.jTextFieldAnneeCP.getText().isEmpty()
                 && !this.jTextFieldNumeroSS_CP.getText().isEmpty() && !this.jTextFieldAdresse.getText().isEmpty()
                 && !this.PoidsCP.getText().isEmpty()
                 && !error
@@ -1023,7 +1023,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
 
             Date date = new Date(Integer.parseInt(this.jComboBoxJourNaissance.getSelectedItem().toString()),
                     Integer.parseInt(this.jComboBoxMoisNaissance.getSelectedItem().toString()),
-                    Integer.parseInt(this.jTextFieldAnneeAM.getText()),
+                    Integer.parseInt(this.jTextFieldAnneeCP.getText()),
                     0, 0);
 
             Patient p = new Patient(this.jTextFieldPrenomCP.getText(),
@@ -1165,9 +1165,9 @@ public class InterfaceMedicale extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextAreaCommentaireAM;
     private javax.swing.JTextArea jTextAreaDossierMed;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextFieldAdresse;
     private javax.swing.JTextField jTextFieldAnneeAM;
+    private javax.swing.JTextField jTextFieldAnneeCP;
     private javax.swing.JTextField jTextFieldCoef;
     private javax.swing.JTextField jTextFieldNomActe;
     private javax.swing.JTextField jTextFieldNomCP;
@@ -1224,7 +1224,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
         this.jTextFieldNomCP.setText("");
         this.jTextFieldPrenomCP.setText("");
         this.jTextFieldTailleCP.setText("");
-        this.jTextField8.setText("");
+        this.jTextFieldAnneeCP.setText("");
         this.jTextFieldNumeroSS_CP.setText("");
         this.jTextFieldAdresse.setText("");
         this.PoidsCP.setText("");
