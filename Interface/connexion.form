@@ -110,7 +110,6 @@
           <SubComponents>
             <Component class="javax.swing.JPasswordField" name="jPassword">
               <Properties>
-                <Property name="text" type="java.lang.String" value="pasteque231"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>
@@ -132,7 +131,6 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldUtilisateur">
               <Properties>
-                <Property name="text" type="java.lang.String" value="758493"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>

@@ -57,7 +57,6 @@ public class connexion extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
 
-        jPassword.setText("pasteque231");
         jPassword.setToolTipText("");
 
         jLabelUtilisateur.setFont(new java.awt.Font("Arial Nova", 1, 14)); // NOI18N
@@ -66,7 +65,6 @@ public class connexion extends javax.swing.JFrame {
 
         ImageLogoHopital.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interface/logoPrinceton.png"))); // NOI18N
 
-        jTextFieldUtilisateur.setText("758493");
         jTextFieldUtilisateur.setToolTipText("");
 
         jLabelMotPasse.setFont(new java.awt.Font("Arial Nova", 1, 14)); // NOI18N

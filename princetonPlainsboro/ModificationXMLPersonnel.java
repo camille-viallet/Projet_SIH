@@ -96,6 +96,7 @@ public class ModificationXMLPersonnel {
             Transformer transformer = tf.newTransformer();
             DOMSource src = new DOMSource(doc);
             
+            //POUR ARRIVER A OUVRIR DANS LE JAR
             //StreamResult res = new StreamResult(getClass().getResource("/donnees/personnels.xml").getFile());
             
             StreamResult res = new StreamResult(new File("src/donnees/personnels.xml"));
