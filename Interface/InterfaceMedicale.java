@@ -1053,8 +1053,12 @@ public class InterfaceMedicale extends javax.swing.JFrame {
             miseAJourAffichage();
 
         } else {
-            //Indique une erreur
-            this.jLabelErreurCP.setText("Erreur : Un ou plusieurs champs sont invalides");
+            if(!Patient.verifierSecu(this.jTextFieldNumeroSS_CP.getText())){
+            this.jLabelErreurCP.setText("Erreur : numéro de sécurité sociale incorrect. Verifier qu'il n'y a pas d'espaces");
+            }else{
+                this.jLabelErreurCP.setText("Erreur : Un ou plusieurs champs sont invalides");
+                
+            }
             this.jLabelErreurCP.setForeground(Color.red);
             this.jLabelErreurCP.setVisible(true);
         }
