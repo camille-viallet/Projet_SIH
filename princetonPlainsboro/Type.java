@@ -8,12 +8,11 @@ package princetonPlainsboro;
 /**
  * Type énuméré indiquant le type d'un acte ( diagnostique ou thérapeutique )
  *
- * @author Eduarda DA SILVA
+ * @author Groupe 8
  */
 public enum Type {
 
     // valeurs de l'�num :
-
     DIAG("Diagnostique"),
     THERA("Thérapeutique");
 

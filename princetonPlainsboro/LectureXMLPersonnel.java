@@ -16,7 +16,7 @@ import javax.xml.stream.XMLStreamReader;
 /**
  * Lit un fichier XML contenant le personnel de l'hopital
  *
- * @author Camille
+ * @author Groupe 8
  */
 public class LectureXMLPersonnel {
     /// nom du document XML a analyser

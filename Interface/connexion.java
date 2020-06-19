@@ -14,7 +14,7 @@ import princetonPlainsboro.PersonnelHopital;
  * Interface de connexion. Permet d'obtenir un accés sécurisé et proposer une
  * interface adaptée selon les personnels
  *
- * @author Camille
+ * @author Groupe 8
  */
 public class connexion extends javax.swing.JFrame {
 

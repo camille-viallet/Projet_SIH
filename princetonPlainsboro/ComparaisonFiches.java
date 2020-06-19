@@ -2,6 +2,8 @@ package princetonPlainsboro;
 
 /**
  * Cette interface permet de representer une comparaison entre deux FicheDeSoins
+ *
+ * @author Groupe 8
  */
 public interface ComparaisonFiches {
 

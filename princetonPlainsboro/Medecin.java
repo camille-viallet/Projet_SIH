@@ -3,7 +3,7 @@ package princetonPlainsboro;
 /**
  * Modélise un medecin de l'hopital ( qui est un membre du personnel particulier )
  *
- * @author Camille
+ * @author Groupe 8
  */
 public class Medecin extends Personnel {
 

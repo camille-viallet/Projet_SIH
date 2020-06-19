@@ -5,20 +5,22 @@ package princetonPlainsboro;
 
 /**
  * Modélise les spécialités présentes dans dans l'hopital
- * @author dasilvae
+ *
+ * @author Groupe 8
  */
 public enum Specialite {
-    ANESTHESIOLOGIE, 
-    CARDIOLOGIE, 
-    DERMATOLOGIE, 
-    GERONTOLOGIE, 
-    GYNECOLOGIE, 
-    HEMATOLOGIE, 
-    NEUROLOGIE, 
-    PEDIATRIE, 
-    RADIOLOGIE, 
-    UROLOGIE, 
-    ONCOLOGIE, 
+
+    ANESTHESIOLOGIE,
+    CARDIOLOGIE,
+    DERMATOLOGIE,
+    GERONTOLOGIE,
+    GYNECOLOGIE,
+    HEMATOLOGIE,
+    NEUROLOGIE,
+    PEDIATRIE,
+    RADIOLOGIE,
+    UROLOGIE,
+    ONCOLOGIE,
     ORTHODONTIE,
-    AUTRE ;
+    AUTRE;
 }

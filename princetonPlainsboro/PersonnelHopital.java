@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Modélise l'ensemble des personnels de l'hopital
  *
- * @author Camille
+ * @author Groupe 8
  */
 public class PersonnelHopital {
 

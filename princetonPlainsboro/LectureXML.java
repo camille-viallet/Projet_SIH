@@ -20,7 +20,7 @@ import javax.xml.stream.XMLStreamReader;
 /**
  * Lecture d'un document XML et transformation en instances Java.
  *
- * @author promayon
+ * @author Groupe 8
  */
 public class LectureXML {
 

@@ -20,7 +20,7 @@ import java.io.InputStream;
 
 /**
  *
- * @author Camille
+ * @author Groupe 8
  */
 public class ModificationXMLPersonnel {
 

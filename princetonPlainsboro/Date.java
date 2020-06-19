@@ -4,7 +4,7 @@ package princetonPlainsboro;
  * Modélise un date. Elle est définie par une année, un mois, un jour, une
  * heure, et des minutes
  *
- * @author Camille
+ * @author Groupe 8
  */
 public class Date implements Comparable {
 

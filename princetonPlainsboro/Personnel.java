@@ -8,7 +8,7 @@ package princetonPlainsboro;
 /**
  * Modélise les caractéristiques principales du personnel de l'hopital
  *
- * @author dasilvae
+ * @author Groupe 8
  */
 public abstract class Personnel {
 

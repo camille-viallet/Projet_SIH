@@ -17,7 +17,7 @@ import org.xml.sax.SAXException;
  * Permet d'ajouter des FichesDeSoins et des Actes dans le fichier XML des
  * dossiers medicaux
  *
- * @author Camille
+ * @author Groupe 8
  */
 public class ModificationXMLDossierMedical {
 

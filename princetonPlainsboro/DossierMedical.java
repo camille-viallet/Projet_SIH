@@ -7,7 +7,7 @@ import java.util.Vector;
 /**
  * Modélise un dossier medical contenant des fiches de soins
  *
- * @author Camille
+ * @author Groupe 8
  */
 public class DossierMedical {
 

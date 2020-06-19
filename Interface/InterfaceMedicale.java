@@ -22,7 +22,7 @@ import princetonPlainsboro.Personnel;
 /**
  * Interface destinée au corps médical
  *
- * @author Camille
+ * @author Groupe 8
  */
 public class InterfaceMedicale extends javax.swing.JFrame {
 
@@ -78,6 +78,8 @@ public class InterfaceMedicale extends javax.swing.JFrame {
         this.jTabbedPane1.setEnabledAt(2, false);
         this.jLabelTel.setText(personnel.getTelephone());
         this.jLabelnumRPPS.setText(personnel.getUsername());
+
+        this.setExtendedState(InterfaceMedicale.MAXIMIZED_BOTH);
 
     }
 
@@ -894,7 +896,7 @@ public class InterfaceMedicale extends javax.swing.JFrame {
 
         //Selon la selection affiche les patients du medecin ou tous les patients
         if (this.jRadioButtonAllPatients.isSelected()) {
-       
+            patient = dossierMedical.getListeTousPatients().get(index);
         } else {
             patient = dossierMedical.getListePatients((Medecin) personnel).get(index);
         }

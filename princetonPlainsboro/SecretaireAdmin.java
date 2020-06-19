@@ -6,26 +6,30 @@
 package princetonPlainsboro;
 
 /**
- * Modélise une secrétaire administrative ( qui est un membre du personnel particulier )
- * @author dasilvae
+ * Modélise une secrétaire administrative ( qui est un membre du personnel
+ * particulier )
+ *
+ * @author Groupe 8
  */
 public class SecretaireAdmin extends Personnel {
 
     /**
      * Construit une Secretaire Administrative
+     *
      * @param prenom
      * @param nom
      * @param matricule
      * @param motDePasse
-     * @param telephone 
+     * @param telephone
      */
-    public SecretaireAdmin(String prenom, String nom, String matricule, String motDePasse,  String telephone) {
+    public SecretaireAdmin(String prenom, String nom, String matricule, String motDePasse, String telephone) {
         super(prenom, nom, matricule, motDePasse, telephone);
 
     }
-    
+
     /**
      * Obtient le métier
+     *
      * @return le métier
      */
     @Override

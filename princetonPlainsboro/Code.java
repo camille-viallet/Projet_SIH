@@ -7,6 +7,8 @@ package princetonPlainsboro;
  * valeur Code.FP a un attribut 'libelle' contenant la chaine de caracteres
  * "forfait pediatrique" et un attribut 'cout' ayant la valeur 5.0
  *
+ * @author Groupe 8
+ *
  */
 public enum Code {
 

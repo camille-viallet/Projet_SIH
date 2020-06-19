@@ -1,7 +1,7 @@
 package princetonPlainsboro;
 /**
  * Compare deux fiches de soins en fonction de leur cout 
- * @author Camille
+ * @author Groupe 8
  */
 public class ComparaisonFichesCouts implements ComparaisonFiches {
     /**

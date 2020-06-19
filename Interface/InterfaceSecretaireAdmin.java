@@ -33,7 +33,7 @@ import princetonPlainsboro.Specialite;
 /**
  * Interface destinée aux secrétaires administratives
  *
- * @author Camille
+ * @author Groupe 8
  */
 public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
 
@@ -90,6 +90,8 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
         this.jLabelErreurEmploye.setVisible(false);
         this.jLabelTel.setText(p.getTelephone());
         this.jLabelMatricule.setText(p.getUsername());
+        
+        this.setExtendedState(InterfaceSecretaireAdmin.MAXIMIZED_BOTH);
 
     }
 
@@ -381,7 +383,7 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelErreurActe)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelCoutGras)
                     .addComponent(jLabelCout3))
                 .addGap(36, 36, 36))
@@ -1065,12 +1067,9 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(377, 377, 377))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jLabel1)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -1326,8 +1325,9 @@ public class InterfaceSecretaireAdmin extends javax.swing.JFrame {
      * @param evt
      */
     private void jButtonValider2DatesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValider2DatesActionPerformed
-        afficheEntreDeuxDates();
         this.jCheckBoxEntre2Dates.setSelected(true);
+        afficheEntreDeuxDates();
+        
     }//GEN-LAST:event_jButtonValider2DatesActionPerformed
 
     /**

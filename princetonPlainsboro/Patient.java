@@ -3,7 +3,7 @@ package princetonPlainsboro;
 /**
  * Modélise un patient
  *
- * @author Camille
+ * @author Groupe 8
  */
 public class Patient {
 

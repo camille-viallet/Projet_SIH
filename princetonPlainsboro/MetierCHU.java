@@ -7,7 +7,7 @@ package princetonPlainsboro;
 
 /**
  * Represente les metiers dans le CHU
- * @author dudaa
+ * @author Groupe 8
  */
 public enum MetierCHU {
    MEDECIN, 

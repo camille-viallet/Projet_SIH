@@ -3,7 +3,7 @@ package princetonPlainsboro;
 /**
  * Compare deux fiches de soins en fonction de leur date
  *
- * @author Camille
+ * @author Groupe 8
  */
 public class ComparaisonFichesDates implements ComparaisonFiches {
 

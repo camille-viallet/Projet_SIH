@@ -5,7 +5,7 @@ import java.util.Vector;
 /**
  * Modélise une fiche de soins
  *
- * @author Camille
+ * @author Groupe 8
  */
 public class FicheDeSoins {
 

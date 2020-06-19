@@ -3,7 +3,7 @@ package princetonPlainsboro;
 /**
  * Modélise un acte médical
  *
- * @author Camille
+ * @author Groupe 8
  */
 public class Acte {
 

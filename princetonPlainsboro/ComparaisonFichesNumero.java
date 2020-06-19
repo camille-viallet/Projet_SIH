@@ -8,7 +8,7 @@ package princetonPlainsboro;
 /**
  * Compare deux fiches de soins en fonction de leur numéro
  *
- * @author Camille
+ * @author Groupe 8
  */
 public class ComparaisonFichesNumero implements ComparaisonFiches {
 
